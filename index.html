@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>comdei</title>
+  <meta name="description" content="Comdei — associação católica leiga em formação. Rio de Janeiro.">
+  <link rel="icon" href="comdei.png" type="image/png">
+  <style>
+    :root {
+      --ink: #2a2a2a;
+      --mute: #5c5c5c;
+      --paper: #f6f2ea;
+      --line: #d9d2c4;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+      max-width: 38rem;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .mark {
+      width: min(22rem, 92vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 2.25rem;
+    }
+    h1 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+    p { margin: 0 0 1.15rem; font-size: 1.125rem; }
+    .lede {
+      font-size: 1.28rem;
+      margin-bottom: 1.6rem;
+    }
+    .rule {
+      border: 0;
+      border-top: 1px solid var(--line);
+      width: 4rem;
+      margin: 1.8rem auto;
+    }
+    .small { color: var(--mute); font-size: 1rem; }
+    footer {
+      padding: 0 1.5rem 2.2rem;
+      text-align: center;
+      color: var(--mute);
+      font-size: 0.92rem;
+    }
+    footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+    footer a:hover { border-bottom-color: var(--ink); }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="mark" src="comdei.png" alt="comdei — cruz no d">
+    <h1>comdei</h1>
+    <p class="lede">Associação católica leiga em formação.<br>Rio de Janeiro.</p>
+    <p>Comunidade de fiéis leigos que caminha com a Igreja. Três fundadores iguais. A pastoral fica com o Pe.&nbsp;Vítor Pereira e com Breno Marot. Lucas cuida da casa e da operação.</p>
+    <p>O primeiro ministério é a catequese.</p>
+    <hr class="rule">
+    <p class="small">Este mês: estatuto e CNPJ no cartório do Rio.<br>A cada semana, um passo visível.</p>
+  </main>
+  <footer>
+    <p>2026 · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
+  </footer>
+</body>
+</html>
