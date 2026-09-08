@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>comdei</title>
-  <meta name="description" content="Comdei — associação católica leiga em formação. Rio de Janeiro.">
+  <title>comdei — Communitas Dei</title>
+  <meta name="description" content="Comdei — Communitas Dei. Comunidade de fiéis leigos em formação. Rio de Janeiro.">
   <link rel="icon" href="comdei.png" type="image/png">
   <style>
     :root {
@@ -32,6 +32,59 @@
     a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); }
     a:hover { border-bottom-color: var(--ink); }
 
+    #public, #site {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    #gate {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+    #public[hidden], #gate[hidden], #site[hidden] { display: none !important; }
+
+    .gate-card {
+      max-width: 22rem;
+      width: 100%;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border: 1px solid var(--line);
+      background: #fffef9;
+    }
+    .gate-card img { width: 10rem; height: auto; margin: 0 auto 1.25rem; display: block; }
+    .gate-card p { color: var(--mute); font-size: 0.98rem; margin: 0 0 1.2rem; }
+    .gate-card label { display: block; font-size: 0.85rem; color: var(--mute); margin-bottom: 0.4rem; text-align: left; }
+    .gate-card input {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      font: inherit;
+      margin-bottom: 0.85rem;
+    }
+    .gate-card button {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 0;
+      background: var(--navy);
+      color: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+    .gate-card button:hover { background: #142038; }
+    .gate-err { color: #8b2e2e; font-size: 0.9rem; min-height: 1.2em; margin: 0.5rem 0 0; }
+    .gate-back {
+      display: inline-block;
+      margin-top: 1.1rem;
+      font-size: 0.9rem;
+      color: var(--mute);
+      border-bottom-color: transparent;
+    }
+    .gate-back:hover { color: var(--navy); border-bottom-color: var(--line); }
+
     .site-header {
       position: sticky;
       top: 0;
@@ -44,6 +97,7 @@
       margin: 0 auto;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 1.75rem;
       padding: 0.8rem 1.5rem;
     }
@@ -66,6 +120,7 @@
       padding: 3.2rem 1.5rem 2.5rem;
       width: 100%;
     }
+    #public main { padding-top: 3.6rem; }
 
     .panel { display: block; }
     .js .panel { display: none; }
@@ -78,10 +133,21 @@
       display: block;
       margin: 0 auto 2rem;
     }
-    h1 {
+    #public .mark { width: min(20rem, 86vw); margin-bottom: 1.6rem; }
+    .sr-only {
       position: absolute;
       width: 1px; height: 1px;
       overflow: hidden; clip: rect(0 0 0 0);
+    }
+    h1.headline {
+      position: static;
+      width: auto; height: auto;
+      overflow: visible; clip: auto;
+      font-size: 1.85rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--navy);
+      margin: 0 0 0.55rem;
     }
     h2 {
       font-size: 1.15rem;
@@ -129,7 +195,9 @@
     @media (max-width: 560px) {
       .stats { grid-template-columns: 1fr; }
       main { padding-top: 2.4rem; }
+      #public main { padding-top: 2.6rem; }
       .nav { gap: 1.4rem; }
+      h1.headline { font-size: 1.55rem; }
     }
     .stat {
       background: var(--soft);
@@ -188,133 +256,299 @@
       font-size: 0.92rem;
     }
     footer a { color: var(--ink); }
+
+    .preview-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--line);
+      padding: 0.18rem 0.5rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .waitlist {
+      text-align: left;
+      max-width: 24rem;
+      margin: 0 auto;
+      padding: 1.35rem 1.25rem 1.2rem;
+      background: #fffef9;
+      border: 1px solid var(--line);
+    }
+    .waitlist h2 {
+      text-align: center;
+      margin: 0 0 0.45rem;
+      font-size: 1.18rem;
+    }
+    .waitlist .cta-lead {
+      text-align: center;
+      color: var(--mute);
+      font-size: 0.98rem;
+      margin-bottom: 1.15rem;
+    }
+    .waitlist label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--mute);
+      margin: 0 0 0.3rem;
+    }
+    .waitlist .field { margin-bottom: 0.85rem; }
+    .waitlist input,
+    .waitlist textarea {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      font: inherit;
+      color: var(--ink);
+    }
+    .waitlist textarea { min-height: 5rem; resize: vertical; }
+    .waitlist button[type="submit"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-top: 0.25rem;
+      border: 0;
+      background: var(--navy);
+      color: var(--paper);
+      font: inherit;
+      cursor: pointer;
+    }
+    .waitlist button[type="submit"]:hover { background: #142038; }
+    .waitlist button[type="submit"]:disabled { opacity: 0.65; cursor: wait; }
+    .form-err { color: #8b2e2e; font-size: 0.9rem; min-height: 1.2em; margin: 0.35rem 0 0.15rem; }
+    .form-note {
+      text-align: center;
+      color: var(--mute);
+      font-size: 0.88rem;
+      margin: 0.85rem 0 0;
+    }
+    .waitlist-success {
+      text-align: center;
+      padding: 0.4rem 0.2rem 0.2rem;
+    }
+    .waitlist-success p { margin-bottom: 0.75rem; }
+    .founders-link {
+      display: inline-block;
+      margin-top: 0.35rem;
+      font-size: 0.98rem;
+      color: var(--mute);
+      border-bottom-color: transparent;
+    }
+    .founders-link:hover { color: var(--navy); border-bottom-color: var(--line); }
+    .public-home { text-align: center; }
+    .public-home .lede { margin-bottom: 1.15rem; }
   </style>
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Seções">
-      <a href="#inicio" data-nav="inicio" class="is-active">Início</a>
-      <a href="#pesquisa" data-nav="pesquisa">Pesquisa</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="inicio" class="panel is-active" data-panel>
-      <div class="hero">
+  <div id="public">
+    <main>
+      <div class="public-home">
         <img class="mark" src="comdei.png" alt="comdei — cruz no d">
-        <h1>comdei</h1>
-        <p class="lede">Associação católica leiga em formação · RJ</p>
-        <p>Comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira. Breno Marot é o primeiro membro. A pastoral fica com o Pe.&nbsp;Vítor e com Breno. Lucas cuida da casa e da operação.</p>
-        <p>O primeiro ministério é a catequese.</p>
+        <h1 class="headline">Communitas Dei</h1>
+        <p class="lede">comunidade de fiéis leigos · em formação</p>
+        <p>A Comdei é uma comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira. Breno Marot é o primeiro membro.</p>
         <hr class="rule">
-        <p class="small">Este mês: estatuto e CNPJ no cartório do Rio.<br>A cada semana, um passo visível.</p>
-        <p class="contact"><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
-        <p class="rites-line">A Igreja Católica é una em vários ritos. O Pe.&nbsp;Vítor é melquita bi-ritual — <a href="#pesquisa">ver Pesquisa</a>.</p>
-      </div>
-    </section>
 
-    <section id="pesquisa" class="panel" data-panel>
-      <h2>Panorama no Brasil</h2>
-      <p class="note">Três universos distintos — não se somam: Censo (autodeclaração), Pew (adultos / prática) e Santa Sé (batizados).</p>
+        <div class="waitlist">
+          <h2>Quer acompanhar os avanços?</h2>
+          <p class="cta-lead">Deixe um contato. Avisamos quando houver novidade.</p>
 
-      <div class="stats">
-        <div class="stat">
-          <strong>56,7%</strong>
-          <span>católicos · 100,2 mi<br>IBGE 2022 (10+)</span>
+          <!-- TODO: replace PLACEHOLDER with the real Formspree form ID when available. -->
+          <form id="waitlist-form" action="https://formspree.io/f/PLACEHOLDER" method="POST">
+            <div class="field">
+              <label for="wl-nome">Nome <span class="small">(opcional)</span></label>
+              <input id="wl-nome" name="name" type="text" autocomplete="name" maxlength="120">
+            </div>
+            <div class="field">
+              <label for="wl-email">E-mail</label>
+              <input id="wl-email" name="email" type="email" autocomplete="email" maxlength="200" placeholder="voce@email.com">
+            </div>
+            <div class="field">
+              <label for="wl-whatsapp">WhatsApp <span class="small">(opcional se houver e-mail)</span></label>
+              <input id="wl-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" placeholder="(21) 99999-9999">
+            </div>
+            <div class="field">
+              <label for="wl-nota">Recado <span class="small">(opcional)</span></label>
+              <textarea id="wl-nota" name="message" maxlength="800" placeholder="Como conheceu a Comdei, se quiser."></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Whitelist Comdei">
+            <p class="form-err" id="waitlist-err" aria-live="polite"></p>
+            <button type="submit" id="waitlist-submit">Entrar na lista</button>
+          </form>
+
+          <div class="waitlist-success" id="waitlist-success" hidden>
+            <p>Obrigado. Guardamos o seu pedido neste aparelho e abrimos um e-mail para a equipe.</p>
+            <p class="small">Se o e-mail não abrir, escreva para <a href="mailto:lucas@comdei.org">lucas@comdei.org</a>.</p>
+          </div>
+          <p class="form-note">Os envios vão para a equipe da Comdei.</p>
         </div>
-        <div class="stat">
-          <strong>46%</strong>
-          <span>católicos adultos<br>Pew 2024</span>
+
+        <p><a class="founders-link" href="#fundadores">Área dos fundadores</a></p>
+      </div>
+    </main>
+    <footer>
+      <p>2026 · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
+    </footer>
+  </div>
+
+  <div id="gate" hidden>
+    <div class="gate-card">
+      <img src="comdei.png" alt="comdei">
+      <p>Prévia dos fundadores<br>Código de acesso compartilhado.</p>
+      <label for="code">Código de acesso</label>
+      <input id="code" type="password" autocomplete="current-password" placeholder="••••••••">
+      <button type="button" id="enter">Entrar</button>
+      <p class="gate-err" id="gate-err" aria-live="polite"></p>
+      <a class="gate-back" href="#">Voltar ao site</a>
+    </div>
+  </div>
+
+  <div id="site" hidden>
+    <header class="site-header">
+      <nav class="nav" aria-label="Seções">
+        <a href="#inicio" data-nav="inicio" class="is-active">Início</a>
+        <a href="#pesquisa" data-nav="pesquisa">Pesquisa</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="inicio" class="panel is-active" data-panel>
+        <div class="hero">
+          <p class="preview-badge">prévia fundadores</p>
+          <img class="mark" src="comdei.png" alt="comdei — cruz no d">
+          <h1 class="sr-only">comdei</h1>
+          <p class="lede">Associação católica leiga em formação · RJ</p>
+          <p>Comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira. Breno Marot é o primeiro membro. A pastoral fica com o Pe.&nbsp;Vítor e com Breno. Lucas cuida da casa e da operação.</p>
+          <p>O primeiro ministério é a catequese.</p>
+          <hr class="rule">
+          <p class="small">Este mês: estatuto e CNPJ no cartório do Rio.<br>A cada semana, um passo visível.</p>
+          <p class="contact"><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
+          <p class="rites-line">A Igreja Católica é una em vários ritos. O Pe.&nbsp;Vítor é melquita bi-ritual — <a href="#pesquisa">ver Pesquisa</a>.</p>
         </div>
-        <div class="stat">
-          <strong>~182 mi</strong>
-          <span>batizados no Brasil<br>Annuarium / Vaticano</span>
+      </section>
+
+      <section id="pesquisa" class="panel" data-panel>
+        <h2>Panorama no Brasil</h2>
+        <p class="note">Três universos distintos — não se somam: Censo (autodeclaração), Pew (adultos / prática) e Santa Sé (batizados).</p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>56,7%</strong>
+            <span>católicos · 100,2 mi<br>IBGE 2022 (10+)</span>
+          </div>
+          <div class="stat">
+            <strong>46%</strong>
+            <span>católicos adultos<br>Pew 2024</span>
+          </div>
+          <div class="stat">
+            <strong>~182 mi</strong>
+            <span>batizados no Brasil<br>Annuarium / Vaticano</span>
+          </div>
         </div>
-      </div>
 
-      <p>No Censo, evangélicos são <strong>26,9%</strong> (47,4 mi) e sem religião <strong>9,3%</strong> (16,4 mi) — pessoas de 10 anos ou mais (<a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE, jun/2025</a>). Católicos caíram de 65,1% para 56,7% na mesma base 10+ (2010→2022).</p>
+        <p>No Censo, evangélicos são <strong>26,9%</strong> (47,4 mi) e sem religião <strong>9,3%</strong> (16,4 mi) — pessoas de 10 anos ou mais (<a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE, jun/2025</a>). Católicos caíram de 65,1% para 56,7% na mesma base 10+ (2010→2022).</p>
 
-      <p>Católico no censo <em>não</em> é o mesmo que praticante. Entre católicos adultos no Brasil, <strong>36%</strong> frequentam culto/missa ao menos semanalmente (<a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew Research Center, 2024</a>).</p>
+        <p>Católico no censo <em>não</em> é o mesmo que praticante. Entre católicos adultos no Brasil, <strong>36%</strong> frequentam culto/missa ao menos semanalmente (<a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew Research Center, 2024</a>).</p>
 
-      <h2>Ritos orientais</h2>
-      <p>A Igreja Católica é una em vários ritos. No Brasil há eparquias próprias melquita, maronita e ucranianas, além do Ordinariato para fiéis orientais. O Pe.&nbsp;Vítor é melquita com faculdades bi-rituais (melquita–latino): a Comdei nasce nesse horizonte pleno, sem reduzir a Igreja ao rito latino.</p>
+        <h2>Ritos orientais</h2>
+        <p>A Igreja Católica é una em vários ritos. No Brasil há eparquias próprias melquita, maronita e ucranianas, além do Ordinariato para fiéis orientais. O Pe.&nbsp;Vítor é melquita com faculdades bi-rituais (melquita–latino): a Comdei nasce nesse horizonte pleno, sem reduzir a Igreja ao rito latino.</p>
 
-      <div class="callout">
-        <strong>Eparquia Melquita — Nossa Senhora do Paraíso (São Paulo)</strong><br>
-        <span style="font-size:1.35rem;color:var(--navy);font-weight:700">437.000</span> batizados · 6 paróquias · 12 padres (fim-2023).<br>
-        <span class="small">Fonte: <a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Annuario Pontificio 2024 via Catholic-Hierarchy</a>. Contagem difícil: muitos frequentam paróquias latinas.</span>
-      </div>
+        <div class="callout">
+          <strong>Eparquia Melquita — Nossa Senhora do Paraíso (São Paulo)</strong><br>
+          <span style="font-size:1.35rem;color:var(--navy);font-weight:700">437.000</span> batizados · 6 paróquias · 12 padres (fim-2023).<br>
+          <span class="small">Fonte: <a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Annuario Pontificio 2024 via Catholic-Hierarchy</a>. Contagem difícil: muitos frequentam paróquias latinas.</span>
+        </div>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Jurisdição</th>
-              <th>Batizados</th>
-              <th>Fonte</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Melquita · N. Sra. do Paraíso (SP)</td>
-              <td class="num">437.000</td>
-              <td><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">CH dsame</a></td>
-            </tr>
-            <tr>
-              <td>Maronita · N. Sra. do Líbano (SP)</td>
-              <td class="num">528.000</td>
-              <td><a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">CH dsama</a></td>
-            </tr>
-            <tr>
-              <td>Ucraniana · Arquieparquia Curitiba</td>
-              <td class="num">91.000</td>
-              <td><a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">CH dcuuk</a></td>
-            </tr>
-            <tr>
-              <td>Ucraniana · Eparquia Prudentópolis</td>
-              <td class="num">83.200</td>
-              <td><a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">CH dpruk</a></td>
-            </tr>
-            <tr>
-              <td>Ordinariato fiéis orientais (BR)</td>
-              <td class="num">10.603</td>
-              <td><a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">CH dorbr</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Jurisdição</th>
+                <th>Batizados</th>
+                <th>Fonte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Melquita · N. Sra. do Paraíso (SP)</td>
+                <td class="num">437.000</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">CH dsame</a></td>
+              </tr>
+              <tr>
+                <td>Maronita · N. Sra. do Líbano (SP)</td>
+                <td class="num">528.000</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">CH dsama</a></td>
+              </tr>
+              <tr>
+                <td>Ucraniana · Arquieparquia Curitiba</td>
+                <td class="num">91.000</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">CH dcuuk</a></td>
+              </tr>
+              <tr>
+                <td>Ucraniana · Eparquia Prudentópolis</td>
+                <td class="num">83.200</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">CH dpruk</a></td>
+              </tr>
+              <tr>
+                <td>Ordinariato fiéis orientais (BR)</td>
+                <td class="num">10.603</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">CH dorbr</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-      <p class="note">Soma dessas jurisdições ≈ <strong>1,15 milhão</strong> de batizados — cerca de <strong>0,6%</strong> dos ~182 mi batizados no Brasil (Santa Sé). Não misturar com o Censo IBGE: universos diferentes.</p>
+        <p class="note">Soma dessas jurisdições ≈ <strong>1,15 milhão</strong> de batizados — cerca de <strong>0,6%</strong> dos ~182 mi batizados no Brasil (Santa Sé). Não misturar com o Censo IBGE: universos diferentes.</p>
 
-      <h2>Fontes</h2>
-      <ul class="sources">
-        <li><a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE — Censo 2022 Religiões</a> (divulgação 6 jun 2025)</li>
-        <li><a href="https://educa.ibge.gov.br/jovens/materias-especiais/22703-censo-2022-numero-de-catolicos-no-brasil-em-queda.html" target="_blank" rel="noopener">IBGE Educa — católicos em queda</a></li>
-        <li><a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew — afiliação religiosa na América Latina</a> (2024 / pub. 2026)</li>
-        <li><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Catholic-Hierarchy — Melquita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">Maronita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">Ucraniana Curitiba</a>, <a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">Prudentópolis</a>, <a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">Ordinariato</a> (Annuario Pontificio 2024)</li>
-      </ul>
-    </section>
-  </main>
+        <h2>Fontes</h2>
+        <ul class="sources">
+          <li><a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE — Censo 2022 Religiões</a> (divulgação 6 jun 2025)</li>
+          <li><a href="https://educa.ibge.gov.br/jovens/materias-especiais/22703-censo-2022-numero-de-catolicos-no-brasil-em-queda.html" target="_blank" rel="noopener">IBGE Educa — católicos em queda</a></li>
+          <li><a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew — afiliação religiosa na América Latina</a> (2024 / pub. 2026)</li>
+          <li><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Catholic-Hierarchy — Melquita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">Maronita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">Ucraniana Curitiba</a>, <a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">Prudentópolis</a>, <a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">Ordinariato</a> (Annuario Pontificio 2024)</li>
+        </ul>
+      </section>
+    </main>
 
-  <footer>
-    <p>2026 · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
-  </footer>
+    <footer>
+      <p>2026 · <a href="https://instagram.com/vemcomdei">@vemcomdei</a> · <a href="#">site público</a></p>
+    </footer>
+  </div>
 
   <script>
     (function () {
+      // TODO: set to a real Formspree URL, e.g. "https://formspree.io/f/xxxxxxxx"
+      // Leave empty (or keep PLACEHOLDER) to use mailto:lucas@comdei.org as the send path.
+      var WAITLIST_ENDPOINT = "";
+      var WAITLIST_KEY = "comdei_waitlist";
+      var MAILTO = "lucas@comdei.org";
+
+      // SHA-256 of the shared access code — do not change (commit 3f7036fe)
+      var EXPECT = "722eb4cdbc6e0182c95a9288b09432be4a23bc453f03a42c8ce8f4a953b549ff";
+
+      var publicEl = document.getElementById("public");
+      var gateEl = document.getElementById("gate");
+      var siteEl = document.getElementById("site");
       var panels = document.querySelectorAll("[data-panel]");
       var links = document.querySelectorAll(".nav a[data-nav]");
 
-      function tabFromLocation() {
-        var hash = (location.hash || "").replace(/^#/, "");
-        var query = "";
-        try { query = new URLSearchParams(location.search).get("tab") || ""; } catch (e) {}
-        var name = hash || query || "inicio";
-        return name === "pesquisa" ? "pesquisa" : "inicio";
+      function isUnlocked() {
+        try { return sessionStorage.getItem("comdei_ok") === "1"; } catch (e) { return false; }
       }
 
-      function render(name) {
+      function hashName() {
+        return (location.hash || "").replace(/^#/, "");
+      }
+
+      function showView(name) {
+        publicEl.hidden = name !== "public";
+        gateEl.hidden = name !== "gate";
+        siteEl.hidden = name !== "site";
+      }
+
+      function renderTab(name) {
         var tab = name === "pesquisa" ? "pesquisa" : "inicio";
         panels.forEach(function (panel) {
           var on = panel.id === tab;
@@ -330,31 +564,209 @@
         });
       }
 
-      function go(tab, push) {
-        var next = "#" + tab;
-        if (location.hash !== next) {
-          if (push) history.pushState(null, "", next);
-          else history.replaceState(null, "", next);
+      function applyRoute(push) {
+        var hash = hashName();
+        var gated = hash === "fundadores" || hash === "inicio" || hash === "pesquisa";
+
+        if (!gated) {
+          showView("public");
+          window.scrollTo(0, 0);
+          return;
         }
-        render(tab);
+
+        if (!isUnlocked()) {
+          showView("gate");
+          window.scrollTo(0, 0);
+          var code = document.getElementById("code");
+          if (code) setTimeout(function () { code.focus(); }, 0);
+          return;
+        }
+
+        var tab = hash === "pesquisa" ? "pesquisa" : "inicio";
+        if (hash === "fundadores") {
+          if (push) history.pushState(null, "", "#inicio");
+          else history.replaceState(null, "", "#inicio");
+        }
+        showView("site");
+        renderTab(tab);
         window.scrollTo(0, 0);
       }
 
+      function unlock() {
+        try { sessionStorage.setItem("comdei_ok", "1"); } catch (e) {}
+        if (hashName() === "fundadores" || !hashName()) {
+          history.replaceState(null, "", "#inicio");
+        }
+        applyRoute(false);
+      }
+
+      async function sha256hex(text) {
+        var data = new TextEncoder().encode(text);
+        var buf = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(buf)).map(function (b) {
+          return b.toString(16).padStart(2, "0");
+        }).join("");
+      }
+
+      async function tryEnter() {
+        var err = document.getElementById("gate-err");
+        err.textContent = "";
+        var code = document.getElementById("code").value.trim();
+        if (!code) { err.textContent = "Digite o código."; return; }
+        var h = await sha256hex(code);
+        if (h === EXPECT) unlock();
+        else err.textContent = "Código incorreto.";
+      }
+
+      document.getElementById("enter").addEventListener("click", tryEnter);
+      document.getElementById("code").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") tryEnter();
+      });
+
       document.addEventListener("click", function (event) {
-        var link = event.target.closest('a[href="#inicio"], a[href="#pesquisa"]');
+        var link = event.target.closest('a[href="#inicio"], a[href="#pesquisa"], a[href="#fundadores"], a[href="#"]');
         if (!link) return;
+        var href = link.getAttribute("href");
+        if (href === "#") {
+          event.preventDefault();
+          if (location.hash) history.pushState(null, "", location.pathname + location.search);
+          applyRoute(false);
+          return;
+        }
         event.preventDefault();
-        go(link.getAttribute("href").slice(1), true);
+        var next = href;
+        if (location.hash !== next) history.pushState(null, "", next);
+        applyRoute(false);
       });
 
       window.addEventListener("popstate", function () {
-        render(tabFromLocation());
-        window.scrollTo(0, 0);
+        applyRoute(false);
       });
 
-      var initial = tabFromLocation();
-      if (!location.hash) history.replaceState(null, "", "#" + initial);
-      render(initial);
+      applyRoute(false);
+
+      function looksLikeEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      }
+
+      function readWaitlist() {
+        try {
+          var raw = localStorage.getItem(WAITLIST_KEY);
+          var list = raw ? JSON.parse(raw) : [];
+          return Array.isArray(list) ? list : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveWaitlist(entry) {
+        var list = readWaitlist();
+        list.push(entry);
+        try { localStorage.setItem(WAITLIST_KEY, JSON.stringify(list)); } catch (e) {}
+      }
+
+      function realEndpoint() {
+        var url = (WAITLIST_ENDPOINT || "").trim();
+        if (!url) return "";
+        if (url.indexOf("PLACEHOLDER") !== -1) return "";
+        return url;
+      }
+
+      function mailtoHref(entry) {
+        var lines = [
+          "Pedido de whitelist / acompanhamento da Comdei",
+          "",
+          "Nome: " + (entry.nome || "—"),
+          "E-mail: " + (entry.email || "—"),
+          "WhatsApp: " + (entry.whatsapp || "—"),
+          "Recado: " + (entry.nota || "—"),
+          "",
+          "Enviado pelo site comdei.org"
+        ];
+        return "mailto:" + MAILTO +
+          "?subject=" + encodeURIComponent("Whitelist Comdei") +
+          "&body=" + encodeURIComponent(lines.join("\n"));
+      }
+
+      function showWaitlistSuccess(usedMailto) {
+        document.getElementById("waitlist-form").hidden = true;
+        var box = document.getElementById("waitlist-success");
+        box.hidden = false;
+        if (usedMailto) {
+          box.querySelector("p").textContent =
+            "Obrigado. Guardamos o seu pedido neste aparelho e abrimos um e-mail para a equipe.";
+        } else {
+          box.querySelector("p").textContent =
+            "Obrigado. Recebemos o seu pedido — a equipe da Comdei entra em contato.";
+        }
+      }
+
+      var form = document.getElementById("waitlist-form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var err = document.getElementById("waitlist-err");
+        var btn = document.getElementById("waitlist-submit");
+        err.textContent = "";
+
+        var nome = document.getElementById("wl-nome").value.trim();
+        var email = document.getElementById("wl-email").value.trim();
+        var whatsapp = document.getElementById("wl-whatsapp").value.trim();
+        var nota = document.getElementById("wl-nota").value.trim();
+
+        if (!email && !whatsapp) {
+          err.textContent = "Informe e-mail ou WhatsApp.";
+          return;
+        }
+        if (email && !looksLikeEmail(email)) {
+          err.textContent = "E-mail inválido.";
+          return;
+        }
+
+        var entry = {
+          nome: nome,
+          email: email,
+          whatsapp: whatsapp,
+          nota: nota,
+          at: new Date().toISOString()
+        };
+        saveWaitlist(entry);
+
+        var endpoint = realEndpoint();
+        btn.disabled = true;
+
+        function finishMailto() {
+          window.location.href = mailtoHref(entry);
+          showWaitlistSuccess(true);
+          btn.disabled = false;
+        }
+
+        if (!endpoint) {
+          finishMailto();
+          return;
+        }
+
+        fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: nome,
+            email: email,
+            whatsapp: whatsapp,
+            message: nota,
+            _subject: "Whitelist Comdei"
+          })
+        }).then(function (res) {
+          if (!res.ok) throw new Error("form");
+          showWaitlistSuccess(false);
+        }).catch(function () {
+          finishMailto();
+        }).then(function () {
+          btn.disabled = false;
+        });
+      });
     })();
   </script>
 </body>
