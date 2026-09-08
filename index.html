@@ -19,6 +19,7 @@
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
     body {
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
       background: var(--paper);
@@ -30,12 +31,46 @@
     }
     a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); }
     a:hover { border-bottom-color: var(--ink); }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: 40rem;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 1.75rem;
+      padding: 0.8rem 1.5rem;
+    }
+    .nav a {
+      color: var(--mute);
+      border-bottom: 2px solid transparent;
+      padding: 0.25rem 0.15rem 0.3rem;
+      font-size: 1.02rem;
+    }
+    .nav a:hover { color: var(--navy); border-bottom-color: var(--line); }
+    .nav a.is-active {
+      color: var(--navy);
+      border-bottom-color: var(--gold);
+    }
+
     main {
       flex: 1;
       max-width: 40rem;
       margin: 0 auto;
-      padding: 4rem 1.5rem 2.5rem;
+      padding: 3.2rem 1.5rem 2.5rem;
+      width: 100%;
     }
+
+    .panel { display: block; }
+    .js .panel { display: none; }
+    .js .panel.is-active { display: block; }
+
     .hero { text-align: center; }
     .mark {
       width: min(22rem, 92vw);
@@ -55,6 +90,7 @@
       color: var(--navy);
       text-align: left;
     }
+    #pesquisa h2:first-child { margin-top: 0; }
     p { margin: 0 0 1.05rem; font-size: 1.1rem; }
     .lede { font-size: 1.28rem; margin-bottom: 1.5rem; }
     .hero p { text-align: center; }
@@ -65,6 +101,17 @@
       margin: 1.7rem auto;
     }
     .small { color: var(--mute); font-size: 1rem; }
+    .contact {
+      margin: 0 0 1.05rem;
+      font-size: 1.05rem;
+    }
+    .contact a { color: var(--ink); }
+    .rites-line {
+      color: var(--mute);
+      font-size: 1rem;
+      margin-top: 0.25rem;
+    }
+
     .note {
       font-size: 0.95rem;
       color: var(--mute);
@@ -81,6 +128,8 @@
     }
     @media (max-width: 560px) {
       .stats { grid-template-columns: 1fr; }
+      main { padding-top: 2.4rem; }
+      .nav { gap: 1.4rem; }
     }
     .stat {
       background: var(--soft);
@@ -96,6 +145,7 @@
       margin-bottom: 0.25rem;
     }
     .stat span { font-size: 0.82rem; color: var(--mute); }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -139,99 +189,173 @@
     }
     footer a { color: var(--ink); }
   </style>
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Seções">
+      <a href="#inicio" data-nav="inicio" class="is-active">Início</a>
+      <a href="#pesquisa" data-nav="pesquisa">Pesquisa</a>
+    </nav>
+  </header>
+
   <main>
-    <div class="hero">
-      <img class="mark" src="comdei.png" alt="comdei — cruz no d">
-      <h1>comdei</h1>
-      <p class="lede">Associação católica leiga em formação.<br>Rio de Janeiro.</p>
-      <p>Comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira. Breno Marot é o primeiro membro. A pastoral fica com o Pe.&nbsp;Vítor e com Breno. Lucas cuida da casa e da operação.</p>
-      <p>O primeiro ministério é a catequese.</p>
-      <hr class="rule">
-      <p class="small">Este mês: estatuto e CNPJ no cartório do Rio.<br>A cada semana, um passo visível.</p>
-    </div>
-
-    <h2>Panorama no Brasil</h2>
-    <p class="note">Três universos distintos — não se somam: Censo (autodeclaração), Pew (adultos / prática) e Santa Sé (batizados).</p>
-
-    <div class="stats">
-      <div class="stat">
-        <strong>56,7%</strong>
-        <span>católicos · 100,2 mi<br>IBGE 2022 (10+)</span>
+    <section id="inicio" class="panel is-active" data-panel>
+      <div class="hero">
+        <img class="mark" src="comdei.png" alt="comdei — cruz no d">
+        <h1>comdei</h1>
+        <p class="lede">Associação católica leiga em formação · RJ</p>
+        <p>Comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira. Breno Marot é o primeiro membro. A pastoral fica com o Pe.&nbsp;Vítor e com Breno. Lucas cuida da casa e da operação.</p>
+        <p>O primeiro ministério é a catequese.</p>
+        <hr class="rule">
+        <p class="small">Este mês: estatuto e CNPJ no cartório do Rio.<br>A cada semana, um passo visível.</p>
+        <p class="contact"><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
+        <p class="rites-line">A Igreja Católica é una em vários ritos. O Pe.&nbsp;Vítor é melquita bi-ritual — <a href="#pesquisa">ver Pesquisa</a>.</p>
       </div>
-      <div class="stat">
-        <strong>46%</strong>
-        <span>católicos adultos<br>Pew 2024</span>
+    </section>
+
+    <section id="pesquisa" class="panel" data-panel>
+      <h2>Panorama no Brasil</h2>
+      <p class="note">Três universos distintos — não se somam: Censo (autodeclaração), Pew (adultos / prática) e Santa Sé (batizados).</p>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>56,7%</strong>
+          <span>católicos · 100,2 mi<br>IBGE 2022 (10+)</span>
+        </div>
+        <div class="stat">
+          <strong>46%</strong>
+          <span>católicos adultos<br>Pew 2024</span>
+        </div>
+        <div class="stat">
+          <strong>~182 mi</strong>
+          <span>batizados no Brasil<br>Annuarium / Vaticano</span>
+        </div>
       </div>
-      <div class="stat">
-        <strong>~182 mi</strong>
-        <span>batizados no Brasil<br>Annuarium / Vaticano</span>
+
+      <p>No Censo, evangélicos são <strong>26,9%</strong> (47,4 mi) e sem religião <strong>9,3%</strong> (16,4 mi) — pessoas de 10 anos ou mais (<a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE, jun/2025</a>). Católicos caíram de 65,1% para 56,7% na mesma base 10+ (2010→2022).</p>
+
+      <p>Católico no censo <em>não</em> é o mesmo que praticante. Entre católicos adultos no Brasil, <strong>36%</strong> frequentam culto/missa ao menos semanalmente (<a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew Research Center, 2024</a>).</p>
+
+      <h2>Ritos orientais</h2>
+      <p>A Igreja Católica é una em vários ritos. No Brasil há eparquias próprias melquita, maronita e ucranianas, além do Ordinariato para fiéis orientais. O Pe.&nbsp;Vítor é melquita com faculdades bi-rituais (melquita–latino): a Comdei nasce nesse horizonte pleno, sem reduzir a Igreja ao rito latino.</p>
+
+      <div class="callout">
+        <strong>Eparquia Melquita — Nossa Senhora do Paraíso (São Paulo)</strong><br>
+        <span style="font-size:1.35rem;color:var(--navy);font-weight:700">437.000</span> batizados · 6 paróquias · 12 padres (fim-2023).<br>
+        <span class="small">Fonte: <a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Annuario Pontificio 2024 via Catholic-Hierarchy</a>. Contagem difícil: muitos frequentam paróquias latinas.</span>
       </div>
-    </div>
 
-    <p>No Censo, evangélicos são <strong>26,9%</strong> (47,4 mi) e sem religião <strong>9,3%</strong> (16,4 mi) — pessoas de 10 anos ou mais (<a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE, jun/2025</a>). Católicos caíram de 65,1% para 56,7% na mesma base 10+ (2010→2022).</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Jurisdição</th>
+              <th>Batizados</th>
+              <th>Fonte</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Melquita · N. Sra. do Paraíso (SP)</td>
+              <td class="num">437.000</td>
+              <td><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">CH dsame</a></td>
+            </tr>
+            <tr>
+              <td>Maronita · N. Sra. do Líbano (SP)</td>
+              <td class="num">528.000</td>
+              <td><a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">CH dsama</a></td>
+            </tr>
+            <tr>
+              <td>Ucraniana · Arquieparquia Curitiba</td>
+              <td class="num">91.000</td>
+              <td><a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">CH dcuuk</a></td>
+            </tr>
+            <tr>
+              <td>Ucraniana · Eparquia Prudentópolis</td>
+              <td class="num">83.200</td>
+              <td><a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">CH dpruk</a></td>
+            </tr>
+            <tr>
+              <td>Ordinariato fiéis orientais (BR)</td>
+              <td class="num">10.603</td>
+              <td><a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">CH dorbr</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <p>Católico no censo <em>não</em> é o mesmo que praticante. Entre católicos adultos no Brasil, <strong>36%</strong> frequentam culto/missa ao menos semanalmente (<a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew Research Center, 2024</a>).</p>
+      <p class="note">Soma dessas jurisdições ≈ <strong>1,15 milhão</strong> de batizados — cerca de <strong>0,6%</strong> dos ~182 mi batizados no Brasil (Santa Sé). Não misturar com o Censo IBGE: universos diferentes.</p>
 
-    <h2>Ritos orientais</h2>
-    <p>A Igreja Católica é una em vários ritos. No Brasil há eparquias próprias melquita, maronita e ucranianas, além do Ordinariato para fiéis orientais. O Pe.&nbsp;Vítor é melquita com faculdades bi-rituais (melquita–latino): a Comdei nasce nesse horizonte pleno, sem reduzir a Igreja ao rito latino.</p>
-
-    <div class="callout">
-      <strong>Eparquia Melquita — Nossa Senhora do Paraíso (São Paulo)</strong><br>
-      <span style="font-size:1.35rem;color:var(--navy);font-weight:700">437.000</span> batizados · 6 paróquias · 12 padres (fim-2023).<br>
-      <span class="small">Fonte: <a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Annuario Pontificio 2024 via Catholic-Hierarchy</a>. Contagem difícil: muitos frequentam paróquias latinas.</span>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Jurisdição</th>
-          <th>Batizados</th>
-          <th>Fonte</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Melquita · N. Sra. do Paraíso (SP)</td>
-          <td class="num">437.000</td>
-          <td><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">CH dsame</a></td>
-        </tr>
-        <tr>
-          <td>Maronita · N. Sra. do Líbano (SP)</td>
-          <td class="num">528.000</td>
-          <td><a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">CH dsama</a></td>
-        </tr>
-        <tr>
-          <td>Ucraniana · Arquieparquia Curitiba</td>
-          <td class="num">91.000</td>
-          <td><a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">CH dcuuk</a></td>
-        </tr>
-        <tr>
-          <td>Ucraniana · Eparquia Prudentópolis</td>
-          <td class="num">83.200</td>
-          <td><a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">CH dpruk</a></td>
-        </tr>
-        <tr>
-          <td>Ordinariato fiéis orientais (BR)</td>
-          <td class="num">10.603</td>
-          <td><a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">CH dorbr</a></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p class="note">Soma dessas jurisdições ≈ <strong>1,15 milhão</strong> de batizados — cerca de <strong>0,6%</strong> dos ~182 mi batizados no Brasil (Santa Sé). Não misturar com o Censo IBGE: universos diferentes.</p>
-
-    <h2>Fontes</h2>
-    <ul class="sources">
-      <li><a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE — Censo 2022 Religiões</a> (divulgação 6 jun 2025)</li>
-      <li><a href="https://educa.ibge.gov.br/jovens/materias-especiais/22703-censo-2022-numero-de-catolicos-no-brasil-em-queda.html" target="_blank" rel="noopener">IBGE Educa — católicos em queda</a></li>
-      <li><a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew — afiliação religiosa na América Latina</a> (2024 / pub. 2026)</li>
-      <li><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Catholic-Hierarchy — Melquita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">Maronita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">Ucraniana Curitiba</a>, <a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">Prudentópolis</a>, <a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">Ordinariato</a> (Annuario Pontificio 2024)</li>
-    </ul>
+      <h2>Fontes</h2>
+      <ul class="sources">
+        <li><a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE — Censo 2022 Religiões</a> (divulgação 6 jun 2025)</li>
+        <li><a href="https://educa.ibge.gov.br/jovens/materias-especiais/22703-censo-2022-numero-de-catolicos-no-brasil-em-queda.html" target="_blank" rel="noopener">IBGE Educa — católicos em queda</a></li>
+        <li><a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew — afiliação religiosa na América Latina</a> (2024 / pub. 2026)</li>
+        <li><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Catholic-Hierarchy — Melquita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">Maronita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">Ucraniana Curitiba</a>, <a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">Prudentópolis</a>, <a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">Ordinariato</a> (Annuario Pontificio 2024)</li>
+      </ul>
+    </section>
   </main>
+
   <footer>
     <p>2026 · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
   </footer>
+
+  <script>
+    (function () {
+      var panels = document.querySelectorAll("[data-panel]");
+      var links = document.querySelectorAll(".nav a[data-nav]");
+
+      function tabFromLocation() {
+        var hash = (location.hash || "").replace(/^#/, "");
+        var query = "";
+        try { query = new URLSearchParams(location.search).get("tab") || ""; } catch (e) {}
+        var name = hash || query || "inicio";
+        return name === "pesquisa" ? "pesquisa" : "inicio";
+      }
+
+      function render(name) {
+        var tab = name === "pesquisa" ? "pesquisa" : "inicio";
+        panels.forEach(function (panel) {
+          var on = panel.id === tab;
+          panel.classList.toggle("is-active", on);
+          if (on) panel.removeAttribute("hidden");
+          else panel.setAttribute("hidden", "");
+        });
+        links.forEach(function (link) {
+          var on = link.getAttribute("data-nav") === tab;
+          link.classList.toggle("is-active", on);
+          if (on) link.setAttribute("aria-current", "page");
+          else link.removeAttribute("aria-current");
+        });
+      }
+
+      function go(tab, push) {
+        var next = "#" + tab;
+        if (location.hash !== next) {
+          if (push) history.pushState(null, "", next);
+          else history.replaceState(null, "", next);
+        }
+        render(tab);
+        window.scrollTo(0, 0);
+      }
+
+      document.addEventListener("click", function (event) {
+        var link = event.target.closest('a[href="#inicio"], a[href="#pesquisa"]');
+        if (!link) return;
+        event.preventDefault();
+        go(link.getAttribute("href").slice(1), true);
+      });
+
+      window.addEventListener("popstate", function () {
+        render(tabFromLocation());
+        window.scrollTo(0, 0);
+      });
+
+      var initial = tabFromLocation();
+      if (!location.hash) history.replaceState(null, "", "#" + initial);
+      render(initial);
+    })();
+  </script>
 </body>
 </html>
