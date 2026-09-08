@@ -480,7 +480,7 @@
               <label for="wl-nota">Recado <span class="small">(opcional)</span></label>
               <textarea id="wl-nota" name="message" maxlength="800" placeholder="Como conheceu a Comdei, se quiser."></textarea>
             </div>
-            <input type="hidden" name="_subject" value="Whitelist Comdei">
+            <input type="hidden" name="_subject" value="Lista Comdei">
             <p class="form-err" id="waitlist-err" aria-live="polite"></p>
             <button type="submit" id="waitlist-submit">Entrar na lista</button>
           </form>
@@ -492,7 +492,7 @@
           <p class="form-note">Os envios vão para a equipe da Comdei.</p>
         </div>
 
-        <p class="founders-entry"><a class="founders-link" href="#fundadores">Acesso interno</a></p>
+        <p class="founders-entry"><a class="founders-link" href="#interno">Acesso interno</a></p>
       </div>
     </main>
     <footer>
@@ -639,7 +639,7 @@
       var WAITLIST_KEY = "comdei_waitlist";
       var MAILTO = "lucas@comdei.org";
 
-      // SHA-256 (UTF-8) of the shared founders access code
+      // SHA-256 (UTF-8) of the shared access code
       var EXPECT = "811e36049558fe22b8680932d24e803004136b5154f8be12c2d975f5fe6bdc50";
 
       var publicEl = document.getElementById("public");
@@ -680,7 +680,7 @@
 
       function applyRoute(push) {
         var hash = hashName();
-        var gated = hash === "fundadores" || hash === "inicio" || hash === "pesquisa";
+        var gated = hash === "interno" || hash === "fundadores" || hash === "inicio" || hash === "pesquisa";
 
         if (!gated) {
           showView("public");
@@ -697,7 +697,7 @@
         }
 
         var tab = hash === "pesquisa" ? "pesquisa" : "inicio";
-        if (hash === "fundadores") {
+        if (hash === "interno" || hash === "fundadores") {
           if (push) history.pushState(null, "", "#inicio");
           else history.replaceState(null, "", "#inicio");
         }
@@ -708,7 +708,7 @@
 
       function unlock() {
         try { sessionStorage.setItem("comdei_ok", "1"); } catch (e) {}
-        if (hashName() === "fundadores" || !hashName()) {
+        if (hashName() === "interno" || hashName() === "fundadores" || !hashName()) {
           history.replaceState(null, "", "#inicio");
         }
         applyRoute(false);
@@ -738,7 +738,7 @@
       });
 
       document.addEventListener("click", function (event) {
-        var link = event.target.closest('a[href="#inicio"], a[href="#pesquisa"], a[href="#fundadores"], a[href="#"]');
+        var link = event.target.closest('a[href="#inicio"], a[href="#pesquisa"], a[href="#interno"], a[href="#fundadores"], a[href="#"]');
         if (!link) return;
         var href = link.getAttribute("href");
         if (href === "#") {
@@ -788,7 +788,7 @@
 
       function mailtoHref(entry) {
         var lines = [
-          "Pedido de whitelist / acompanhamento da Comdei",
+          "Pedido de acompanhamento da Comdei",
           "",
           "Nome: " + (entry.nome || "—"),
           "E-mail: " + (entry.email || "—"),
@@ -798,7 +798,7 @@
           "Enviado pelo site comdei.org"
         ];
         return "mailto:" + MAILTO +
-          "?subject=" + encodeURIComponent("Whitelist Comdei") +
+          "?subject=" + encodeURIComponent("Lista Comdei") +
           "&body=" + encodeURIComponent(lines.join("\n"));
       }
 
@@ -870,7 +870,7 @@
             email: email,
             whatsapp: whatsapp,
             message: nota,
-            _subject: "Whitelist Comdei"
+            _subject: "Lista Comdei"
           })
         }).then(function (res) {
           if (!res.ok) throw new Error("form");
