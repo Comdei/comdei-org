@@ -3,34 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>comdei — Communitas Dei</title>
-  <meta name="description" content="Comdei — Communitas Dei. Comunidade de fiéis leigos em formação. Rio de Janeiro.">
+  <title>comdei — Communitas Fideli Dei</title>
+  <meta name="description" content="Comdei — Communitas Fideli Dei. Comunidade de fiéis leigos em formação. Rio de Janeiro.">
   <link rel="icon" href="comdei.png" type="image/png">
   <style>
     :root {
-      --ink: #2a2a2a;
-      --mute: #5c5c5c;
-      --paper: #f6f2ea;
-      --line: #d9d2c4;
-      --gold: #a8893d;
-      --navy: #1b2a4a;
-      --soft: #efe9de;
+      --ink: #241f1a;
+      --mute: #4a453c;
+      --paper: #f4efe4;
+      --paper-deep: #ebe4d4;
+      --card: #fbf7ee;
+      --line: #d4cbb6;
+      --gold: #9a7b32;
+      --gold-ink: #6e5724;
+      --navy: #1a2744;
+      --navy-deep: #121c33;
+      --soft: #eee6d6;
       --melkite: #6b2d5b;
+      --danger: #7a2a2a;
+      --shadow: 0 1px 0 rgba(26, 39, 68, 0.04), 0 18px 40px rgba(26, 39, 68, 0.06);
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     html { scroll-behavior: auto; }
     body {
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-      background: var(--paper);
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, #f8f3e8 0%, var(--paper) 55%),
+        var(--paper);
       color: var(--ink);
-      line-height: 1.55;
+      line-height: 1.65;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
+    ::selection {
+      background: #e6d7a8;
+      color: var(--navy);
+    }
     a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); }
-    a:hover { border-bottom-color: var(--ink); }
+    a:hover { border-bottom-color: var(--gold); }
+    :focus-visible {
+      outline: 2px solid var(--navy);
+      outline-offset: 3px;
+    }
 
     #public, #site {
       flex: 1;
@@ -42,43 +58,74 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem 1.5rem;
+      padding: 3rem 1.5rem 4rem;
     }
     #public[hidden], #gate[hidden], #site[hidden] { display: none !important; }
 
     .gate-card {
-      max-width: 22rem;
+      max-width: 23.5rem;
       width: 100%;
       text-align: center;
-      padding: 2rem 1.5rem;
+      padding: 2.4rem 1.85rem 2rem;
       border: 1px solid var(--line);
-      background: #fffef9;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      position: relative;
     }
-    .gate-card img { width: 10rem; height: auto; margin: 0 auto 1.25rem; display: block; }
-    .gate-card p { color: var(--mute); font-size: 0.98rem; margin: 0 0 1.2rem; }
-    .gate-card label { display: block; font-size: 0.85rem; color: var(--mute); margin-bottom: 0.4rem; text-align: left; }
+    .gate-card::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .gate-card img { width: 9.5rem; height: auto; margin: 0 auto 1.15rem; display: block; }
+    .gate-card .kicker { margin-bottom: 0.35rem; }
+    .gate-card h2 {
+      text-align: center;
+      margin: 0 0 0.4rem;
+      font-size: 1.28rem;
+    }
+    .gate-card p { color: var(--mute); font-size: 0.98rem; margin: 0 0 1.35rem; }
+    .gate-card label {
+      display: block;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 0.4rem;
+      text-align: left;
+    }
     .gate-card input {
       width: 100%;
-      padding: 0.65rem 0.75rem;
+      padding: 0.78rem 0.85rem;
       border: 1px solid var(--line);
       background: var(--paper);
+      color: var(--ink);
       font: inherit;
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.95rem;
+    }
+    .gate-card input:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12);
     }
     .gate-card button {
       width: 100%;
-      padding: 0.7rem 1rem;
+      min-height: 2.85rem;
+      padding: 0.75rem 1rem;
       border: 0;
       background: var(--navy);
       color: var(--paper);
       font: inherit;
+      letter-spacing: 0.03em;
       cursor: pointer;
     }
-    .gate-card button:hover { background: #142038; }
-    .gate-err { color: #8b2e2e; font-size: 0.9rem; min-height: 1.2em; margin: 0.5rem 0 0; }
+    .gate-card button:hover { background: var(--navy-deep); }
+    .gate-err { color: var(--danger); font-size: 0.9rem; min-height: 1.2em; margin: 0.55rem 0 0; }
     .gate-back {
       display: inline-block;
-      margin-top: 1.1rem;
+      margin-top: 1.25rem;
       font-size: 0.9rem;
       color: var(--mute);
       border-bottom-color: transparent;
@@ -89,22 +136,23 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: var(--paper);
+      background: rgba(244, 239, 228, 0.94);
       border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
     }
     .nav {
-      max-width: 40rem;
+      max-width: 42rem;
       margin: 0 auto;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 1.75rem;
-      padding: 0.8rem 1.5rem;
+      gap: 2rem;
+      padding: 0.95rem 1.5rem;
     }
     .nav a {
       color: var(--mute);
       border-bottom: 2px solid transparent;
-      padding: 0.25rem 0.15rem 0.3rem;
+      padding: 0.3rem 0.15rem 0.35rem;
       font-size: 1.02rem;
     }
     .nav a:hover { color: var(--navy); border-bottom-color: var(--line); }
@@ -115,12 +163,13 @@
 
     main {
       flex: 1;
-      max-width: 40rem;
+      max-width: 42rem;
       margin: 0 auto;
-      padding: 3.2rem 1.5rem 2.5rem;
+      padding: 3.4rem 1.5rem 3rem;
       width: 100%;
     }
-    #public main { padding-top: 3.6rem; }
+    #public main { padding: 3.8rem 1.5rem 2.2rem; }
+    #site main { padding-bottom: 8rem; }
 
     .panel { display: block; }
     .js .panel { display: none; }
@@ -128,89 +177,128 @@
 
     .hero { text-align: center; }
     .mark {
-      width: min(22rem, 92vw);
+      width: min(20rem, 88vw);
       height: auto;
       display: block;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1.7rem;
     }
-    #public .mark { width: min(20rem, 86vw); margin-bottom: 1.6rem; }
+    #public .mark { width: min(18.5rem, 82vw); margin-bottom: 1.45rem; }
     .sr-only {
       position: absolute;
       width: 1px; height: 1px;
       overflow: hidden; clip: rect(0 0 0 0);
     }
+    .kicker {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-ink);
+      margin: 0 0 0.55rem;
+    }
     h1.headline {
       position: static;
       width: auto; height: auto;
       overflow: visible; clip: auto;
-      font-size: 1.85rem;
+      font-size: clamp(1.7rem, 5.5vw, 2.15rem);
       font-weight: 600;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.015em;
+      line-height: 1.2;
       color: var(--navy);
-      margin: 0 0 0.55rem;
+      margin: 0 0 0.75rem;
     }
     h2 {
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       font-weight: 600;
-      margin: 2.5rem 0 0.85rem;
+      margin: 2.7rem 0 0.9rem;
       color: var(--navy);
       text-align: left;
     }
     #pesquisa h2:first-child { margin-top: 0; }
-    p { margin: 0 0 1.05rem; font-size: 1.1rem; }
-    .lede { font-size: 1.28rem; margin-bottom: 1.5rem; }
+    p { margin: 0 0 1.1rem; font-size: 1.08rem; }
+    .lede {
+      font-size: 1.22rem;
+      color: var(--mute);
+      margin-bottom: 1.45rem;
+    }
     .hero p { text-align: center; }
     .rule {
       border: 0;
       border-top: 1px solid var(--line);
-      width: 4rem;
-      margin: 1.7rem auto;
+      width: 3.4rem;
+      margin: 1.85rem auto;
+      position: relative;
     }
-    .small { color: var(--mute); font-size: 1rem; }
+    .small { color: var(--mute); font-size: 0.95rem; }
     .contact {
-      margin: 0 0 1.05rem;
+      margin: 0 0 1.15rem;
       font-size: 1.05rem;
     }
     .contact a { color: var(--ink); }
     .rites-line {
       color: var(--mute);
       font-size: 1rem;
-      margin-top: 0.25rem;
+      margin-top: 0.35rem;
     }
+    .founders-plan {
+      text-align: left;
+      max-width: 32rem;
+      margin: 0.4rem auto 0.2rem;
+      padding: 1.35rem 1.35rem 1.15rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--gold);
+    }
+    .founders-plan h2 {
+      margin: 0 0 0.85rem;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .founders-plan p {
+      text-align: left;
+      font-size: 1.02rem;
+      margin: 0 0 0.85rem;
+    }
+    .founders-plan p:last-child { margin-bottom: 0; }
+    .founders-plan strong { color: var(--navy); }
+    .founders-plan .addr { white-space: nowrap; }
 
     .note {
       font-size: 0.95rem;
       color: var(--mute);
-      border-left: 3px solid var(--line);
-      padding-left: 0.85rem;
-      margin: 1rem 0 1.3rem;
+      border-left: 3px solid var(--gold);
+      padding-left: 0.9rem;
+      margin: 1.1rem 0 1.4rem;
       text-align: left;
     }
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.65rem;
-      margin: 1.1rem 0 1.3rem;
+      gap: 0.75rem;
+      margin: 1.2rem 0 1.45rem;
     }
     @media (max-width: 560px) {
       .stats { grid-template-columns: 1fr; }
-      main { padding-top: 2.4rem; }
-      #public main { padding-top: 2.6rem; }
-      .nav { gap: 1.4rem; }
-      h1.headline { font-size: 1.55rem; }
+      main { padding-top: 2.5rem; }
+      #public main { padding-top: 2.7rem; }
+      #site main { padding-bottom: 7rem; }
+      .nav { gap: 1.5rem; }
+      .waitlist { padding: 1.55rem 1.2rem 1.4rem; }
+      .gate-card { padding: 2rem 1.25rem 1.7rem; }
     }
     .stat {
       background: var(--soft);
-      padding: 0.95rem 0.75rem;
+      padding: 1.05rem 0.8rem 1rem;
       text-align: center;
       border-top: 2px solid var(--gold);
     }
     .stat strong {
       display: block;
-      font-size: 1.4rem;
+      font-size: 1.42rem;
       color: var(--navy);
       line-height: 1.2;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
     }
     .stat span { font-size: 0.82rem; color: var(--mute); }
     .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -222,23 +310,23 @@
     }
     th, td {
       text-align: left;
-      padding: 0.5rem 0.35rem;
+      padding: 0.55rem 0.4rem;
       border-bottom: 1px solid var(--line);
       vertical-align: top;
     }
     th {
       color: var(--mute);
       font-weight: 600;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
     td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
     .callout {
       background: #f3e8f0;
       border-left: 3px solid var(--melkite);
-      padding: 0.95rem 1rem;
-      margin: 1rem 0 1.2rem;
+      padding: 1.05rem 1.1rem;
+      margin: 1.1rem 0 1.3rem;
       text-align: left;
     }
     .callout strong { color: var(--melkite); }
@@ -247,97 +335,127 @@
       color: var(--mute);
       text-align: left;
       padding-left: 1.1rem;
+      margin-bottom: 0.5rem;
     }
-    .sources li { margin-bottom: 0.4rem; }
+    .sources li { margin-bottom: 0.45rem; }
     footer {
-      padding: 0 1.5rem 2.2rem;
+      padding: 1.4rem 1.5rem 2.8rem;
       text-align: center;
       color: var(--mute);
       font-size: 0.92rem;
     }
+    #site footer {
+      padding: 2.6rem 1.5rem 5.5rem;
+      border-top: 1px solid var(--line);
+    }
+    #public footer {
+      padding: 0.4rem 1.5rem 3rem;
+    }
+    footer p { margin: 0; }
     footer a { color: var(--ink); }
 
     .preview-badge {
       display: inline-block;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-ink);
       border: 1px solid var(--line);
-      padding: 0.18rem 0.5rem;
-      margin-bottom: 1.1rem;
+      background: var(--card);
+      padding: 0.28rem 0.65rem;
+      margin-bottom: 1.35rem;
     }
 
     .waitlist {
       text-align: left;
-      max-width: 24rem;
+      max-width: 26rem;
       margin: 0 auto;
-      padding: 1.35rem 1.25rem 1.2rem;
-      background: #fffef9;
+      padding: 1.85rem 1.6rem 1.55rem;
+      background: var(--card);
       border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .waitlist::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
     .waitlist h2 {
       text-align: center;
-      margin: 0 0 0.45rem;
-      font-size: 1.18rem;
+      margin: 0 0 0.4rem;
+      font-size: 1.22rem;
     }
     .waitlist .cta-lead {
       text-align: center;
       color: var(--mute);
       font-size: 0.98rem;
-      margin-bottom: 1.15rem;
+      margin-bottom: 1.35rem;
     }
     .waitlist label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
       color: var(--mute);
-      margin: 0 0 0.3rem;
+      margin: 0 0 0.32rem;
     }
-    .waitlist .field { margin-bottom: 0.85rem; }
+    .waitlist .field { margin-bottom: 0.95rem; }
     .waitlist input,
     .waitlist textarea {
       width: 100%;
-      padding: 0.65rem 0.75rem;
+      padding: 0.72rem 0.8rem;
       border: 1px solid var(--line);
       background: var(--paper);
       font: inherit;
       color: var(--ink);
     }
-    .waitlist textarea { min-height: 5rem; resize: vertical; }
+    .waitlist input:focus,
+    .waitlist textarea:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12);
+    }
+    .waitlist textarea { min-height: 5.2rem; resize: vertical; }
     .waitlist button[type="submit"] {
       width: 100%;
-      padding: 0.75rem 1rem;
-      margin-top: 0.25rem;
+      min-height: 2.9rem;
+      padding: 0.8rem 1rem;
+      margin-top: 0.2rem;
       border: 0;
       background: var(--navy);
       color: var(--paper);
       font: inherit;
+      letter-spacing: 0.03em;
       cursor: pointer;
     }
-    .waitlist button[type="submit"]:hover { background: #142038; }
+    .waitlist button[type="submit"]:hover { background: var(--navy-deep); }
     .waitlist button[type="submit"]:disabled { opacity: 0.65; cursor: wait; }
-    .form-err { color: #8b2e2e; font-size: 0.9rem; min-height: 1.2em; margin: 0.35rem 0 0.15rem; }
+    .form-err { color: var(--danger); font-size: 0.9rem; min-height: 1.2em; margin: 0.35rem 0 0.15rem; }
     .form-note {
       text-align: center;
       color: var(--mute);
-      font-size: 0.88rem;
-      margin: 0.85rem 0 0;
+      font-size: 0.86rem;
+      margin: 0.95rem 0 0;
     }
     .waitlist-success {
       text-align: center;
-      padding: 0.4rem 0.2rem 0.2rem;
+      padding: 0.5rem 0.2rem 0.25rem;
     }
     .waitlist-success p { margin-bottom: 0.75rem; }
     .founders-link {
       display: inline-block;
-      margin-top: 0.35rem;
-      font-size: 0.98rem;
+      margin-top: 0.15rem;
+      font-size: 0.95rem;
       color: var(--mute);
       border-bottom-color: transparent;
     }
     .founders-link:hover { color: var(--navy); border-bottom-color: var(--line); }
     .public-home { text-align: center; }
-    .public-home .lede { margin-bottom: 1.15rem; }
+    .public-home .lede { margin-bottom: 1.2rem; }
+    .public-home > p:not(.lede) { max-width: 34rem; margin-left: auto; margin-right: auto; }
+    .founders-entry { margin: 1.7rem 0 0; }
   </style>
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -346,9 +464,10 @@
     <main>
       <div class="public-home">
         <img class="mark" src="comdei.png" alt="comdei — cruz no d">
-        <h1 class="headline">Communitas Dei</h1>
+        <p class="kicker">Comdei</p>
+        <h1 class="headline">Communitas Fideli Dei</h1>
         <p class="lede">comunidade de fiéis leigos · em formação</p>
-        <p>A Comdei é uma comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira. Breno Marot é o primeiro membro.</p>
+        <p>A Comdei é uma comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira.</p>
         <hr class="rule">
 
         <div class="waitlist">
@@ -356,7 +475,7 @@
           <p class="cta-lead">Deixe um contato. Avisamos quando houver novidade.</p>
 
           <!-- TODO: replace PLACEHOLDER with the real Formspree form ID when available. -->
-          <form id="waitlist-form" action="https://formspree.io/f/PLACEHOLDER" method="POST">
+          <form id="waitlist-form" action="https://formspree.io/f/PLACEHOLDER" method="POST" novalidate>
             <div class="field">
               <label for="wl-nome">Nome <span class="small">(opcional)</span></label>
               <input id="wl-nome" name="name" type="text" autocomplete="name" maxlength="120">
@@ -385,18 +504,20 @@
           <p class="form-note">Os envios vão para a equipe da Comdei.</p>
         </div>
 
-        <p><a class="founders-link" href="#fundadores">Área dos fundadores</a></p>
+        <p class="founders-entry"><a class="founders-link" href="#fundadores">Área dos fundadores</a></p>
       </div>
     </main>
     <footer>
-      <p>2026 · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
+      <p>2026 · Comdei</p>
     </footer>
   </div>
 
   <div id="gate" hidden>
     <div class="gate-card">
       <img src="comdei.png" alt="comdei">
-      <p>Prévia dos fundadores<br>Código de acesso compartilhado.</p>
+      <p class="kicker">Comdei</p>
+      <h2>Prévia dos fundadores</h2>
+      <p>Código de acesso compartilhado.</p>
       <label for="code">Código de acesso</label>
       <input id="code" type="password" autocomplete="current-password" placeholder="••••••••">
       <button type="button" id="enter">Entrar</button>
@@ -418,13 +539,19 @@
         <div class="hero">
           <p class="preview-badge">prévia fundadores</p>
           <img class="mark" src="comdei.png" alt="comdei — cruz no d">
-          <h1 class="sr-only">comdei</h1>
+          <p class="kicker">Comdei</p>
+          <h1 class="headline">Communitas Fideli Dei</h1>
           <p class="lede">Associação católica leiga em formação · RJ</p>
-          <p>Comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira. Breno Marot é o primeiro membro. A pastoral fica com o Pe.&nbsp;Vítor e com Breno. Lucas cuida da casa e da operação.</p>
+          <p>Comunidade de fiéis leigos que caminha com a Igreja. Fundadores: Lucas e o Pe.&nbsp;Vítor Pereira. A pastoral fica com o Pe.&nbsp;Vítor. Lucas cuida da casa e da operação.</p>
           <p>O primeiro ministério é a catequese.</p>
+          <div class="founders-plan">
+            <h2>Nesta casa</h2>
+            <p><strong>Meta da semana.</strong> Criar o e-mail <a class="addr" href="mailto:pe.vitor@comdei.org">pe.vitor@comdei.org</a>, com os aliases <span class="addr">pevitor@comdei.org</span> e <span class="addr">vitor@comdei.org</span>.</p>
+            <p><strong>Primeira etapa — catequese.</strong> A catequese das filhas do Lucas e da filha do Pe.&nbsp;Vítor será a primeira turma — provavelmente com mais alguma(s) criança(s), para dar volume. É o primeiro passo pastoral da Comdei, no chão da casa.</p>
+          </div>
           <hr class="rule">
           <p class="small">Este mês: estatuto e CNPJ no cartório do Rio.<br>A cada semana, um passo visível.</p>
-          <p class="contact"><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="https://instagram.com/vemcomdei">@vemcomdei</a></p>
+          <p class="contact"><a href="mailto:lucas@comdei.org">lucas@comdei.org</a></p>
           <p class="rites-line">A Igreja Católica é una em vários ritos. O Pe.&nbsp;Vítor é melquita bi-ritual — <a href="#pesquisa">ver Pesquisa</a>.</p>
         </div>
       </section>
@@ -513,7 +640,7 @@
     </main>
 
     <footer>
-      <p>2026 · <a href="https://instagram.com/vemcomdei">@vemcomdei</a> · <a href="#">site público</a></p>
+      <p>2026 · Comdei · <a href="#">site público</a></p>
     </footer>
   </div>
 
