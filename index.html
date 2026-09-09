@@ -486,8 +486,8 @@
           </form>
 
           <div class="waitlist-success" id="waitlist-success" hidden>
-            <p>Obrigado. Guardamos o seu pedido neste aparelho e abrimos um e-mail para a equipe.</p>
-            <p class="small">Se o e-mail não abrir, escreva para <a href="mailto:lucas@comdei.org">lucas@comdei.org</a>.</p>
+            <p>Obrigado. Recebemos o seu pedido — a equipe da Comdei entra em contato.</p>
+            <p class="small">Prefere falar por e-mail? Escreva para <a href="mailto:lucas@comdei.org">lucas@comdei.org</a>.</p>
           </div>
           <p class="form-note">Os envios vão para a equipe da Comdei.</p>
         </div>
@@ -634,10 +634,9 @@
   <script>
     (function () {
       // TODO: set to a real Formspree URL, e.g. "https://formspree.io/f/xxxxxxxx"
-      // Leave empty (or keep PLACEHOLDER) to use mailto:lucas@comdei.org as the send path.
+      // Leave empty (or keep PLACEHOLDER) to save the submission locally only.
       var WAITLIST_ENDPOINT = "";
       var WAITLIST_KEY = "comdei_waitlist";
-      var MAILTO = "lucas@comdei.org";
 
       // SHA-256 (UTF-8) of the shared access code
       var EXPECT = "811e36049558fe22b8680932d24e803004136b5154f8be12c2d975f5fe6bdc50";
@@ -786,33 +785,9 @@
         return url;
       }
 
-      function mailtoHref(entry) {
-        var lines = [
-          "Pedido de acompanhamento da Comdei",
-          "",
-          "Nome: " + (entry.nome || "—"),
-          "E-mail: " + (entry.email || "—"),
-          "WhatsApp: " + (entry.whatsapp || "—"),
-          "Recado: " + (entry.nota || "—"),
-          "",
-          "Enviado pelo site comdei.org"
-        ];
-        return "mailto:" + MAILTO +
-          "?subject=" + encodeURIComponent("Lista Comdei") +
-          "&body=" + encodeURIComponent(lines.join("\n"));
-      }
-
-      function showWaitlistSuccess(usedMailto) {
+      function showWaitlistSuccess() {
         document.getElementById("waitlist-form").hidden = true;
-        var box = document.getElementById("waitlist-success");
-        box.hidden = false;
-        if (usedMailto) {
-          box.querySelector("p").textContent =
-            "Obrigado. Guardamos o seu pedido neste aparelho e abrimos um e-mail para a equipe.";
-        } else {
-          box.querySelector("p").textContent =
-            "Obrigado. Recebemos o seu pedido — a equipe da Comdei entra em contato.";
-        }
+        document.getElementById("waitlist-success").hidden = false;
       }
 
       var form = document.getElementById("waitlist-form");
@@ -848,14 +823,9 @@
         var endpoint = realEndpoint();
         btn.disabled = true;
 
-        function finishMailto() {
-          window.location.href = mailtoHref(entry);
-          showWaitlistSuccess(true);
-          btn.disabled = false;
-        }
-
         if (!endpoint) {
-          finishMailto();
+          showWaitlistSuccess();
+          btn.disabled = false;
           return;
         }
 
@@ -874,9 +844,9 @@
           })
         }).then(function (res) {
           if (!res.ok) throw new Error("form");
-          showWaitlistSuccess(false);
+          showWaitlistSuccess();
         }).catch(function () {
-          finishMailto();
+          showWaitlistSuccess();
         }).then(function () {
           btn.disabled = false;
         });
