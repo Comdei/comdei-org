@@ -462,8 +462,7 @@
           <h2>Deixe um contato</h2>
           <p class="cta-lead">Se quiser, avisamos quando houver novidade.</p>
 
-          <!-- TODO: replace PLACEHOLDER with the real Formspree form ID when available. -->
-          <form id="waitlist-form" action="https://formspree.io/f/PLACEHOLDER" method="POST" novalidate>
+          <form id="waitlist-form" novalidate>
             <div class="field">
               <label for="wl-nome">Nome <span class="small">(opcional)</span></label>
               <input id="wl-nome" name="name" type="text" autocomplete="name" maxlength="120">
@@ -480,7 +479,6 @@
               <label for="wl-nota">Recado <span class="small">(opcional)</span></label>
               <textarea id="wl-nota" name="message" maxlength="800" placeholder="Como conheceu a Comdei, se quiser."></textarea>
             </div>
-            <input type="hidden" name="_subject" value="Lista Comdei">
             <p class="form-err" id="waitlist-err" aria-live="polite"></p>
             <button type="submit" id="waitlist-submit">Entrar na lista</button>
           </form>
@@ -633,9 +631,10 @@
 
   <script>
     (function () {
-      // TODO: set to a real Formspree URL, e.g. "https://formspree.io/f/xxxxxxxx"
+      // Google Apps Script Web App URL that appends to the waitlist Sheet
+      // and emails lucas@comdei.org. See docs/waitlist-backend.md for setup.
       // Leave empty (or keep PLACEHOLDER) to save the submission locally only.
-      var WAITLIST_ENDPOINT = "";
+      var WAITLIST_ENDPOINT = "PLACEHOLDER";
       var WAITLIST_KEY = "comdei_waitlist";
 
       // SHA-256 (UTF-8) of the shared access code
@@ -829,21 +828,20 @@
           return;
         }
 
+        // mode: "no-cors" because the Apps Script Web App doesn't answer CORS
+        // preflights; the response is opaque, so success is assumed once the
+        // request is sent (Apps Script logs failures server-side).
         fetch(endpoint, {
           method: "POST",
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-          },
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({
             name: nome,
             email: email,
             whatsapp: whatsapp,
-            message: nota,
-            _subject: "Lista Comdei"
+            message: nota
           })
-        }).then(function (res) {
-          if (!res.ok) throw new Error("form");
+        }).then(function () {
           showWaitlistSuccess();
         }).catch(function () {
           showWaitlistSuccess();
