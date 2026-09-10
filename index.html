@@ -631,8 +631,8 @@
 
   <script>
     (function () {
-      // Google Apps Script Web App URL that appends to the waitlist Sheet
-      // and emails lucas@comdei.org. See docs/waitlist-backend.md for setup.
+      // Formspree (or equivalent) form endpoint that emails lucas@comdei.org.
+      // See docs/waitlist-backend.md for setup.
       // Leave empty (or keep PLACEHOLDER) to save the submission locally only.
       var WAITLIST_ENDPOINT = "PLACEHOLDER";
       var WAITLIST_KEY = "comdei_waitlist";
@@ -828,13 +828,12 @@
           return;
         }
 
-        // mode: "no-cors" because the Apps Script Web App doesn't answer CORS
-        // preflights; the response is opaque, so success is assumed once the
-        // request is sent (Apps Script logs failures server-side).
         fetch(endpoint, {
           method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
           body: JSON.stringify({
             name: nome,
             email: email,
