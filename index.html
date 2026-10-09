@@ -454,6 +454,10 @@
               <label for="wl-nota">Recado <span class="small">(opcional)</span></label>
               <textarea id="wl-nota" name="message" maxlength="800" placeholder="Como conheceu a Comdei, se quiser."></textarea>
             </div>
+            <div class="sr-only" aria-hidden="true">
+              <label for="wl-gotcha">Não preencha este campo</label>
+              <input id="wl-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <p class="form-err" id="waitlist-err" aria-live="polite"></p>
             <button type="submit" id="waitlist-submit">Entrar na lista</button>
           </form>
@@ -791,6 +795,7 @@
         var email = document.getElementById("wl-email").value.trim();
         var whatsapp = document.getElementById("wl-whatsapp").value.trim();
         var nota = document.getElementById("wl-nota").value.trim();
+        var gotcha = document.getElementById("wl-gotcha").value;
 
         if (!email && !whatsapp) {
           err.textContent = "Informe e-mail ou WhatsApp.";
@@ -829,7 +834,8 @@
             name: nome,
             email: email,
             whatsapp: whatsapp,
-            message: nota
+            message: nota,
+            _gotcha: gotcha
           })
         }).then(function () {
           showWaitlistSuccess();
