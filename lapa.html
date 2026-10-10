@@ -137,14 +137,33 @@
       .sacr { padding: 1.8rem 1.3rem; }
       .btn { width: 100%; justify-content: center; }
     }
+
+    .comm { position: relative; overflow: hidden; border-radius: 28px; color: #fff; padding: 2.4rem 2.2rem;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 60%, #6e5724 140%); display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.4rem; align-items: center; }
+    .comm::before { content: ""; position: absolute; width: 18rem; height: 18rem; right: -5rem; top: -6rem; border-radius: 50%;
+      background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); opacity: 0.5; }
+    .comm > * { position: relative; z-index: 1; }
+    .comm h2 { color: #fff; margin-bottom: 0.5rem; }
+    .comm p { color: #dfe5f1; margin: 0 0 0.4rem; font-size: 1.02rem; }
+    .comm .eyebrow { color: #f1c56a; }
+    .comm-sm { border-radius: 22px; padding: 1.6rem 1.5rem; grid-template-columns: 1.6fr 1fr; }
+    .comm-sm h3 { margin: 0 0 0.35rem; font-size: 1.2rem; color: #fff; }
+    .btn-big { font-size: 1.08rem; padding: 1rem 1.6rem; }
+    .founder { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 1.6rem 0 0; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .founder img { height: 2.6rem; width: auto; border-radius: 8px; }
+    .sacr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .sac { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.3rem; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .sac h3 { margin: 0 0 0.3rem; color: var(--navy); font-size: 1.15rem; }
+    .sac p { margin: 0 0 1rem; color: var(--mute); font-size: 0.96rem; flex: 1; }
+    .sac .btn { font-size: 0.92rem; padding: 0.7rem 1rem; justify-content: center; }
+    .sac-top { border-top: 4px solid var(--gold); }
+    @media (max-width: 860px) { .comm, .comm-sm { grid-template-columns: 1fr; } .sacr-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .comm { padding: 1.8rem 1.3rem; } .sacr-grid { grid-template-columns: 1fr; } }
   
-    .lead-logo { display: flex; align-items: center; justify-content: center; gap: 0.7rem; margin: 2.2rem 0 0; color: var(--mute); font-size: 0.9rem; }
-    .lead-logo img { height: 3rem; width: auto; border-radius: 10px; }
+    .lead-logo { display: none; }
     .num { display: inline-grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--navy); color: #f1c56a; font-weight: 700; margin-bottom: 0.7rem; }
-    .soft a.inline { font-weight: 600; }
     .paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .path { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); transition: transform .15s ease; }
-    .path:hover { transform: translateY(-2px); }
+    .path { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
     .path h3 { margin: 0 0 0.35rem; color: var(--navy); font-size: 1.15rem; }
     .path p { margin: 0 0 0.8rem; color: var(--mute); font-size: 0.97rem; }
     .path span.go { color: var(--gold-ink); font-weight: 600; font-size: 0.95rem; }
@@ -163,6 +182,8 @@
       <nav aria-label="Seções">
         <a href="#proposta">Proposta</a>
         <a href="#caminhos">Caminhos</a>
+        <a href="#sacramentos">Sacramentos</a>
+        <a href="#comunidade">Comunidade</a>
         <a href="#conversar">Conversar</a>
       </nav>
     </header>
@@ -174,6 +195,7 @@
       <p class="sub">Gente comum, caminhando junto, rezando junto e aprendendo a fé com alegria.</p>
       <div class="btns">
         <a class="btn btn-gold" href="#proposta">Ver a proposta</a>
+        <a class="btn btn-ghost" data-comunidade href="https://wa.me/5521981454569?text=Quero%20entrar%20na%20comunidade%20da%20Comdei%20no%20WhatsApp" target="_blank" rel="noopener">Entrar na comunidade</a>
         <a class="btn btn-ghost" href="https://wa.me/5521981454569?text=Ol%C3%A1%2C%20Lucas!%20Vi%20a%20proposta%20da%20Comdei%20na%20Lapa%20dos%20Mercadores%20e%20quero%20conversar." target="_blank" rel="noopener">Conversar no WhatsApp</a>
       </div>
     </div>
@@ -186,7 +208,7 @@
       </div>
     </div>
 
-    <p class="lead-logo"><img src="comdei.png" alt="Comdei"> <span>Uma iniciativa da Comdei, grupo de fiéis que caminha com a Igreja.</span></p>
+    <p class="founder"><img src="comdei.png" alt="Comdei"><span>Uma iniciativa da Comdei, fundada por Lucas Lima.</span></p>
 
     <section id="proposta">
       <p class="eyebrow">A proposta</p>
@@ -203,6 +225,17 @@
           <p>Crisma de adultos, catequese infantil e sacramentos com o Padre Vítor. Veja abaixo.</p></div>
       </div>
       <p class="note">Depois dos encontros, quem quiser fica para rezar com a gente na Missa das 12h, aos sábados.</p>
+    </section>
+
+    <section id="comunidade">
+      <div class="comm">
+        <div>
+          <p class="eyebrow">Comunidade Comdei no WhatsApp</p>
+          <h2>Entre na comunidade e acompanhe os avisos</h2>
+          <p>Os avisos do dia a dia e da semana chegam pela comunidade da Comdei no WhatsApp. Cada turma terá o seu próprio grupo dentro da comunidade: Crisma de adultos, catequese infantil e as próximas que vierem.</p>
+        </div>
+        <div><a class="btn btn-gold btn-big btn-block" data-comunidade href="https://wa.me/5521981454569?text=Quero%20entrar%20na%20comunidade%20da%20Comdei%20no%20WhatsApp" target="_blank" rel="noopener">Entrar na comunidade da Comdei</a></div>
+      </div>
     </section>
 
     <section id="confirmar">
@@ -222,7 +255,21 @@
       <div class="paths">
         <a class="path" href="/crisma-adultos"><h3>Crisma de adultos</h3><p>Para quem é batizado e ainda não foi crismado. Nunca é tarde.</p><span class="go">Conhecer a turma →</span></a>
         <a class="path" href="/catequese-infantil"><h3>Catequese infantil</h3><p>Para as crianças crescerem juntas na fé, com as famílias por perto.</p><span class="go">Conhecer a catequese →</span></a>
-        <a class="path" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20um%20sacramento%20com%20o%20Padre%20V%C3%ADtor%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener"><h3>Sacramentos com o Padre Vítor</h3><p>Batismo, Primeira Comunhão, Crisma, Casamento e outros, conversados com calma.</p><span class="go">Falar no WhatsApp →</span></a>
+        <a class="path" href="#sacramentos"><h3>Sacramentos com o Padre Vítor</h3><p>Batismo, Primeira Eucaristia, Crisma, Confissão, Matrimônio e Unção dos Enfermos.</p><span class="go">Ver os sacramentos →</span></a>
+      </div>
+    </section>
+
+    <section id="sacramentos">
+      <p class="eyebrow">Sacramentos</p>
+      <h2>Os sacramentos, com o Padre Vítor</h2>
+      <p class="intro">Cada sacramento é conversado com calma, do seu jeito e no seu tempo. Chame no WhatsApp e a gente combina com o Padre Vítor.</p>
+      <div class="sacr-grid">
+        <div class="sac sac-top"><h3>Batismo</h3><p>A porta de entrada na vida cristã, para crianças e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Batismo%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+        <div class="sac sac-top"><h3>Primeira Eucaristia</h3><p>Receber Jesus pela primeira vez, bem preparado e com a família por perto.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Primeira%20Eucaristia%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+        <div class="sac sac-top"><h3>Crisma</h3><p>A confirmação da fé, com a força do Espírito Santo, para jovens e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Crisma%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+        <div class="sac sac-top"><h3>Confissão</h3><p>O encontro com a misericórdia de Deus, com calma e em sigilo.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Confiss%C3%A3o%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+        <div class="sac sac-top"><h3>Matrimônio</h3><p>Para os noivos que querem começar a vida a dois diante de Deus.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Matrim%C3%B4nio%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+        <div class="sac sac-top"><h3>Unção dos Enfermos</h3><p>Conforto e força de Deus para quem está doente ou fragilizado.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Un%C3%A7%C3%A3o%20dos%20Enfermos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
       </div>
     </section>
 
@@ -242,8 +289,9 @@
           <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
         </div>
       </div>
-      <p>Comdei · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
+      <p>Comdei · fundada por Lucas Lima · <a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
     </footer>
   </div>
+  <script src="comunidade.js"></script>
 </body>
 </html>

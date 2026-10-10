@@ -137,6 +137,28 @@
       .sacr { padding: 1.8rem 1.3rem; }
       .btn { width: 100%; justify-content: center; }
     }
+
+    .comm { position: relative; overflow: hidden; border-radius: 28px; color: #fff; padding: 2.4rem 2.2rem;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 60%, #6e5724 140%); display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.4rem; align-items: center; }
+    .comm::before { content: ""; position: absolute; width: 18rem; height: 18rem; right: -5rem; top: -6rem; border-radius: 50%;
+      background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); opacity: 0.5; }
+    .comm > * { position: relative; z-index: 1; }
+    .comm h2 { color: #fff; margin-bottom: 0.5rem; }
+    .comm p { color: #dfe5f1; margin: 0 0 0.4rem; font-size: 1.02rem; }
+    .comm .eyebrow { color: #f1c56a; }
+    .comm-sm { border-radius: 22px; padding: 1.6rem 1.5rem; grid-template-columns: 1.6fr 1fr; }
+    .comm-sm h3 { margin: 0 0 0.35rem; font-size: 1.2rem; color: #fff; }
+    .btn-big { font-size: 1.08rem; padding: 1rem 1.6rem; }
+    .founder { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 1.6rem 0 0; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .founder img { height: 2.6rem; width: auto; border-radius: 8px; }
+    .sacr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .sac { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.3rem; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .sac h3 { margin: 0 0 0.3rem; color: var(--navy); font-size: 1.15rem; }
+    .sac p { margin: 0 0 1rem; color: var(--mute); font-size: 0.96rem; flex: 1; }
+    .sac .btn { font-size: 0.92rem; padding: 0.7rem 1rem; justify-content: center; }
+    .sac-top { border-top: 4px solid var(--gold); }
+    @media (max-width: 860px) { .comm, .comm-sm { grid-template-columns: 1fr; } .sacr-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .comm { padding: 1.8rem 1.3rem; } .sacr-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -175,6 +197,8 @@
         <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
       </div>
     </div>
+
+    <p class="founder"><img src="comdei.png" alt="Comdei"><span>Uma iniciativa da Comdei, fundada por Lucas Lima.</span></p>
 
     <!-- 1. Inscrição -->
     <section id="inscricao">
@@ -224,33 +248,23 @@
 
     <!-- 3. Comunidade -->
     <section id="comunidade">
-      <p class="eyebrow">Comunidade</p>
-      <h2>Chegue mais perto</h2>
-      <p class="intro">A catequese é só a porta de entrada. Aqui as famílias se conhecem, rezam juntas e se ajudam.</p>
-      <div class="grid2">
-        <div class="soft bg-sage">
-          <h3>Grupo da comunidade no WhatsApp</h3>
-          <p>Avisos, horários e convites para quem quer caminhar junto. Link: <span class="tbc">a confirmar</span>.</p>
-          <p style="margin-top:1rem"><span class="btn btn-off" aria-disabled="true">Entrar no grupo (em breve)</span></p>
+      <div class="comm comm-sm">
+        <div>
+          <p class="eyebrow">Comunidade Comdei no WhatsApp</p>
+          <h3>Acompanhe os avisos da semana</h3>
+          <p>Entre na comunidade da Comdei para receber os avisos do dia a dia. Cada turma terá o seu próprio grupo dentro da comunidade, inclusive a da catequese.</p>
         </div>
-        <div class="soft bg-sky">
-          <h3>Fale com o Lucas</h3>
-          <p>Prefere conversar com uma pessoa? Chame no WhatsApp (21) 98145-4569.</p>
-          <p style="margin-top:1rem"><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20comunidade%20da%20Comdei%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Chamar no WhatsApp</a></p>
-        </div>
+        <div><a class="btn btn-gold btn-block" data-comunidade href="https://wa.me/5521981454569?text=Quero%20entrar%20na%20comunidade%20da%20Comdei%20no%20WhatsApp" target="_blank" rel="noopener">Entrar na comunidade</a></div>
       </div>
+      <p class="note">Prefere conversar com uma pessoa? Chame o Lucas no WhatsApp <a href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20catequese%20infantil%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">(21) 98145-4569</a>.</p>
     </section>
 
-    <!-- 4. O que vem por aí -->
-    <section id="futuro">
-      <p class="eyebrow">O que vem por aí</p>
-      <h2>Sonhos para os próximos passos</h2>
-      <span class="future-tag">Planos para o futuro · ainda sem data</span>
-      <div class="grid3">
-        <div class="soft bg-gold"><h3>Grupos de oração</h3><p>Grupos para rezar diferentes terços, guiados com o conhecimento do Padre Vítor:</p>
-          <ul><li>Rosário de São Miguel Arcanjo</li><li>Terço do Espírito Santo</li><li>e outros</li></ul></div>
-        <div class="soft bg-rose"><h3>Coral</h3><p>Um coral para cantar junto nas celebrações. Toda voz é bem-vinda.</p></div>
-        <div class="soft bg-sage"><h3>Encontros nos jardins</h3><p>Momentos de convivência nos jardins da igreja, para as famílias se conhecerem.</p></div>
+    <!-- 4. Oração -->
+    <section id="oracao">
+      <div class="soft bg-gold">
+        <span class="future-tag">Mais adiante · ainda sem data</span>
+        <h3>Rezar junto</h3>
+        <p>Com o tempo, a ideia é reunir quem quiser para rezar o Rosário de São Miguel Arcanjo, o Terço do Espírito Santo e outras devoções, com a orientação do Padre Vítor.</p>
       </div>
     </section>
 
@@ -261,11 +275,11 @@
           <p class="eyebrow">Sacramentos</p>
           <h2>Outros sacramentos? A gente conversa</h2>
           <p class="intro" style="margin-bottom:0.6rem">Outros sacramentos podem ser combinados com o Padre Vítor. Cada caso é conversado com calma, do seu jeito e no seu tempo.</p>
-          <ul class="sacr-list"><li>Batismo</li><li>Primeira Comunhão</li><li>Crisma</li><li>Casamento</li><li>e outros</li></ul>
+          <ul class="sacr-list"><li>Batismo</li><li>Primeira Eucaristia</li><li>Crisma</li><li>Confissão</li><li>Matrimônio</li><li>Unção dos Enfermos</li></ul>
         </div>
         <div>
           <a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20um%20sacramento%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Fale com a gente</a>
-          <p class="note">Adulto que quer se crismar? Veja a <a href="/crisma-adultos">Crisma de adultos</a>.</p>
+          <p class="note">Veja todos os <a href="/lapa#sacramentos">sacramentos na página da Comdei na Lapa</a>, ou a <a href="/crisma-adultos">Crisma de adultos</a>.</p>
         </div>
       </div>
     </section>
@@ -278,9 +292,10 @@
           <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
         </div>
       </div>
-      <p><a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
+      <p>Comdei · fundada por Lucas Lima · <a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
     </footer>
   </div>
 
+  <script src="comunidade.js"></script>
 </body>
 </html>
