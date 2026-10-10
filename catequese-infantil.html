@@ -7,6 +7,8 @@
   <meta name="description" content="Catequese infantil na Igreja Nossa Senhora da Lapa dos Mercadores, com a Comdei. Inscreva seu filho ou mande uma pergunta.">
   <meta name="robots" content="noindex">
   <link rel="icon" href="comdei.png" type="image/png">
+  <link rel="stylesheet" href="nav.css">
+  <noscript><style>.cnav-menu{display:flex!important}.cnav-toggle{display:none!important}</style></noscript>
   <style>
     :root {
       --ink: #221d18; --mute: #5a5247; --paper: #fbf6ec; --card: #ffffff; --line: #e6dcc8;
@@ -162,17 +164,21 @@
   </style>
 </head>
 <body>
+  <header class="cnav">
+    <div class="cnav-in">
+      <a class="cnav-logo" href="/" aria-label="Comdei, página inicial"><img src="comdei.png" alt="Comdei"></a>
+      <button class="cnav-toggle" type="button" aria-expanded="false" aria-controls="cnav-menu"><span class="bars" aria-hidden="true"></span>Menu</button>
+      <ul class="cnav-menu" id="cnav-menu">
+        <li><a href="/">Início</a></li>
+        <li><a href="/lapa">Lapa dos Mercadores</a></li>
+        <li><a href="/crisma-adultos">Crisma de adultos</a></li>
+        <li><a href="/catequese-infantil" aria-current="page">Catequese infantil</a></li>
+        <li><a href="/lapa#sacramentos">Sacramentos</a></li>
+        <li><a class="cnav-cta" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a></li>
+      </ul>
+    </div>
+  </header>
   <div class="wrap">
-    <header class="topbar">
-      <a href="/" aria-label="Comdei"><img src="comdei.png" alt="Comdei"></a>
-      <nav aria-label="Seções">
-        <a href="/lapa">Comdei na Lapa</a>
-        <a href="#inscricao">Inscrição</a>
-        <a href="#pergunta">Perguntas</a>
-        <a href="#comunidade">Comunidade</a>
-        <a href="#sacramentos">Sacramentos</a>
-      </nav>
-    </header>
 
     <div class="hero">
       <span class="pill">Com a Comdei e a Venerável Liga</span>
@@ -254,7 +260,7 @@
           <h3>Acompanhe os avisos da semana</h3>
           <p>Entre na comunidade da Comdei para receber os avisos do dia a dia. Cada turma terá o seu próprio grupo dentro da comunidade, inclusive a da catequese.</p>
         </div>
-        <div><a class="btn btn-gold btn-block" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a></div>
+        <div><a class="btn btn-gold btn-block" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a><div class="qr"><img src="comunidade-qr.svg" alt="QR code do convite da comunidade Comdei no WhatsApp" width="120" height="120"><span>Aponte a câmera do celular para entrar no grupo da Comdei</span></div></div>
       </div>
       <p class="note">Prefere conversar com uma pessoa? Chame o Lucas no WhatsApp <a href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20catequese%20infantil%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">(21) 98145-4569</a>.</p>
     </section>
@@ -292,10 +298,12 @@
           <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
         </div>
       </div>
-      <p>Comdei · fundada por Lucas Lima · <a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/privacidade">Privacidade</a></p>
+      <ul class="cfoot-links"><li><a href="/">Início</a></li><li><a href="/lapa">Lapa dos Mercadores</a></li><li><a href="/crisma-adultos">Crisma de adultos</a></li><li><a href="/catequese-infantil">Catequese infantil</a></li><li><a href="/lapa#sacramentos">Sacramentos</a></li><li><a href="/privacidade">Privacidade</a></li></ul>
+      <p>Comdei · fundada por Lucas Lima · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
     </footer>
   </div>
 
   <script src="comunidade.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>

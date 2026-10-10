@@ -15,6 +15,8 @@
   <meta property="og:image" content="https://comdei.org/comdei.png">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="comdei.png" type="image/png">
+  <link rel="stylesheet" href="nav.css">
+  <noscript><style>.cnav-menu{display:flex!important}.cnav-toggle{display:none!important}</style></noscript>
   <style>
     :root {
       --ink: #241f1a;
@@ -627,17 +629,22 @@
 </head>
 <body>
   <div id="public">
+    <header class="cnav">
+      <div class="cnav-in">
+        <a class="cnav-logo" href="/" aria-label="Comdei, página inicial"><img src="comdei.png" alt="Comdei"></a>
+        <button class="cnav-toggle" type="button" aria-expanded="false" aria-controls="cnav-menu"><span class="bars" aria-hidden="true"></span>Menu</button>
+        <ul class="cnav-menu" id="cnav-menu">
+          <li><a href="/" aria-current="page">Início</a></li>
+          <li><a href="/lapa">Lapa dos Mercadores</a></li>
+          <li><a href="/crisma-adultos">Crisma de adultos</a></li>
+          <li><a href="/catequese-infantil">Catequese infantil</a></li>
+          <li><a href="/lapa#sacramentos">Sacramentos</a></li>
+          <li><a class="cnav-cta" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a></li>
+        </ul>
+      </div>
+    </header>
     <main>
     <div class="wrap">
-      <header class="topbar">
-        <a href="/" aria-label="Comdei"><img src="comdei.png" alt="Comdei"></a>
-        <nav aria-label="Seções">
-          <a href="/lapa">Comdei na Lapa</a>
-          <a href="/lapa#sacramentos">Sacramentos</a>
-          <a href="/crisma-adultos">Crisma de adultos</a>
-          <a href="/catequese-infantil">Catequese infantil</a>
-        </nav>
-      </header>
 
       <div class="hero">
         <img class="hero-logo" src="comdei.png" alt="Comdei">
@@ -707,7 +714,7 @@
             <h2>Entre na comunidade e acompanhe os avisos</h2>
             <p>Os avisos do dia a dia e da semana chegam pela comunidade da Comdei no WhatsApp. Cada turma terá o seu próprio grupo dentro da comunidade.</p>
           </div>
-          <div><a class="btn btn-gold btn-big btn-block" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a></div>
+          <div><a class="btn btn-gold btn-big btn-block" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a><div class="qr"><img src="comunidade-qr.svg" alt="QR code do convite da comunidade Comdei no WhatsApp" width="120" height="120"><span>Aponte a câmera do celular para entrar no grupo da Comdei</span></div></div>
         </div>
       </section>
 
@@ -751,7 +758,8 @@
 
       <footer>
         <p>Comdei · fundada por Lucas Lima · 2026</p>
-        <p><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="mailto:pe.vitor@comdei.org">pe.vitor@comdei.org</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/privacidade">Privacidade</a></p>
+        <ul class="cfoot-links"><li><a href="/">Início</a></li><li><a href="/lapa">Lapa dos Mercadores</a></li><li><a href="/crisma-adultos">Crisma de adultos</a></li><li><a href="/catequese-infantil">Catequese infantil</a></li><li><a href="/lapa#sacramentos">Sacramentos</a></li><li><a href="/privacidade">Privacidade</a></li></ul>
+        <p><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="mailto:pe.vitor@comdei.org">pe.vitor@comdei.org</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
         <p class="founders-entry"><a class="founders-link" href="#interno">Acesso interno</a></p>
       </footer>
     </div>
@@ -1131,5 +1139,6 @@
     })();
   </script>
   <script src="comunidade.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>
