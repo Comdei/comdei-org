@@ -1,5 +1,5 @@
 # NÃO implantar sem GO escrito do Lucas. Plano Workers Free (custo zero).
-name = "crisma-adultos"
+name = "comdei-lapa-formularios"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
 workers_dev = true

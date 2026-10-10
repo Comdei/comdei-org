@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catequese infantil na Lapa dos Mercadores · Comdei</title>
+  <meta name="description" content="Catequese infantil na Igreja Nossa Senhora da Lapa dos Mercadores, com a Comdei. Inscreva seu filho ou mande uma pergunta.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="comdei.png" type="image/png">
+  <style>
+    :root {
+      --ink: #221d18; --mute: #5a5247; --paper: #fbf6ec; --card: #ffffff; --line: #e6dcc8;
+      --gold: #c8962e; --gold-soft: #f6e7c4; --gold-ink: #7a5a17; --navy: #1a2744; --navy-deep: #121c33;
+      --sky: #e5eef8; --rose: #f8e6e0; --sage: #e4efe4; --danger: #8a2b2b; --wa: #1f8a52;
+      --radius: 22px; --shadow: 0 10px 30px rgba(26, 39, 68, 0.08);
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.6; }
+    a { color: var(--navy); }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.4rem; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; }
+    .topbar img { height: 2.6rem; width: auto; border-radius: 10px; }
+    .topbar nav { display: flex; gap: 1.2rem; font-size: 0.95rem; }
+    .topbar nav a { text-decoration: none; color: var(--mute); }
+    .topbar nav a:hover { color: var(--navy); }
+
+    .hero { position: relative; overflow: hidden; border-radius: 32px; margin: 0.4rem 0 0;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 55%, #6e5724 130%); color: #fff;
+      padding: 3.6rem 3rem 3.2rem; }
+    .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(2px); opacity: 0.55; }
+    .hero::before { width: 22rem; height: 22rem; right: -6rem; top: -7rem; background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); }
+    .hero::after { width: 16rem; height: 16rem; left: 40%; bottom: -9rem; background: radial-gradient(circle, #8fb4e3 0%, rgba(143,180,227,0) 70%); }
+    .hero > * { position: relative; z-index: 1; }
+    .pill { display: inline-block; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.82rem; letter-spacing: 0.04em; }
+    .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.1rem, 5.6vw, 3.4rem); line-height: 1.08; margin: 1rem 0 0.8rem; max-width: 40rem; }
+    .hero h1 span { color: #f1c56a; }
+    .hero p.lede { font-size: 1.18rem; max-width: 36rem; margin: 0 0 0.5rem; color: #eef1f7; }
+    .hero p.sub { font-size: 0.98rem; color: #cfd6e6; margin: 0 0 1.6rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 1.8rem; }
+    .chip { background: rgba(255,255,255,0.1); border-radius: 14px; padding: 0.6rem 0.9rem; font-size: 0.9rem; }
+    .chip b { display: block; font-weight: 600; color: #f1c56a; font-style: italic; }
+    .btns { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.4rem; border-radius: 999px; font-weight: 600;
+      text-decoration: none; font-size: 1rem; border: 0; cursor: pointer; font-family: var(--sans); }
+    .btn-gold { background: #f1c56a; color: #1a2744; }
+    .btn-gold:hover { background: #f6d48d; }
+    .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+    .btn-wa { background: var(--wa); color: #fff; }
+    .btn-wa:hover { background: #18734a; }
+    .btn-navy { background: var(--navy); color: #fff; width: 100%; justify-content: center; }
+    .btn-navy:hover { background: var(--navy-deep); }
+    .btn-navy:disabled { opacity: 0.6; cursor: wait; }
+    .btn-off { background: #eee7d8; color: var(--mute); cursor: default; }
+
+    .partners { text-align: center; margin: 2.4rem auto 0; }
+    .partners-cap { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 1rem; }
+    .partners-row { display: flex; justify-content: center; align-items: flex-start; gap: 2.6rem; }
+    .partner { width: 12rem; margin: 0; }
+    .partner img { height: 6.5rem; width: auto; display: block; margin: 0 auto 0.55rem; }
+    .partner figcaption { font-size: 0.8rem; line-height: 1.35; color: var(--mute); }
+
+    section { padding: 3.4rem 0 0; }
+    .eyebrow { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.4rem; font-weight: 600; }
+    h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.6vw, 2.2rem); line-height: 1.15; color: var(--navy); margin: 0 0 0.8rem; }
+    .intro { font-size: 1.08rem; color: var(--mute); max-width: 40rem; margin: 0 0 1.6rem; }
+    .grid2 { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.6rem; align-items: start; }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.8rem 1.6rem; border: 1px solid var(--line); }
+    .soft { border-radius: var(--radius); padding: 1.6rem; }
+    .soft h3 { margin: 0 0 0.4rem; font-size: 1.12rem; color: var(--navy); }
+    .soft p { margin: 0; color: var(--mute); font-size: 0.98rem; }
+    .bg-sky { background: var(--sky); } .bg-rose { background: var(--rose); } .bg-sage { background: var(--sage); } .bg-gold { background: var(--gold-soft); }
+    .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.8rem; }
+    .steps li { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .steps .n { flex: none; width: 2rem; height: 2rem; border-radius: 50%; background: var(--gold-soft); color: var(--gold-ink);
+      display: grid; place-items: center; font-weight: 700; }
+    .note { font-size: 0.95rem; color: var(--mute); margin: 1.2rem 0 0; }
+
+    .field { margin-bottom: 0.95rem; }
+    label { display: block; font-size: 0.88rem; color: var(--mute); margin: 0 0 0.3rem; font-weight: 500; }
+    input[type="text"], input[type="tel"], input[type="email"], textarea { width: 100%; padding: 0.78rem 0.9rem; border-radius: 12px;
+      border: 1px solid var(--line); background: #fdfbf6; font: inherit; color: var(--ink); }
+    textarea { min-height: 7rem; resize: vertical; }
+    input:focus, textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12); }
+    .privacy { font-size: 0.86rem; color: var(--mute); background: #f7f1e4; border-radius: 12px; padding: 0.8rem 0.95rem; margin: 0 0 0.9rem; }
+    .privacy p { margin: 0 0 0.35rem; } .privacy p:last-child { margin: 0; }
+    .consent { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.93rem; color: var(--ink); font-weight: 400; }
+    .consent input { margin-top: 0.3rem; flex: none; }
+    .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .form-err { color: var(--danger); font-size: 0.92rem; min-height: 1.2em; margin: 0.3rem 0 0.4rem; }
+    .preview-flag { display: none; font-size: 0.82rem; color: var(--danger); margin: 0 0 0.9rem; }
+    .is-preview .preview-flag { display: block; }
+    .success { text-align: center; padding: 1rem 0.4rem; }
+    .success b { display: block; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .small { font-weight: 400; color: var(--mute); font-size: 0.82rem; }
+    .tbc { font-style: italic; color: var(--gold-ink); font-weight: 600; }
+
+    .future-tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      background: var(--navy); color: #f1c56a; border-radius: 999px; padding: 0.3rem 0.8rem; margin: 0 0 0.9rem; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .soft ul { margin: 0.5rem 0 0; padding-left: 1.1rem; color: var(--mute); font-size: 0.95rem; }
+
+    .sacr { background: linear-gradient(135deg, #f6e7c4 0%, #fbf6ec 100%); border-radius: 28px; padding: 2.4rem 2.2rem;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.6rem; align-items: center; border: 1px solid var(--line); }
+    .sacr-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 0; padding: 0; list-style: none; }
+    .sacr-list li { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.85rem; font-size: 0.92rem; }
+
+    footer { margin-top: 4rem; padding: 2.6rem 0 3rem; border-top: 1px solid var(--line); text-align: center; color: var(--mute); font-size: 0.92rem; }
+    footer .partners { margin-top: 0; }
+    footer .partner { width: 9.5rem; } footer .partner img { height: 4.2rem; } footer .partner figcaption { font-size: 0.72rem; }
+    footer p { margin: 1.2rem 0 0; }
+
+    @media (max-width: 860px) {
+      .grid2, .sacr { grid-template-columns: 1fr; }
+      .grid4 { grid-template-columns: 1fr 1fr; }
+      .grid3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding: 0 1rem; }
+      .topbar nav { display: none; }
+      .hero { padding: 2.4rem 1.4rem 2.2rem; border-radius: 24px; }
+      .grid4 { grid-template-columns: 1fr; }
+      .partners-row { gap: 1.2rem; }
+      .partner { width: 9.5rem; } .partner img { height: 5.4rem; }
+      footer .partner { width: 8rem; } footer .partner img { height: 3.8rem; }
+      .card { padding: 1.4rem 1.15rem; }
+      .sacr { padding: 1.8rem 1.3rem; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a href="/" aria-label="Comdei"><img src="comdei.png" alt="Comdei"></a>
+      <nav aria-label="Seções">
+        <a href="#inscricao">Inscrição</a>
+        <a href="#pergunta">Perguntas</a>
+        <a href="#comunidade">Comunidade</a>
+        <a href="#sacramentos">Sacramentos</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <span class="pill">Com a Comdei e a Venerável Liga</span>
+      <h1>Catequese infantil na <span>Lapa dos Mercadores</span></h1>
+      <p class="lede">Um lugar para as crianças conhecerem Jesus com alegria: aprender, brincar, rezar e crescer juntas na fé.</p>
+      <p class="sub">Prepara para a mesma Missa celebrada no Vaticano.</p>
+      <div class="chips" aria-label="Informações da turma">
+        <div class="chip">Dia e horário<b>a confirmar</b></div>
+        <div class="chip">Início<b>a confirmar</b></div>
+        <div class="chip">Frequência<b>a confirmar</b></div>
+      </div>
+      <div class="btns">
+        <a class="btn btn-gold" href="#inscricao">Quero inscrever meu filho</a>
+        <a class="btn btn-ghost" href="#pergunta">Tenho uma pergunta</a>
+      </div>
+    </div>
+
+    <div class="partners" aria-label="Instituições parceiras">
+      <p class="partners-cap">Instituições parceiras na missão de evangelização</p>
+      <div class="partners-row">
+        <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+      </div>
+    </div>
+
+    <!-- 1. Inscrição -->
+    <section id="inscricao">
+      <div class="grid2">
+        <div>
+          <p class="eyebrow">Inscrição</p>
+          <h2>Seu filho na catequese, com a gente perto</h2>
+          <p class="intro">A catequese é feita em comunidade, com famílias que querem caminhar juntas. Quem preenche é o pai, a mãe ou o responsável.</p>
+          <ol class="steps">
+            <li><span class="n">1</span><span>Você deixa seu contato e a idade da criança.</span></li>
+            <li><span class="n">2</span><span>A gente chama você no WhatsApp para se conhecer e tirar dúvidas.</span></li>
+            <li><span class="n">3</span><span>Quando dia e horário forem confirmados, você é avisado primeiro.</span></li>
+          </ol>
+          <p class="note">Venha também rezar com a gente na Missa das 12h, aos sábados, na Igreja Nossa Senhora da Lapa dos Mercadores (Rua do Ouvidor, 35, Centro do Rio).</p>
+        </div>
+
+        <div class="card" data-form="catequese-infantil">
+          <p class="preview-flag">Prévia: o envio ainda não está ligado. Nada é gravado.</p>
+          <form novalidate>
+            <div class="field"><label for="ci-nome">Seu nome (responsável)</label>
+              <input id="ci-nome" name="nome" type="text" autocomplete="name" maxlength="120"></div>
+            <div class="field"><label for="ci-whatsapp">WhatsApp (com DDD)</label>
+              <input id="ci-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(21) 99999-9999"></div>
+            <div class="field"><label for="ci-email">E-mail <span class="small">(opcional)</span></label>
+              <input id="ci-email" name="email" type="email" autocomplete="email" maxlength="200" placeholder="voce@email.com"></div>
+            <div class="field"><label for="ci-idade">Idade da criança <span class="small">(se for mais de uma, escreva todas)</span></label>
+              <input id="ci-idade" name="idade" type="text" inputmode="numeric" maxlength="40" placeholder="Ex.: 7 anos"></div>
+            <div class="hp" aria-hidden="true"><label for="ci-site">Deixe em branco</label><input id="ci-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="privacy">
+              <p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei, só para falar com você sobre a catequese na Lapa dos Mercadores. Não repassamos a ninguém.</p>
+              <p>Dados de crianças pedem cuidado redobrado: pedimos só a idade, sem nome nem foto da criança. Para apagar ou corrigir, mande mensagem no WhatsApp <a href="https://wa.me/5521981454569">(21) 98145-4569</a>.</p>
+            </div>
+            <div class="field"><label class="consent"><input name="consentimento" type="checkbox"> <span>Sou o responsável e concordo que a Comdei guarde estes dados para falar comigo sobre a catequese.</span></label></div>
+            <div class="ts"></div>
+            <p class="form-err" aria-live="polite"></p>
+            <button class="btn btn-navy" type="submit">Quero ser avisado</button>
+          </form>
+          <div class="success" hidden><b>Recebemos! Que alegria.</b><span>A gente vai te chamar no WhatsApp em breve.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Pergunta -->
+    <section id="pergunta">
+      <div class="grid2">
+        <div>
+          <p class="eyebrow">Perguntas</p>
+          <h2>Ficou alguma dúvida? Pergunte</h2>
+          <p class="intro">Precisa ser batizado? Que idade pode entrar? Como funciona? Mande sua pergunta por aqui ou fale direto no WhatsApp.</p>
+          <a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20uma%20pergunta%20sobre%20a%20catequese%20infantil%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+        </div>
+        <div class="card" data-form="pergunta">
+          <p class="preview-flag">Prévia: o envio ainda não está ligado. Nada é gravado.</p>
+          <form novalidate>
+            <div class="field"><label for="pq-nome">Seu nome</label>
+              <input id="pq-nome" name="nome" type="text" autocomplete="name" maxlength="120"></div>
+            <div class="field"><label for="pq-whatsapp">WhatsApp para a resposta (com DDD)</label>
+              <input id="pq-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(21) 99999-9999"></div>
+            <div class="field"><label for="pq-email">E-mail <span class="small">(opcional)</span></label>
+              <input id="pq-email" name="email" type="email" autocomplete="email" maxlength="200"></div>
+            <div class="field"><label for="pq-pergunta">Sua pergunta</label>
+              <textarea id="pq-pergunta" name="pergunta" maxlength="1000"></textarea></div>
+            <div class="hp" aria-hidden="true"><label for="pq-site">Deixe em branco</label><input id="pq-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="privacy"><p>Usamos seu contato só para responder. Para apagar, peça no WhatsApp <a href="https://wa.me/5521981454569">(21) 98145-4569</a>.</p></div>
+            <div class="field"><label class="consent"><input name="consentimento" type="checkbox"> <span>Concordo que a Comdei guarde meu contato para responder a pergunta.</span></label></div>
+            <div class="ts"></div>
+            <p class="form-err" aria-live="polite"></p>
+            <button class="btn btn-navy" type="submit">Enviar pergunta</button>
+          </form>
+          <div class="success" hidden><b>Pergunta recebida.</b><span>A gente responde pelo WhatsApp.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Comunidade -->
+    <section id="comunidade">
+      <p class="eyebrow">Comunidade</p>
+      <h2>Chegue mais perto</h2>
+      <p class="intro">A catequese é só a porta de entrada. Aqui as famílias se conhecem, rezam juntas e se ajudam.</p>
+      <div class="grid2">
+        <div class="soft bg-sage">
+          <h3>Grupo da comunidade no WhatsApp</h3>
+          <p>Avisos, horários e convites para quem quer caminhar junto. Link: <span class="tbc">a confirmar</span>.</p>
+          <p style="margin-top:1rem"><span class="btn btn-off" aria-disabled="true">Entrar no grupo (em breve)</span></p>
+        </div>
+        <div class="soft bg-sky">
+          <h3>Fale com o Lucas</h3>
+          <p>Prefere conversar com uma pessoa? Chame no WhatsApp (21) 98145-4569.</p>
+          <p style="margin-top:1rem"><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20comunidade%20da%20Comdei%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Chamar no WhatsApp</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. O que vem por aí -->
+    <section id="futuro">
+      <p class="eyebrow">O que vem por aí</p>
+      <h2>Sonhos para os próximos passos</h2>
+      <span class="future-tag">Planos para o futuro · ainda sem data</span>
+      <div class="grid4">
+        <div class="soft bg-gold"><h3>Grupos de oração</h3><p>Grupos para rezar diferentes terços, guiados com o conhecimento do Padre Vítor:</p>
+          <ul><li>Rosário de São Miguel Arcanjo</li><li>Terço do Espírito Santo</li><li>e outros</li></ul></div>
+        <div class="soft bg-rose"><h3>Coral</h3><p>Um coral para cantar junto nas celebrações. Toda voz é bem-vinda.</p></div>
+        <div class="soft bg-sky"><h3>Missas na Igreja de Ouro</h3><p>Celebrações para a comunidade rezar unida.</p></div>
+        <div class="soft bg-sage"><h3>Encontros nos jardins</h3><p>Momentos de convivência nos jardins da igreja, para as famílias se conhecerem.</p></div>
+      </div>
+    </section>
+
+    <!-- 5. Sacramentos -->
+    <section id="sacramentos">
+      <div class="sacr">
+        <div>
+          <p class="eyebrow">Sacramentos</p>
+          <h2>Outros sacramentos? A gente conversa</h2>
+          <p class="intro" style="margin-bottom:0.6rem">Outros sacramentos podem ser combinados com o Padre Vítor. Cada caso é conversado com calma, do seu jeito e no seu tempo.</p>
+          <ul class="sacr-list"><li>Batismo</li><li>Primeira Comunhão</li><li>Crisma</li><li>Casamento</li><li>e outros</li></ul>
+        </div>
+        <div>
+          <a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20um%20sacramento%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Fale com a gente</a>
+          <p class="note">Adulto que quer se crismar? Veja a <a href="/crisma-adultos">Crisma de adultos</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="partners" aria-label="Instituições parceiras">
+        <p class="partners-cap">Instituições parceiras</p>
+        <div class="partners-row">
+          <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+          <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        </div>
+      </div>
+      <p>Comdei · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      // Preencher só depois do GO (ver docs/crisma-adultos-backend.md). Vazio = modo prévia.
+      var ENDPOINT = "";           // ex.: https://comdei-lapa-formularios.<conta>.workers.dev/inscricao
+      var TURNSTILE_SITEKEY = "";  // chave pública do widget Turnstile (não é segredo)
+      var preview = !ENDPOINT || !TURNSTILE_SITEKEY;
+      if (preview) document.body.classList.add("is-preview");
+
+      var cards = Array.prototype.slice.call(document.querySelectorAll("[data-form]"));
+      var widgets = {};
+      if (!preview) {
+        window.onTurnstileLoad = function () {
+          cards.forEach(function (card) {
+            var form = card.getAttribute("data-form");
+            widgets[form] = window.turnstile.render(card.querySelector(".ts"), { sitekey: TURNSTILE_SITEKEY, action: form, language: "pt-br" });
+          });
+        };
+        var s = document.createElement("script");
+        s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit";
+        s.async = true; s.defer = true; document.head.appendChild(s);
+      }
+
+      function val(f, name) { var el = f.elements[name]; return el ? el.value.trim() : ""; }
+
+      cards.forEach(function (card) {
+        var formName = card.getAttribute("data-form");
+        var f = card.querySelector("form");
+        var err = card.querySelector(".form-err");
+        var btn = f.querySelector("button[type=submit]");
+        function done() { f.hidden = true; card.querySelector(".success").hidden = false; }
+
+        f.addEventListener("submit", function (event) {
+          event.preventDefault();
+          err.textContent = "";
+          var data = { form: formName, nome: val(f, "nome"), whatsapp: val(f, "whatsapp"), email: val(f, "email"),
+            consentimento: f.elements.consentimento.checked, site: f.elements.site.value };
+          if (formName === "catequese-infantil") data.idade = val(f, "idade");
+          if (formName === "pergunta") data.pergunta = val(f, "pergunta");
+
+          if (data.nome.length < 2) { err.textContent = "Escreva seu nome."; return; }
+          var d = data.whatsapp.replace(/\D/g, "");
+          if (d.length < 10 || d.length > 13) { err.textContent = "Confira o WhatsApp, com DDD."; return; }
+          if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { err.textContent = "Confira o e-mail."; return; }
+          if (formName === "catequese-infantil" && !/\d/.test(data.idade)) { err.textContent = "Conte a idade da criança."; return; }
+          if (formName === "pergunta" && data.pergunta.length < 5) { err.textContent = "Escreva sua pergunta."; return; }
+          if (!data.consentimento) { err.textContent = "Para guardar seu contato, precisamos do seu de acordo."; return; }
+          if (preview) { done(); return; }
+
+          var token = window.turnstile ? window.turnstile.getResponse(widgets[formName]) : "";
+          if (!token) { err.textContent = "Confirme a verificação antes de enviar."; return; }
+          data.turnstileToken = token;
+          btn.disabled = true;
+          fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+            .then(function (res) {
+              return res.json().catch(function () { return {}; }).then(function (body) {
+                if (res.ok && body.ok) { done(); return; }
+                err.textContent = res.status === 429 ? "Muitas tentativas. Tente mais tarde, ou chame no WhatsApp."
+                  : (body.error || "Não deu certo agora. Tente de novo ou chame no WhatsApp.");
+                if (window.turnstile) window.turnstile.reset(widgets[formName]);
+              });
+            })
+            .catch(function () { err.textContent = "Sem conexão agora. Tente de novo ou chame no WhatsApp."; })
+            .then(function () { btn.disabled = false; });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

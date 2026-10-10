@@ -1,4 +1,15 @@
-# Crisma de adultos: lista de interessados (backend)
+# Formulários da Comdei na Lapa (backend)
+
+Um único Worker e um único Apps Script atendem três formulários, cada um gravando na sua aba:
+| Página | Campo `form` | Aba da planilha |
+|---|---|---|
+| `crisma-adultos.html` | `crisma-adultos` | Crisma de adultos |
+| `catequese-infantil.html` (inscrição) | `catequese-infantil` | Catequese infantil |
+| `catequese-infantil.html` (pergunta) | `pergunta` | Perguntas |
+A ação do Turnstile de cada widget é o próprio nome do formulário, e o Worker confere isso.
+O Worker se chama `comdei-lapa-formularios` (em `infra/crisma-adultos/worker`).
+
+## Crisma de adultos: lista de interessados
 
 Página: `crisma-adultos.html` → `comdei.org/crisma-adultos` (cleanUrls do Firebase Hosting).
 Enquanto `CRISMA_ENDPOINT` e `TURNSTILE_SITEKEY` estiverem vazios na página, ela fica em
@@ -34,7 +45,7 @@ Por que Worker + Apps Script, e não só um dos dois:
 
 ## Passo a passo depois do GO (o que o Lucas clica ou loga)
 
-1. **Planilha** (lucas@comdei.org): criar "Crisma de adultos — interessados" no Google Drive.
+1. **Planilha** (lucas@comdei.org): criar "Comdei na Lapa — cadastros" no Google Drive.
    Compartilhar só com quem for atender os interessados.
 2. **Apps Script**: na planilha, Extensões > Apps Script; colar `infra/crisma-adultos/apps-script/Code.gs`.
    Em Configurações do projeto > Propriedades do script, criar `SHARED_SECRET` (texto aleatório longo).
@@ -51,18 +62,18 @@ Por que Worker + Apps Script, e não só um dos dois:
    npx wrangler secret put IP_SALT
    npx wrangler deploy
    ```
-   Endereço resultante: `https://crisma-adultos.<subdominio>.workers.dev/inscricao`.
-5. **Página**: em `crisma-adultos.html`, preencher `CRISMA_ENDPOINT` e `TURNSTILE_SITEKEY`, mergear
+   Endereço resultante: `https://comdei-lapa-formularios.<subdominio>.workers.dev/inscricao`.
+5. **Páginas**: em `crisma-adultos.html` (`CRISMA_ENDPOINT`) e `catequese-infantil.html` (`ENDPOINT`), preencher o endereço e `TURNSTILE_SITEKEY`, mergear
    no main (o GitHub Actions publica no Firebase Hosting).
 6. **Smoke**: um cadastro de teste, conferir a linha na planilha e apagar a linha de teste.
 
 ## Desfazer
 - Página: reverter o commit no main (ou apagar `crisma-adultos.html`) e deixar o Actions republicar.
-- Worker: `npx wrangler delete crisma-adultos`. Turnstile: apagar o widget.
+- Worker: `npx wrangler delete comdei-lapa-formularios`. Turnstile: apagar o widget.
 - Apps Script: Implantar > Gerenciar implantações > Arquivar. A planilha fica com o Lucas.
 
 ## LGPD
-- Campos mínimos: nome, WhatsApp, e-mail opcional, paróquia opcional, batizado, primeira comunhão.
+- Campos mínimos. Crisma: nome, WhatsApp, e-mail opcional, paróquia opcional, batizado, primeira comunhão. Catequese: só o responsável (nome, WhatsApp, e-mail opcional) e a idade da criança, sem nome nem foto da criança. Pergunta: nome, WhatsApp, e-mail opcional, texto.
 - Consentimento por checkbox desmarcado; o Worker recusa sem ele.
 - IP não é guardado em claro: só um hash com sal (para o limite por IP e para investigar abuso).
 - Exclusão/correção: pedido pelo WhatsApp (21) 98145-4569; apagar a linha na planilha.

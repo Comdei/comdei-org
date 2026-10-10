@@ -72,6 +72,23 @@
     .preview-flag { display: none; text-align: center; font-size: 0.82rem; color: var(--danger); margin: 0 0 1rem; }
     .is-preview .preview-flag { display: block; }
     .cf-turnstile { margin: 0 0 0.6rem; min-height: 0; }
+    .partners { margin: 1.6rem auto 0; text-align: center; }
+    .partners-cap { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.9rem; }
+    .partners-row { display: flex; justify-content: center; align-items: flex-start; gap: 2.4rem; }
+    .partner { width: 11rem; margin: 0; }
+    .partner img { height: 6.5rem; width: auto; display: block; margin: 0 auto 0.5rem; }
+    .partner figcaption { font-size: 0.8rem; line-height: 1.35; color: var(--mute); }
+    .partners--foot { margin: 0 auto 1rem; }
+    .partners--foot .partner { width: 9rem; }
+    .partners--foot .partner img { height: 4.2rem; }
+    .partners--foot .partner figcaption { font-size: 0.72rem; }
+    @media (max-width: 560px) {
+      .partners-row { gap: 1.2rem; }
+      .partner { width: 9.5rem; }
+      .partner img { height: 5.4rem; }
+      .partners--foot .partner { width: 8rem; }
+      .partners--foot .partner img { height: 3.8rem; }
+    }
     footer { padding: 1.4rem 1.5rem 2.8rem; text-align: center; color: var(--mute); font-size: 0.92rem; }
     footer p { margin: 0; font-size: 0.92rem; }
     footer a { color: var(--ink); }
@@ -86,9 +103,16 @@
   <main>
     <div class="hero">
       <img class="mark" src="comdei.png" alt="Comdei">
-      <span class="kicker">Com a Comdei · Lapa dos Mercadores</span>
+      <span class="kicker">Com a Comdei e a Venerável Liga</span>
       <h1>Crisma de adultos</h1>
       <p class="lede">Nunca é tarde para receber a Crisma. Venha se preparar com a gente, sem pressa, em comunidade.</p>
+      <div class="partners" aria-label="Instituições parceiras">
+      <p class="partners-cap">Instituições parceiras na missão de evangelização</p>
+      <div class="partners-row">
+        <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+      </div>
+    </div>
     </div>
 
     <hr class="rule">
@@ -177,6 +201,13 @@
   </main>
 
   <footer>
+    <div class="partners partners--foot" aria-label="Instituições parceiras">
+      <p class="partners-cap">Instituições parceiras</p>
+      <div class="partners-row">
+        <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+      </div>
+    </div>
     <p>Comdei · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
   </footer>
 
@@ -229,6 +260,7 @@
           batizado: radio("batizado"),
           comunhao: radio("comunhao"),
           consentimento: document.getElementById("cr-consent").checked,
+          form: "crisma-adultos",
           site: document.getElementById("cr-site").value
         };
         if (data.nome.length < 2) { err.textContent = "Escreva seu nome."; return; }

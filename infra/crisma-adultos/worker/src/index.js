@@ -1,4 +1,4 @@
-// Worker da lista de interessados da Crisma de adultos (Comdei).
+// Worker dos formulários da Comdei na Lapa: crisma-adultos, catequese-infantil, pergunta.
 // Fluxo: Origin permitido -> rate limit por IP -> tamanho/JSON -> honeypot ->
 // validação de campos -> Turnstile Siteverify (servidor) -> grava na planilha
 // via Apps Script (segredo compartilhado). Nenhum segredo fica no código.
@@ -6,11 +6,17 @@
 // Secrets (wrangler secret put): TURNSTILE_SECRET, SHEETS_WEBHOOK_URL,
 // SHEETS_SHARED_SECRET, IP_SALT.  Vars: ALLOWED_ORIGINS, TURNSTILE_HOSTNAMES.
 
-const MAX_BODY = 4096;
-const LIMITS = { nome: 120, whatsapp: 20, email: 200, paroquia: 120 };
+const MAX_BODY = 8192;
 const SACRAMENTO = new Set(["sim", "nao", "nao_sei"]);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const SITEVERIFY = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+// Formulários aceitos. Cada um tem sua ação de Turnstile e sua aba na planilha.
+export const FORMS = {
+  "crisma-adultos": { nome: 120, whatsapp: 20, email: 200, paroquia: 120 },
+  "catequese-infantil": { nome: 120, whatsapp: 20, email: 200, idade: 40 },
+  "pergunta": { nome: 120, whatsapp: 20, email: 200, pergunta: 1000 },
+};
 
 // Reserva quando o binding de rate limit não existe (ex.: teste local).
 const memoryHits = new Map();
@@ -28,30 +34,36 @@ function json(status, body, origin) {
   return new Response(JSON.stringify(body), { status, headers });
 }
 
-function clean(v, max) {
-  // tira caracteres de controle e espaços repetidos
-  return String(v == null ? "" : v).replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim().slice(0, max + 1);
+function clean(v, max, multiline) {
+  let s = String(v == null ? "" : v);
+  s = multiline ? s.replace(/[\u0000-\u0009\u000b-\u001f\u007f]/g, " ").replace(/[ \t]+/g, " ")
+                : s.replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ");
+  return s.trim().slice(0, max + 1);
 }
 
 export function validate(input) {
+  const form = input.form || "crisma-adultos";
+  const limits = FORMS[form];
+  if (!limits) return { ok: false, errors: ["form"], data: {} };
   const errors = [];
-  const out = {
-    nome: clean(input.nome, LIMITS.nome),
-    whatsapp: clean(input.whatsapp, LIMITS.whatsapp),
-    email: clean(input.email, LIMITS.email).toLowerCase(),
-    paroquia: clean(input.paroquia, LIMITS.paroquia),
-    batizado: String(input.batizado || ""),
-    comunhao: String(input.comunhao || ""),
-  };
-  for (const k of Object.keys(LIMITS)) if (out[k].length > LIMITS[k]) errors.push(k);
+  const out = { form };
+  for (const k of Object.keys(limits)) out[k] = clean(input[k], limits[k], k === "pergunta");
+  out.email = out.email.toLowerCase();
+  for (const k of Object.keys(limits)) if (out[k].length > limits[k]) errors.push(k);
   if (out.nome.length < 2) errors.push("nome");
   const d = out.whatsapp.replace(/\D/g, "");
   if (d.length < 10 || d.length > 13) errors.push("whatsapp");
-  if (out.email && !EMAIL_RE.test(out.email)) errors.push("email");
-  if (!SACRAMENTO.has(out.batizado)) errors.push("batizado");
-  if (!SACRAMENTO.has(out.comunhao)) errors.push("comunhao");
-  if (input.consentimento !== true) errors.push("consentimento");
   out.whatsapp = d;
+  if (out.email && !EMAIL_RE.test(out.email)) errors.push("email");
+  if (form === "crisma-adultos") {
+    out.batizado = String(input.batizado || "");
+    out.comunhao = String(input.comunhao || "");
+    if (!SACRAMENTO.has(out.batizado)) errors.push("batizado");
+    if (!SACRAMENTO.has(out.comunhao)) errors.push("comunhao");
+  }
+  if (form === "catequese-infantil" && !/\d/.test(out.idade)) errors.push("idade");
+  if (form === "pergunta" && out.pergunta.length < 5) errors.push("pergunta");
+  if (input.consentimento !== true) errors.push("consentimento");
   return { ok: errors.length === 0, errors: [...new Set(errors)], data: out };
 }
 
@@ -72,7 +84,7 @@ async function sha256(text) {
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-async function verifyTurnstile(env, token, ip) {
+async function verifyTurnstile(env, token, ip, action) {
   if (!token || typeof token !== "string" || token.length > 2048) return false;
   const form = new FormData();
   form.append("secret", env.TURNSTILE_SECRET);
@@ -90,7 +102,7 @@ async function verifyTurnstile(env, token, ip) {
   if (!out.success) return false;
   const hosts = list(env.TURNSTILE_HOSTNAMES);
   if (hosts.length && !hosts.includes(out.hostname)) return false;
-  if (out.action && out.action !== "crisma-adultos") return false;
+  if (out.action !== action) return false;
   return true;
 }
 
@@ -147,7 +159,7 @@ export default {
       return json(422, { ok: false, error: "Confira os campos e tente de novo.", campos: v.errors }, okOrigin);
     }
 
-    if (!(await verifyTurnstile(env, input.turnstileToken, ip))) {
+    if (!(await verifyTurnstile(env, input.turnstileToken, ip, v.data.form))) {
       return json(403, { ok: false, error: "Não conseguimos confirmar a verificação. Recarregue a página e tente de novo." }, okOrigin);
     }
 
