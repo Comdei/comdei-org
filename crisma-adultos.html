@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crisma de adultos na Lapa dos Mercadores · Comdei</title>
+  <meta name="description" content="Crisma de adultos na Igreja Nossa Senhora da Lapa dos Mercadores, com a Comdei. Deixe seu nome na lista de interessados.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="comdei.png" type="image/png">
+  <style>
+    :root {
+      --ink: #241f1a; --mute: #4a453c; --paper: #f4efe4; --card: #fbf7ee;
+      --line: #d4cbb6; --gold: #9a7b32; --gold-ink: #6e5724; --navy: #1a2744;
+      --navy-deep: #121c33; --soft: #eee6d6; --danger: #7a2a2a; --wa: #1f7a4a;
+      --shadow: 0 1px 0 rgba(26, 39, 68, 0.04), 0 18px 40px rgba(26, 39, 68, 0.06);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, #f8f3e8 0%, var(--paper) 55%), var(--paper);
+      color: var(--ink); line-height: 1.65; min-height: 100vh;
+    }
+    a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); }
+    a:hover { border-bottom-color: var(--gold); }
+    :focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+    main { max-width: 42rem; margin: 0 auto; padding: 3.4rem 1.5rem 2.4rem; }
+    .hero { text-align: center; }
+    .mark { width: min(11rem, 52vw); height: auto; display: block; margin: 0 auto 1.3rem; }
+    .kicker { display: block; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.55rem; }
+    h1 { font-size: clamp(1.7rem, 5.5vw, 2.15rem); font-weight: 600; letter-spacing: 0.015em; line-height: 1.2; color: var(--navy); margin: 0 0 0.75rem; }
+    h2 { font-size: 1.18rem; font-weight: 600; margin: 2.4rem 0 0.8rem; color: var(--navy); }
+    p { margin: 0 0 1.1rem; font-size: 1.08rem; }
+    .lede { font-size: 1.22rem; color: var(--mute); }
+    .rule { border: 0; border-top: 1px solid var(--line); width: 3.4rem; margin: 1.85rem auto; }
+    .small { color: var(--mute); font-size: 0.95rem; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.2rem 0 1.4rem; }
+    .fact { background: var(--soft); padding: 1rem 0.8rem; text-align: center; border-top: 2px solid var(--gold); }
+    .fact strong { display: block; font-size: 1.05rem; color: var(--navy); line-height: 1.25; margin-bottom: 0.2rem; }
+    .fact span { font-size: 0.85rem; color: var(--mute); }
+    .tbc { font-style: italic; color: var(--gold-ink); }
+    .steps { padding-left: 1.2rem; margin: 0 0 1.2rem; }
+    .steps li { margin-bottom: 0.45rem; font-size: 1.04rem; }
+    .card { text-align: left; max-width: 28rem; margin: 2.2rem auto 0; padding: 1.85rem 1.6rem 1.55rem;
+      background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); position: relative; }
+    .card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .card h2 { text-align: center; margin: 0 0 0.4rem; font-size: 1.22rem; }
+    .cta-lead { text-align: center; color: var(--mute); font-size: 0.98rem; margin-bottom: 1.35rem; }
+    .field { margin-bottom: 0.95rem; }
+    label, legend { display: block; font-size: 0.86rem; letter-spacing: 0.02em; color: var(--mute); margin: 0 0 0.32rem; }
+    fieldset { border: 0; padding: 0; margin: 0 0 0.95rem; }
+    .choices { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
+    .choices label { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 1rem; color: var(--ink); margin: 0; letter-spacing: 0; }
+    input[type="text"], input[type="tel"], input[type="email"] { width: 100%; padding: 0.72rem 0.8rem;
+      border: 1px solid var(--line); background: var(--paper); font: inherit; color: var(--ink); }
+    input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12); }
+    .consent { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.95rem; color: var(--ink); letter-spacing: 0; }
+    .consent input { margin-top: 0.3rem; flex: none; }
+    .privacy { font-size: 0.88rem; color: var(--mute); background: var(--soft); padding: 0.8rem 0.9rem; margin: 0 0 0.95rem; }
+    .privacy p { font-size: 0.88rem; margin: 0 0 0.4rem; }
+    .privacy p:last-child { margin: 0; }
+    .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .form-err { color: var(--danger); font-size: 0.92rem; min-height: 1.2em; margin: 0.35rem 0 0.15rem; }
+    button[type="submit"] { width: 100%; min-height: 2.9rem; padding: 0.8rem 1rem; margin-top: 0.2rem; border: 0;
+      background: var(--navy); color: var(--paper); font: inherit; letter-spacing: 0.03em; cursor: pointer; }
+    button[type="submit"]:hover { background: var(--navy-deep); }
+    button[type="submit"]:disabled { opacity: 0.65; cursor: wait; }
+    .success { text-align: center; padding: 0.5rem 0.2rem 0.25rem; }
+    .wa { text-align: center; margin: 1.6rem 0 0; font-size: 1rem; }
+    .wa a { white-space: nowrap; color: var(--wa); border-bottom-color: rgba(31, 122, 74, 0.35); font-weight: 600; }
+    .preview-flag { display: none; text-align: center; font-size: 0.82rem; color: var(--danger); margin: 0 0 1rem; }
+    .is-preview .preview-flag { display: block; }
+    .cf-turnstile { margin: 0 0 0.6rem; min-height: 0; }
+    footer { padding: 1.4rem 1.5rem 2.8rem; text-align: center; color: var(--mute); font-size: 0.92rem; }
+    footer p { margin: 0; font-size: 0.92rem; }
+    footer a { color: var(--ink); }
+    @media (max-width: 560px) {
+      main { padding-top: 2.4rem; }
+      .facts { grid-template-columns: 1fr; }
+      .card { padding: 1.55rem 1.2rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="hero">
+      <img class="mark" src="comdei.png" alt="Comdei">
+      <span class="kicker">Com a Comdei · Lapa dos Mercadores</span>
+      <h1>Crisma de adultos</h1>
+      <p class="lede">Nunca é tarde para receber a Crisma. Venha se preparar com a gente, sem pressa, em comunidade.</p>
+    </div>
+
+    <hr class="rule">
+
+    <p>Na Igreja Nossa Senhora da Lapa dos Mercadores, no Centro do Rio, vamos abrir uma turma de preparação para a Crisma pensada para adultos: gente comum, com a vida corrida, que quer caminhar junto na fé e rezar junto.</p>
+    <p>Se você já foi batizado e nunca foi crismado, ou se ainda falta algum sacramento, este é o seu lugar. A gente acolhe cada um do jeito que chega e ajuda a ver o que falta.</p>
+
+    <div class="facts" aria-label="Informações da turma">
+      <div class="fact"><strong class="tbc">a confirmar</strong><span>Dia e horário</span></div>
+      <div class="fact"><strong class="tbc">a confirmar</strong><span>Início da turma</span></div>
+      <div class="fact"><strong class="tbc">a confirmar</strong><span>Frequência dos encontros</span></div>
+    </div>
+
+    <h2>Como funciona</h2>
+    <ol class="steps">
+      <li>Você deixa seu nome na lista de interessados aqui embaixo.</li>
+      <li>A gente chama você no WhatsApp para conversar e tirar dúvidas.</li>
+      <li>Quando a data da turma for confirmada, você recebe o aviso antes de todo mundo.</li>
+    </ol>
+    <p>Enquanto isso, venha rezar com a gente na Missa das 12h, aos sábados, na Lapa dos Mercadores (Rua do Ouvidor, 35, Centro).</p>
+
+    <div class="card" id="inscricao">
+      <h2>Lista de interessados</h2>
+      <p class="cta-lead">Leva um minuto. Não é compromisso: é só para a gente te avisar.</p>
+      <p class="preview-flag">Prévia: o envio ainda não está ligado. Nada é gravado.</p>
+
+      <form id="crisma-form" novalidate>
+        <div class="field">
+          <label for="cr-nome">Nome</label>
+          <input id="cr-nome" name="nome" type="text" autocomplete="name" maxlength="120" required>
+        </div>
+        <div class="field">
+          <label for="cr-whatsapp">WhatsApp (com DDD)</label>
+          <input id="cr-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(21) 99999-9999" required>
+        </div>
+        <div class="field">
+          <label for="cr-email">E-mail <span class="small">(opcional)</span></label>
+          <input id="cr-email" name="email" type="email" autocomplete="email" maxlength="200" placeholder="voce@email.com">
+        </div>
+        <div class="field">
+          <label for="cr-paroquia">Paróquia que você frequenta <span class="small">(se tiver)</span></label>
+          <input id="cr-paroquia" name="paroquia" type="text" maxlength="120" placeholder="Ex.: Lapa dos Mercadores, ou nenhuma ainda">
+        </div>
+        <fieldset>
+          <legend>Você já é batizado?</legend>
+          <div class="choices">
+            <label><input type="radio" name="batizado" value="sim"> Sim</label>
+            <label><input type="radio" name="batizado" value="nao"> Não</label>
+            <label><input type="radio" name="batizado" value="nao_sei"> Não sei</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Já fez a Primeira Comunhão?</legend>
+          <div class="choices">
+            <label><input type="radio" name="comunhao" value="sim"> Sim</label>
+            <label><input type="radio" name="comunhao" value="nao"> Não</label>
+            <label><input type="radio" name="comunhao" value="nao_sei"> Não sei</label>
+          </div>
+        </fieldset>
+
+        <div class="hp" aria-hidden="true">
+          <label for="cr-site">Deixe em branco</label>
+          <input id="cr-site" name="site" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="privacy" id="aviso">
+          <p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei. Usamos só para falar com você sobre a Crisma de adultos na Lapa dos Mercadores. Não repassamos a ninguém.</p>
+          <p>Guardamos até o fim da preparação, ou até você pedir para apagar. Para apagar ou corrigir, é só mandar mensagem no WhatsApp <a href="https://wa.me/5521981454569">(21) 98145-4569</a>.</p>
+        </div>
+        <div class="field">
+          <label class="consent"><input id="cr-consent" name="consentimento" type="checkbox" value="sim"> <span>Concordo que a Comdei guarde estes dados para me avisar sobre a Crisma de adultos.</span></label>
+        </div>
+
+        <div class="cf-turnstile" id="cr-turnstile"></div>
+        <p class="form-err" id="cr-err" aria-live="polite"></p>
+        <button type="submit" id="cr-submit">Quero ser avisado</button>
+      </form>
+
+      <div class="success" id="cr-success" hidden>
+        <p><strong>Recebemos seu nome. Obrigado!</strong></p>
+        <p class="small">A gente vai te chamar no WhatsApp. Se quiser adiantar a conversa, mande uma mensagem.</p>
+      </div>
+
+      <p class="wa">Prefere falar direto? <a id="cr-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Crisma%20de%20adultos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">WhatsApp (21) 98145-4569</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>Comdei · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      // Preencher só depois do GO (ver docs/crisma-adultos-backend.md).
+      // Vazio = modo prévia: valida o formulário, mas não envia nada.
+      var CRISMA_ENDPOINT = "";      // ex.: https://crisma-adultos.<conta>.workers.dev/inscricao
+      var TURNSTILE_SITEKEY = "";    // chave pública do widget Turnstile (não é segredo)
+
+      var preview = !CRISMA_ENDPOINT || !TURNSTILE_SITEKEY;
+      if (preview) document.body.classList.add("is-preview");
+
+      var turnstileId = null;
+      if (!preview) {
+        window.onTurnstileLoad = function () {
+          turnstileId = window.turnstile.render("#cr-turnstile", {
+            sitekey: TURNSTILE_SITEKEY, action: "crisma-adultos", language: "pt-br"
+          });
+        };
+        var s = document.createElement("script");
+        s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit";
+        s.async = true; s.defer = true;
+        document.head.appendChild(s);
+      }
+
+      function radio(name) {
+        var el = document.querySelector('input[name="' + name + '"]:checked');
+        return el ? el.value : "";
+      }
+      function digits(v) { return (v || "").replace(/\D/g, ""); }
+
+      var form = document.getElementById("crisma-form");
+      var err = document.getElementById("cr-err");
+      var btn = document.getElementById("cr-submit");
+
+      function done() {
+        form.hidden = true;
+        document.getElementById("cr-success").hidden = false;
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        err.textContent = "";
+        var data = {
+          nome: document.getElementById("cr-nome").value.trim(),
+          whatsapp: document.getElementById("cr-whatsapp").value.trim(),
+          email: document.getElementById("cr-email").value.trim(),
+          paroquia: document.getElementById("cr-paroquia").value.trim(),
+          batizado: radio("batizado"),
+          comunhao: radio("comunhao"),
+          consentimento: document.getElementById("cr-consent").checked,
+          site: document.getElementById("cr-site").value
+        };
+        if (data.nome.length < 2) { err.textContent = "Escreva seu nome."; return; }
+        var d = digits(data.whatsapp);
+        if (d.length < 10 || d.length > 13) { err.textContent = "Confira o WhatsApp, com DDD."; return; }
+        if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { err.textContent = "Confira o e-mail."; return; }
+        if (!data.batizado) { err.textContent = "Conte se você já é batizado."; return; }
+        if (!data.comunhao) { err.textContent = "Conte se já fez a Primeira Comunhão."; return; }
+        if (!data.consentimento) { err.textContent = "Para guardar seu contato, precisamos do seu de acordo."; return; }
+
+        if (preview) { done(); return; }
+
+        var token = window.turnstile ? window.turnstile.getResponse(turnstileId) : "";
+        if (!token) { err.textContent = "Confirme a verificação antes de enviar."; return; }
+        data.turnstileToken = token;
+
+        btn.disabled = true;
+        fetch(CRISMA_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
+        }).then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (body) {
+            if (res.ok && body.ok) { done(); return; }
+            if (res.status === 429) err.textContent = "Muitas tentativas. Tente de novo mais tarde, ou chame no WhatsApp.";
+            else err.textContent = body.error || "Não deu certo agora. Tente de novo ou chame no WhatsApp.";
+            if (window.turnstile) window.turnstile.reset(turnstileId);
+          });
+        }).catch(function () {
+          err.textContent = "Sem conexão agora. Tente de novo ou chame no WhatsApp.";
+        }).then(function () { btn.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>
