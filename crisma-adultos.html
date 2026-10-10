@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crisma de adultos na Lapa dos Mercadores · Comdei</title>
+  <meta name="description" content="Crisma de adultos na Igreja Nossa Senhora da Lapa dos Mercadores, com a Comdei. Deixe seu nome na lista de interessados.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="comdei.png" type="image/png">
+  <style>
+    :root {
+      --ink: #241f1a; --mute: #4a453c; --paper: #f4efe4; --card: #fbf7ee;
+      --line: #d4cbb6; --gold: #9a7b32; --gold-ink: #6e5724; --navy: #1a2744;
+      --navy-deep: #121c33; --soft: #eee6d6; --danger: #7a2a2a; --wa: #1f7a4a;
+      --shadow: 0 1px 0 rgba(26, 39, 68, 0.04), 0 18px 40px rgba(26, 39, 68, 0.06);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, #f8f3e8 0%, var(--paper) 55%), var(--paper);
+      color: var(--ink); line-height: 1.65; min-height: 100vh;
+    }
+    a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); }
+    a:hover { border-bottom-color: var(--gold); }
+    :focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+    main { max-width: 42rem; margin: 0 auto; padding: 3.4rem 1.5rem 2.4rem; }
+    .hero { text-align: center; }
+    .mark { width: min(11rem, 52vw); height: auto; display: block; margin: 0 auto 1.3rem; }
+    .kicker { display: block; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.55rem; }
+    h1 { font-size: clamp(1.7rem, 5.5vw, 2.15rem); font-weight: 600; letter-spacing: 0.015em; line-height: 1.2; color: var(--navy); margin: 0 0 0.75rem; }
+    h2 { font-size: 1.18rem; font-weight: 600; margin: 2.4rem 0 0.8rem; color: var(--navy); }
+    p { margin: 0 0 1.1rem; font-size: 1.08rem; }
+    .lede { font-size: 1.22rem; color: var(--mute); }
+    .rule { border: 0; border-top: 1px solid var(--line); width: 3.4rem; margin: 1.85rem auto; }
+    .small { color: var(--mute); font-size: 0.95rem; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.2rem 0 1.4rem; }
+    .fact { background: var(--soft); padding: 1rem 0.8rem; text-align: center; border-top: 2px solid var(--gold); }
+    .fact strong { display: block; font-size: 1.05rem; color: var(--navy); line-height: 1.25; margin-bottom: 0.2rem; }
+    .fact span { font-size: 0.85rem; color: var(--mute); }
+    .tbc { font-style: italic; color: var(--gold-ink); }
+    .steps { padding-left: 1.2rem; margin: 0 0 1.2rem; }
+    .steps li { margin-bottom: 0.45rem; font-size: 1.04rem; }
+    .card { text-align: left; max-width: 28rem; margin: 2.2rem auto 0; padding: 1.85rem 1.6rem 1.55rem;
+      background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); position: relative; }
+    .card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .card h2 { text-align: center; margin: 0 0 0.4rem; font-size: 1.22rem; }
+    .cta-lead { text-align: center; color: var(--mute); font-size: 0.98rem; margin-bottom: 1.35rem; }
+    .field { margin-bottom: 0.95rem; }
+    label, legend { display: block; font-size: 0.86rem; letter-spacing: 0.02em; color: var(--mute); margin: 0 0 0.32rem; }
+    fieldset { border: 0; padding: 0; margin: 0 0 0.95rem; }
+    .choices { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
+    .choices label { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 1rem; color: var(--ink); margin: 0; letter-spacing: 0; }
+    input[type="text"], input[type="tel"], input[type="email"] { width: 100%; padding: 0.72rem 0.8rem;
+      border: 1px solid var(--line); background: var(--paper); font: inherit; color: var(--ink); }
+    input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12); }
+    .consent { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.95rem; color: var(--ink); letter-spacing: 0; }
+    .consent input { margin-top: 0.3rem; flex: none; }
+    .privacy { font-size: 0.88rem; color: var(--mute); background: var(--soft); padding: 0.8rem 0.9rem; margin: 0 0 0.95rem; }
+    .privacy p { font-size: 0.88rem; margin: 0 0 0.4rem; }
+    .privacy p:last-child { margin: 0; }
+    .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .form-err { color: var(--danger); font-size: 0.92rem; min-height: 1.2em; margin: 0.35rem 0 0.15rem; }
+    button[type="submit"] { width: 100%; min-height: 2.9rem; padding: 0.8rem 1rem; margin-top: 0.2rem; border: 0;
+      background: var(--navy); color: var(--paper); font: inherit; letter-spacing: 0.03em; cursor: pointer; }
+    button[type="submit"]:hover { background: var(--navy-deep); }
+    button[type="submit"]:disabled { opacity: 0.65; cursor: wait; }
+    .success { text-align: center; padding: 0.5rem 0.2rem 0.25rem; }
+    .wa { text-align: center; margin: 1.6rem 0 0; font-size: 1rem; }
+    .wa a { white-space: nowrap; color: var(--wa); border-bottom-color: rgba(31, 122, 74, 0.35); font-weight: 600; }
+    .preview-flag { display: none; text-align: center; font-size: 0.82rem; color: var(--danger); margin: 0 0 1rem; }
+    .is-preview .preview-flag { display: block; }
+    .cf-turnstile { margin: 0 0 0.6rem; min-height: 0; }
+    .partners { margin: 1.6rem auto 0; text-align: center; }
+    .partners-cap { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.9rem; }
+    .partners-row { display: flex; justify-content: center; align-items: flex-start; gap: 2.4rem; }
+    .partner { width: 11rem; margin: 0; }
+    .partner img { height: 6.5rem; width: auto; display: block; margin: 0 auto 0.5rem; }
+    .partner figcaption { font-size: 0.8rem; line-height: 1.35; color: var(--mute); }
+    .partners--foot { margin: 0 auto 1rem; }
+    .partners--foot .partner { width: 9rem; }
+    .partners--foot .partner img { height: 4.2rem; }
+    .partners--foot .partner figcaption { font-size: 0.72rem; }
+    @media (max-width: 560px) {
+      .partners-row { gap: 1.2rem; }
+      .partner { width: 9.5rem; }
+      .partner img { height: 5.4rem; }
+      .partners--foot .partner { width: 8rem; }
+      .partners--foot .partner img { height: 3.8rem; }
+    }
+    .ask { margin: 0 0 1.2rem; padding-left: 1.2rem; } .ask li { font-size: 1rem; margin-bottom: 0.2rem; }
+    .wa-btn { display: block; text-align: center; background: var(--wa); color: #fff; border: 0; padding: 0.9rem 1rem; font-weight: 600; letter-spacing: 0.02em; }
+    .wa-btn:hover { background: #18663d; border: 0; }
+    .wa-num { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 0.5rem 0 1rem; }
+    footer { padding: 1.4rem 1.5rem 2.8rem; text-align: center; color: var(--mute); font-size: 0.92rem; }
+    footer p { margin: 0; font-size: 0.92rem; }
+    footer a { color: var(--ink); }
+    @media (max-width: 560px) {
+      main { padding-top: 2.4rem; }
+      .facts { grid-template-columns: 1fr; }
+      .card { padding: 1.55rem 1.2rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="hero">
+      <img class="mark" src="comdei.png" alt="Comdei">
+      <span class="kicker">Com a Comdei e a Venerável Liga</span>
+      <h1>Crisma de adultos</h1>
+      <p class="lede">Nunca é tarde para receber a Crisma. Venha se preparar com a gente, sem pressa, em comunidade.</p>
+      <div class="partners" aria-label="Instituições parceiras">
+      <p class="partners-cap">Instituições parceiras na missão de evangelização</p>
+      <div class="partners-row">
+        <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+      </div>
+    </div>
+    </div>
+
+    <hr class="rule">
+
+    <p>Na Igreja Nossa Senhora da Lapa dos Mercadores, no Centro do Rio, vamos abrir uma turma de preparação para a Crisma pensada para adultos: gente comum, com a vida corrida, que quer caminhar junto na fé e rezar junto.</p>
+    <p>Se você já foi batizado e nunca foi crismado, ou se ainda falta algum sacramento, este é o seu lugar. A gente acolhe cada um do jeito que chega e ajuda a ver o que falta.</p>
+
+    <div class="facts" aria-label="Informações da turma">
+      <div class="fact"><strong class="tbc">a confirmar</strong><span>Dia e horário</span></div>
+      <div class="fact"><strong class="tbc">a confirmar</strong><span>Início da turma</span></div>
+      <div class="fact"><strong class="tbc">a confirmar</strong><span>Frequência dos encontros</span></div>
+    </div>
+
+    <h2>Como funciona</h2>
+    <ol class="steps">
+      <li>Você chama a gente no WhatsApp e entra na lista de interessados.</li>
+      <li>A gente conversa com você e tira as dúvidas.</li>
+      <li>Quando a data da turma for confirmada, você recebe o aviso antes de todo mundo.</li>
+    </ol>
+    <p>Enquanto isso, venha rezar com a gente na Missa das 12h, aos sábados, na Lapa dos Mercadores (Rua do Ouvidor, 35, Centro).</p>
+
+    <div class="card" id="inscricao">
+      <h2>Lista de interessados</h2>
+      <p class="cta-lead">Leva um minuto e não é compromisso: é só para a gente te avisar quando a turma for confirmada.</p>
+      <p>Chame no WhatsApp e conte:</p>
+      <ul class="ask">
+        <li>seu nome;</li>
+        <li>se você já é batizado;</li>
+        <li>se já fez a Primeira Comunhão;</li>
+        <li>a paróquia que frequenta, se tiver.</li>
+      </ul>
+      <a class="wa-btn" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Crisma%20de%20adultos%20na%20Lapa%20dos%20Mercadores.%20Meu%20nome%20%C3%A9%3A%20" target="_blank" rel="noopener">Entrar na lista pelo WhatsApp</a>
+      <p class="wa-num">(21) 98145-4569</p>
+      <div class="privacy">
+        <p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei, só para falar com você sobre a Crisma de adultos na Lapa dos Mercadores. Não repassamos a ninguém. Para apagar ou corrigir, peça na mesma conversa do WhatsApp.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="partners partners--foot" aria-label="Instituições parceiras">
+      <p class="partners-cap">Instituições parceiras</p>
+      <div class="partners-row">
+        <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+      </div>
+    </div>
+    <p><a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
+  </footer>
+
+</body>
+</html>

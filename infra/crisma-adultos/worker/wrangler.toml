@@ -1,0 +1,25 @@
+# NÃO implantar sem GO escrito do Lucas. Plano Workers Free (custo zero).
+name = "comdei-lapa-formularios"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "https://comdei.org,https://www.comdei.org"
+TURNSTILE_HOSTNAMES = "comdei.org,www.comdei.org"
+
+# 3 tentativas por IP por minuto, por local da Cloudflare (o Apps Script
+# aplica mais um teto de 5 por hora por IP).
+[[ratelimits]]
+name = "RL_IP"
+namespace_id = "2026100901"
+
+  [ratelimits.simple]
+  limit = 3
+  period = 60
+
+# Secrets (definir com `npx wrangler secret put <NOME>`, nunca no arquivo):
+#   TURNSTILE_SECRET      chave secreta do widget Turnstile
+#   SHEETS_WEBHOOK_URL    URL /exec do Apps Script implantado
+#   SHEETS_SHARED_SECRET  mesmo valor da propriedade SHARED_SECRET no Apps Script
+#   IP_SALT               texto aleatório para o hash do IP

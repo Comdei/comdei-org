@@ -7,7 +7,8 @@
       "**/node_modules/**",
       "docs/**",
       "CNAME",
-      "README*"
+      "README*",
+      "infra/**"
     ],
     "cleanUrls": true
   }
