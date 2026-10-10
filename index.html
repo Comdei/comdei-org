@@ -575,6 +575,10 @@
 #public .founder { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 1.6rem 0 0; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
 #public .founder img { height: 2.6rem; width: auto; border-radius: 8px; }
 #public .sacr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+#public .sac-wide { grid-column: 1 / -1; border-top: 4px solid #7fa3d6; }
+#public .sac-wide p { max-width: 46rem; }
+#public .sac-wide .btn { align-self: flex-start; }
+@media (max-width: 560px) { #public .sac-wide .btn { align-self: stretch; } }
 #public .sac { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.3rem; box-shadow: var(--shadow); display: flex; flex-direction: column; }
 #public .sac h3 { margin: 0 0 0.3rem; color: var(--navy); font-size: 1.15rem; }
 #public .sac p { margin: 0 0 1rem; color: var(--mute); font-size: 0.96rem; flex: 1; }
@@ -694,7 +698,7 @@
 
       <section>
         <p class="eyebrow">Sacramentos</p>
-        <h2>Os sacramentos</h2>
+        <h2>Sacramentos e orientação</h2>
         <p class="intro">Cada sacramento é conversado com calma, do seu jeito e no seu tempo. Chame no WhatsApp e a gente te orienta.</p>
         <div class="sacr-grid">
           <div class="sac sac-top"><h3>Batismo</h3><p>A porta de entrada na vida cristã, para crianças e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Batismo%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
@@ -703,6 +707,7 @@
           <div class="sac sac-top"><h3>Confissão</h3><p>O encontro com a misericórdia de Deus, com calma e em sigilo.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Confiss%C3%A3o%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
           <div class="sac sac-top"><h3>Matrimônio</h3><p>Para os noivos que querem começar a vida a dois diante de Deus.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Matrim%C3%B4nio%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
           <div class="sac sac-top"><h3>Unção dos Enfermos</h3><p>Conforto e força de Deus para quem está doente ou fragilizado.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Un%C3%A7%C3%A3o%20dos%20Enfermos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
+        <div class="sac sac-wide"><h3>Nulidade matrimonial</h3><p>Não é um sacramento, mas é um caminho de cuidado: orientação para quem quer entender o processo de declaração de nulidade do matrimônio, com acolhimento e discrição.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20nulidade%20matrimonial." target="_blank" rel="noopener">Quero saber mais</a></div>
         </div>
       </section>
 
@@ -749,7 +754,7 @@
 
           <div class="waitlist-success" id="waitlist-success" hidden>
             <p>Obrigado. Recebemos o seu pedido — a equipe da Comdei entra em contato.</p>
-            <p class="small">Prefere falar por e-mail? Escreva para <a href="mailto:lucas@comdei.org">lucas@comdei.org</a> ou chame no WhatsApp <a href="https://wa.me/5521981454569">(21) 98145-4569</a>.</p>
+            <p class="small">Prefere falar por e-mail? Escreva para <a href="mailto:lucas@comdei.org">lucas@comdei.org</a> ou <a href="https://wa.me/5521981454569">chame no WhatsApp</a>.</p>
           </div>
           <p class="form-note">Os envios vão para a equipe da Comdei.</p>
         </div>
@@ -758,7 +763,7 @@
       <footer>
         <p>Comdei · fundada por Lucas Lima · 2026</p>
         <ul class="cfoot-links"><li><a href="/">Início</a></li><li><a href="/lapa">Lapa dos Mercadores</a></li><li><a href="/crisma-adultos">Crisma de adultos</a></li><li><a href="/catequese-infantil">Catequese infantil</a></li><li><a href="/lapa#sacramentos">Sacramentos</a></li><li><a href="/privacidade">Privacidade</a></li></ul>
-        <p><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="https://wa.me/5521981454569">WhatsApp (21) 98145-4569</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
+        <p><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="https://wa.me/5521981454569">WhatsApp</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
         <p class="founders-entry"><a class="founders-link" href="#interno">Acesso interno</a></p>
       </footer>
     </div>
@@ -796,7 +801,7 @@
           <p>O primeiro ministério é a catequese.</p>
           <hr class="rule">
           <p class="small">Qualificação civil (burocracia), à parte do status perante a Igreja.<br>Um passo de cada vez.</p>
-          <p class="contact"><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="https://wa.me/5521981454569">WhatsApp (21) 98145-4569</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
+          <p class="contact"><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="https://wa.me/5521981454569">WhatsApp</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
           <p class="rites-line">A Igreja Católica é una em vários ritos. Há também o horizonte oriental — <a href="#pesquisa">ver Pesquisa</a>.</p>
         </div>
       </section>
