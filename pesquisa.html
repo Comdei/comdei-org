@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pesquisa: o universo católico no Brasil · Comdei</title>
+  <meta name="description" content="Quem são os católicos no Brasil: números do Censo, do Pew e do ISER/Quaest, e os ritos orientais, com fontes.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="comdei.png" type="image/png">
+  <link rel="stylesheet" href="nav.css">
+  <noscript><style>.cnav-menu{display:flex!important}.cnav-toggle{display:none!important}</style></noscript>
+  <style>
+    :root {
+      --ink: #221d18; --mute: #5a5247; --paper: #fbf6ec; --card: #ffffff; --line: #e6dcc8;
+      --gold: #c8962e; --gold-soft: #f6e7c4; --gold-ink: #7a5a17; --navy: #1a2744; --navy-deep: #121c33;
+      --sky: #e5eef8; --rose: #f8e6e0; --sage: #e4efe4; --danger: #8a2b2b; --wa: #1f8a52;
+      --radius: 22px; --shadow: 0 10px 30px rgba(26, 39, 68, 0.08);
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.6; }
+    a { color: var(--navy); }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.4rem; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; }
+    .topbar img { height: 2.6rem; width: auto; border-radius: 10px; }
+    .topbar nav { display: flex; gap: 1.2rem; font-size: 0.95rem; }
+    .topbar nav a { text-decoration: none; color: var(--mute); }
+    .topbar nav a:hover { color: var(--navy); }
+
+    .hero { position: relative; overflow: hidden; border-radius: 32px; margin: 0.4rem 0 0;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 55%, #6e5724 130%); color: #fff;
+      padding: 3.6rem 3rem 3.2rem; }
+    .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(2px); opacity: 0.55; }
+    .hero::before { width: 22rem; height: 22rem; right: -6rem; top: -7rem; background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); }
+    .hero::after { width: 16rem; height: 16rem; left: 40%; bottom: -9rem; background: radial-gradient(circle, #8fb4e3 0%, rgba(143,180,227,0) 70%); }
+    .hero > * { position: relative; z-index: 1; }
+    .pill { display: inline-block; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.82rem; letter-spacing: 0.04em; }
+    .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.1rem, 5.6vw, 3.4rem); line-height: 1.08; margin: 1rem 0 0.8rem; max-width: 40rem; }
+    .hero h1 span { color: #f1c56a; }
+    .hero p.lede { font-size: 1.18rem; max-width: 36rem; margin: 0 0 0.5rem; color: #eef1f7; }
+    .hero p.sub { font-size: 0.98rem; color: #cfd6e6; margin: 0 0 1.6rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 1.8rem; }
+    .chip { background: rgba(255,255,255,0.1); border-radius: 14px; padding: 0.6rem 0.9rem; font-size: 0.9rem; }
+    .chip b { display: block; font-weight: 600; color: #f1c56a; font-style: italic; }
+    .btns { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.4rem; border-radius: 999px; font-weight: 600;
+      text-decoration: none; font-size: 1rem; border: 0; cursor: pointer; font-family: var(--sans); }
+    .btn-gold { background: #f1c56a; color: #1a2744; }
+    .btn-gold:hover { background: #f6d48d; }
+    .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+    .btn-wa { background: var(--wa); color: #fff; }
+    .btn-wa:hover { background: #18734a; }
+    .btn-navy { background: var(--navy); color: #fff; width: 100%; justify-content: center; }
+    .btn-navy:hover { background: var(--navy-deep); }
+    .btn-navy:disabled { opacity: 0.6; cursor: wait; }
+    .btn-off { background: #eee7d8; color: var(--mute); cursor: default; }
+
+    .partners { text-align: center; margin: 2.4rem auto 0; }
+    .partners-cap { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 1rem; }
+    .partners-row { display: flex; justify-content: center; align-items: flex-start; gap: 2.6rem; }
+    .partner { width: 12rem; margin: 0; }
+    .partner img { height: 6.5rem; width: auto; display: block; margin: 0 auto 0.55rem; }
+    .partner figcaption { font-size: 0.8rem; line-height: 1.35; color: var(--mute); }
+
+    section { padding: 3.4rem 0 0; }
+    .eyebrow { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.4rem; font-weight: 600; }
+    h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.6vw, 2.2rem); line-height: 1.15; color: var(--navy); margin: 0 0 0.8rem; }
+    .intro { font-size: 1.08rem; color: var(--mute); max-width: 40rem; margin: 0 0 1.6rem; }
+    .grid2 { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.6rem; align-items: start; }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.8rem 1.6rem; border: 1px solid var(--line); }
+    .soft { border-radius: var(--radius); padding: 1.6rem; }
+    .soft h3 { margin: 0 0 0.4rem; font-size: 1.12rem; color: var(--navy); }
+    .soft p { margin: 0; color: var(--mute); font-size: 0.98rem; }
+    .bg-sky { background: var(--sky); } .bg-rose { background: var(--rose); } .bg-sage { background: var(--sage); } .bg-gold { background: var(--gold-soft); }
+    .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.8rem; }
+    .steps li { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .steps .n { flex: none; width: 2rem; height: 2rem; border-radius: 50%; background: var(--gold-soft); color: var(--gold-ink);
+      display: grid; place-items: center; font-weight: 700; }
+    .note { font-size: 0.95rem; color: var(--mute); margin: 1.2rem 0 0; }
+
+    .field { margin-bottom: 0.95rem; }
+    label { display: block; font-size: 0.88rem; color: var(--mute); margin: 0 0 0.3rem; font-weight: 500; }
+    input[type="text"], input[type="tel"], input[type="email"], textarea { width: 100%; padding: 0.78rem 0.9rem; border-radius: 12px;
+      border: 1px solid var(--line); background: #fdfbf6; font: inherit; color: var(--ink); }
+    textarea { min-height: 7rem; resize: vertical; }
+    input:focus, textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12); }
+    .privacy { font-size: 0.86rem; color: var(--mute); background: #f7f1e4; border-radius: 12px; padding: 0.8rem 0.95rem; margin: 0 0 0.9rem; }
+    .privacy p { margin: 0 0 0.35rem; } .privacy p:last-child { margin: 0; }
+    .consent { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.93rem; color: var(--ink); font-weight: 400; }
+    .consent input { margin-top: 0.3rem; flex: none; }
+    .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .form-err { color: var(--danger); font-size: 0.92rem; min-height: 1.2em; margin: 0.3rem 0 0.4rem; }
+    .preview-flag { display: none; font-size: 0.82rem; color: var(--danger); margin: 0 0 0.9rem; }
+    .is-preview .preview-flag { display: block; }
+    .success { text-align: center; padding: 1rem 0.4rem; }
+    .success b { display: block; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .card-title { margin: 0 0 0.4rem; font-size: 1.2rem; color: var(--navy); }
+    .card-text { margin: 0 0 0.4rem; color: var(--mute); }
+    .ask { margin: 0 0 1.1rem; padding-left: 1.2rem; color: var(--ink); }
+    .btn-block { width: 100%; justify-content: center; }
+    .wa-num { text-align: center; color: var(--mute); font-size: 0.92rem; margin: 0.5rem 0 1rem; }
+    .small { font-weight: 400; color: var(--mute); font-size: 0.82rem; }
+    .tbc { font-style: italic; color: var(--gold-ink); font-weight: 600; }
+
+    .future-tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      background: var(--navy); color: #f1c56a; border-radius: 999px; padding: 0.3rem 0.8rem; margin: 0 0 0.9rem; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .soft ul { margin: 0.5rem 0 0; padding-left: 1.1rem; color: var(--mute); font-size: 0.95rem; }
+
+    .sacr { background: linear-gradient(135deg, #f6e7c4 0%, #fbf6ec 100%); border-radius: 28px; padding: 2.4rem 2.2rem;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.6rem; align-items: center; border: 1px solid var(--line); }
+    .sacr-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 0; padding: 0; list-style: none; }
+    .sacr-list li { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.85rem; font-size: 0.92rem; }
+
+    footer { margin-top: 4rem; padding: 2.6rem 0 3rem; border-top: 1px solid var(--line); text-align: center; color: var(--mute); font-size: 0.92rem; }
+    footer .partners { margin-top: 0; }
+    footer .partner { width: 9.5rem; } footer .partner img { height: 4.2rem; } footer .partner figcaption { font-size: 0.72rem; }
+    footer p { margin: 1.2rem 0 0; }
+
+    @media (max-width: 860px) {
+      .grid2, .sacr { grid-template-columns: 1fr; }
+      .grid4 { grid-template-columns: 1fr 1fr; }
+      .grid3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding: 0 1rem; }
+      .topbar nav { display: none; }
+      .hero { padding: 2.4rem 1.4rem 2.2rem; border-radius: 24px; }
+      .grid4 { grid-template-columns: 1fr; }
+      .partners-row { gap: 1.2rem; }
+      .partner { width: 9.5rem; } .partner img { height: 5.4rem; }
+      footer .partner { width: 8rem; } footer .partner img { height: 3.8rem; }
+      .card { padding: 1.4rem 1.15rem; }
+      .sacr { padding: 1.8rem 1.3rem; }
+      .btn { width: 100%; justify-content: center; }
+    }
+
+    .comm { position: relative; overflow: hidden; border-radius: 28px; color: #fff; padding: 2.4rem 2.2rem;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 60%, #6e5724 140%); display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.4rem; align-items: center; }
+    .comm::before { content: ""; position: absolute; width: 18rem; height: 18rem; right: -5rem; top: -6rem; border-radius: 50%;
+      background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); opacity: 0.5; }
+    .comm > * { position: relative; z-index: 1; }
+    .comm h2 { color: #fff; margin-bottom: 0.5rem; }
+    .comm p { color: #dfe5f1; margin: 0 0 0.4rem; font-size: 1.02rem; }
+    .comm .eyebrow { color: #f1c56a; }
+    .comm-sm { border-radius: 22px; padding: 1.6rem 1.5rem; grid-template-columns: 1.6fr 1fr; }
+    .comm-sm h3 { margin: 0 0 0.35rem; font-size: 1.2rem; color: #fff; }
+    .btn-big { font-size: 1.08rem; padding: 1rem 1.6rem; }
+    .founder { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 1.6rem 0 0; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .founder img { height: 2.6rem; width: auto; border-radius: 8px; }
+    .sacr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .sac { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.3rem; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .sac h3 { margin: 0 0 0.3rem; color: var(--navy); font-size: 1.15rem; }
+    .sac p { margin: 0 0 1rem; color: var(--mute); font-size: 0.96rem; flex: 1; }
+    .sac .btn { font-size: 0.92rem; padding: 0.7rem 1rem; justify-content: center; }
+    .sac-top { border-top: 4px solid var(--gold); }
+    @media (max-width: 860px) { .comm, .comm-sm { grid-template-columns: 1fr; } .sacr-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .comm { padding: 1.8rem 1.3rem; } .sacr-grid { grid-template-columns: 1fr; } }
+
+    .pesq { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 2rem 1.8rem; }
+    .pesq p { color: var(--mute); line-height: 1.65; }
+    .pesq strong { color: var(--navy); }
+    .pesq .note { font-size: 0.93rem; background: var(--sky); border-radius: 14px; padding: 0.9rem 1rem; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.9rem; margin: 1.2rem 0; }
+    .stat { background: linear-gradient(135deg, var(--navy), #2c3f6b); color: #fff; border-radius: 18px; padding: 1.1rem 1.2rem; }
+    .stat strong { display: block; font-family: var(--serif); font-size: 2rem; color: #f1c56a; }
+    .stat span { font-size: 0.88rem; color: #dbe2f0; }
+    .callout { background: var(--gold-soft); border-left: 4px solid var(--gold); border-radius: 14px; padding: 1rem 1.1rem; margin: 1rem 0; color: var(--ink); }
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    .pesq table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+    .pesq th, .pesq td { text-align: left; padding: 0.6rem 0.5rem; border-bottom: 1px solid var(--line); }
+    .pesq td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .sources { color: var(--mute); font-size: 0.92rem; line-height: 1.6; padding-left: 1.1rem; }
+    .small { font-size: 0.85rem; }
+    @media (max-width: 560px) { .pesq { padding: 1.4rem 1.1rem; } }
+  </style>
+</head>
+<body>
+  <header class="cnav">
+    <div class="cnav-in">
+      <a class="cnav-logo" href="/" aria-label="Comdei, página inicial"><img src="comdei.png" alt="Comdei"></a>
+      <button class="cnav-toggle" type="button" aria-expanded="false" aria-controls="cnav-menu"><span class="bars" aria-hidden="true"></span>Menu</button>
+      <ul class="cnav-menu" id="cnav-menu">
+        <li><a href="/">Início</a></li>
+        <li><a href="/lapa">Lapa dos Mercadores</a></li>
+        <li><a href="/crisma-adultos">Crisma de adultos</a></li>
+        <li><a href="/catequese-infantil">Catequese infantil</a></li>
+        <li><a href="/lapa#sacramentos">Sacramentos</a></li><li><a href="/pesquisa" aria-current="page">Pesquisa</a></li>
+        <li><a class="cnav-cta" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a></li>
+      </ul>
+    </div>
+  </header>
+    <div class="wrap">
+    <section style="padding-top:1.4rem">
+      <p class="eyebrow">Pesquisa</p>
+      <h2>Explorando o universo católico no Brasil</h2>
+      <p class="intro" style="max-width:46rem">Quem são os católicos no Brasil? Quantos se declaram católicos, quantos vão à Missa, quem mudou de religião, e a riqueza dos ritos que também fazem parte da Igreja. Reunimos aqui alguns números, sempre com a fonte ao lado, para olhar com calma e conversar em comunidade. Cada pesquisa mede uma coisa diferente, por isso os números não se somam. Com o tempo, queremos explorar também as tradições e os santos que marcam a fé do nosso povo.</p>
+      <div class="pesq">
+        <p class="eyebrow">Números com fonte</p>
+        <h2>Panorama no Brasil</h2>
+        <p class="note">Universos distintos, que não se somam: Censo (autodeclaração) e Pew (adultos / prática). A pesquisa ISER/Quaest (eleitores, presencial) é uma quarta medida, distinta.</p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>56,7%</strong>
+            <span>católicos · 100,2 mi<br>IBGE 2022 (10+)</span>
+          </div>
+          <div class="stat">
+            <strong>46%</strong>
+            <span>católicos adultos<br>Pew 2024</span>
+          </div>
+        </div>
+
+        <p>No Censo, evangélicos são <strong>26,9%</strong> (47,4 mi) e sem religião <strong>9,3%</strong> (16,4 mi) — pessoas de 10 anos ou mais (<a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE, jun/2025</a>). Católicos caíram de 65,1% para 56,7% na mesma base 10+ (2010→2022).</p>
+
+        <p>Católico no censo <em>não</em> é o mesmo que praticante. Entre católicos adultos no Brasil, <strong>36%</strong> frequentam culto/missa ao menos semanalmente (<a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew Research Center, 2024</a>).</p>
+
+        <p class="note"><strong>ISER/Quaest — Religião e Vida Pública.</strong> Campo 14/01–10/02/2026: 15.000 entrevistas presenciais com eleitores, margem ±1 p.p. Divulgação na série O Globo «Fiel da balança», 20–21/09/2026. Pesquisa com eleitores — não é o Censo IBGE (10+) nem o Pew (18+).</p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>50%</strong>
+            <span>católicos<br>ISER/Quaest · eleitores</span>
+          </div>
+          <div class="stat">
+            <strong>29%</strong>
+            <span>evangélicos<br>ISER/Quaest · eleitores</span>
+          </div>
+          <div class="stat">
+            <strong>14%</strong>
+            <span>sem religião<br>ISER/Quaest · eleitores</span>
+          </div>
+        </div>
+
+        <p>No total da amostra, católicos praticantes são <strong>31 p.p.</strong> e não praticantes <strong>19 p.p.</strong> (somam os 50%). De 16 a 34 anos: <strong>39%</strong> católicos e <strong>33%</strong> evangélicos (<a href="https://oglobo.globo.com/blogs/pulso/post/2026/09/fiel-da-balanca-jovens-negros-e-regiao-norte-sao-os-que-mais-se-convertem-a-religiao-evangelica.ghtml" target="_blank" rel="noopener">O Globo, 20/09/2026</a>).</p>
+
+        <p><strong>23%</strong> já tiveram outra religião ao longo da vida — sem origem nem destino nesse número. Quase <strong>10%</strong> da amostra são evangélicos que foram católicos (cerca de um terço dos 29%); o inverso, católicos que foram evangélicos, é <strong>3%</strong>. Não comparar com IBGE nem Pew (<a href="https://oglobo.globo.com/blogs/pulso/post/2026/09/pesquisa-mostra-que-23percent-dos-brasileiros-ja-tiveram-outra-religiao-um-terco-dos-evangelicos-sao-ex-catolicos.ghtml" target="_blank" rel="noopener">O Globo, 21/09/2026</a>).</p>
+
+        <p class="eyebrow" style="margin-top:2.4rem">Uma Igreja, vários ritos</p>
+        <h2>Ritos orientais</h2>
+        <p>A Igreja Católica é una em vários ritos. No Brasil há eparquias próprias melquita, maronita e ucranianas, além do Ordinariato para fiéis orientais — horizonte pleno, sem reduzir a Igreja ao rito latino.</p>
+
+        <div class="callout">
+          <strong>Eparquia Melquita — Nossa Senhora do Paraíso (São Paulo)</strong><br>
+          <span style="font-size:1.35rem;color:var(--navy);font-weight:700">437.000</span> batizados · 6 paróquias · 12 padres (fim-2023).<br>
+          <span class="small">Fonte: <a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Annuario Pontificio 2024 via Catholic-Hierarchy</a>. Contagem difícil: muitos frequentam paróquias latinas.</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Jurisdição</th>
+                <th>Batizados</th>
+                <th>Fonte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Melquita · N. Sra. do Paraíso (SP)</td>
+                <td class="num">437.000</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">CH dsame</a></td>
+              </tr>
+              <tr>
+                <td>Maronita · N. Sra. do Líbano (SP)</td>
+                <td class="num">528.000</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">CH dsama</a></td>
+              </tr>
+              <tr>
+                <td>Ucraniana · Arquieparquia Curitiba</td>
+                <td class="num">91.000</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">CH dcuuk</a></td>
+              </tr>
+              <tr>
+                <td>Ucraniana · Eparquia Prudentópolis</td>
+                <td class="num">83.200</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">CH dpruk</a></td>
+              </tr>
+              <tr>
+                <td>Ordinariato fiéis orientais (BR)</td>
+                <td class="num">10.603</td>
+                <td><a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">CH dorbr</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="note">Soma dessas jurisdições ≈ <strong>1,15 milhão</strong> de batizados. Não misturar com o Censo IBGE: universos diferentes.</p>
+
+        <h2 style="margin-top:2.4rem">Fontes</h2>
+        <ul class="sources">
+          <li><a href="https://agenciadenoticias.ibge.gov.br/en/agencia-news/2184-news-agency/news/43602-2022-census-catholics-remain-in-decline-protestants-and-persons-with-no-religion-increase-in-the-country" target="_blank" rel="noopener">IBGE — Censo 2022 Religiões</a> (divulgação 6 jun 2025)</li>
+          <li><a href="https://educa.ibge.gov.br/jovens/materias-especiais/22703-censo-2022-numero-de-catolicos-no-brasil-em-queda.html" target="_blank" rel="noopener">IBGE Educa — católicos em queda</a></li>
+          <li><a href="https://www.pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/" target="_blank" rel="noopener">Pew — afiliação religiosa na América Latina</a> (2024 / pub. 2026)</li>
+          <li><a href="https://oglobo.globo.com/blogs/pulso/post/2026/09/fiel-da-balanca-jovens-negros-e-regiao-norte-sao-os-que-mais-se-convertem-a-religiao-evangelica.ghtml" target="_blank" rel="noopener">O Globo — «Fiel da balança»: identidade religiosa (ISER/Quaest)</a> (20 set 2026)</li>
+          <li><a href="https://oglobo.globo.com/blogs/pulso/post/2026/09/pesquisa-mostra-que-23percent-dos-brasileiros-ja-tiveram-outra-religiao-um-terco-dos-evangelicos-sao-ex-catolicos.ghtml" target="_blank" rel="noopener">O Globo — «Fiel da balança»: trânsito religioso (ISER/Quaest)</a> (21 set 2026)</li>
+          <li><a href="https://www.catholic-hierarchy.org/diocese/dsame.html" target="_blank" rel="noopener">Catholic-Hierarchy — Melquita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dsama.html" target="_blank" rel="noopener">Maronita</a>, <a href="https://www.catholic-hierarchy.org/diocese/dcuuk.html" target="_blank" rel="noopener">Ucraniana Curitiba</a>, <a href="https://www.catholic-hierarchy.org/diocese/dpruk.html" target="_blank" rel="noopener">Prudentópolis</a>, <a href="https://www.catholic-hierarchy.org/diocese/dorbr.html" target="_blank" rel="noopener">Ordinariato</a> (Annuario Pontificio 2024)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="comunidade">
+      <div class="comm">
+        <div>
+          <p class="eyebrow">Comunidade Comdei no WhatsApp</p>
+          <h2>Entre na comunidade e acompanhe os avisos</h2>
+          <p>Os avisos do dia a dia e da semana chegam pela comunidade da Comdei no WhatsApp. Cada turma terá o seu próprio grupo dentro da comunidade.</p>
+        </div>
+        <div><a class="btn btn-gold btn-big btn-block" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a><div class="qr"><img src="comunidade-qr.svg" alt="QR code do convite da comunidade Comdei no WhatsApp" width="120" height="120"><span>Aponte a câmera do celular para entrar no grupo da Comdei</span></div></div>
+      </div>
+    </section>
+    <footer>
+      <div class="partners" aria-label="Instituições parceiras">
+        <p class="partners-cap">Instituições parceiras</p>
+        <div class="partners-row">
+          <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+          <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        </div>
+      </div>
+      <ul class="cfoot-links"><li><a href="/">Início</a></li><li><a href="/lapa">Lapa dos Mercadores</a></li><li><a href="/crisma-adultos">Crisma de adultos</a></li><li><a href="/catequese-infantil">Catequese infantil</a></li><li><a href="/lapa#sacramentos">Sacramentos</a></li><li><a href="/pesquisa">Pesquisa</a></li><li><a href="/privacidade">Privacidade</a></li></ul>
+      <p>Comdei · fundada por Lucas Lima · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
+    </footer>
+  </div>
+  <script src="nav.js"></script>
+  <script src="comunidade.js"></script>
+</body>
+</html>
