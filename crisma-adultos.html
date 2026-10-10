@@ -4,168 +4,246 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Crisma de adultos na Lapa dos Mercadores · Comdei</title>
-  <meta name="description" content="Crisma de adultos na Igreja Nossa Senhora da Lapa dos Mercadores, com a Comdei. Deixe seu nome na lista de interessados.">
+  <meta name="description" content="Crisma de adultos na Igreja Nossa Senhora da Lapa dos Mercadores, com a Comdei. Entre na lista de interessados pelo WhatsApp.">
   <meta name="robots" content="noindex">
   <link rel="icon" href="comdei.png" type="image/png">
   <style>
     :root {
-      --ink: #241f1a; --mute: #4a453c; --paper: #f4efe4; --card: #fbf7ee;
-      --line: #d4cbb6; --gold: #9a7b32; --gold-ink: #6e5724; --navy: #1a2744;
-      --navy-deep: #121c33; --soft: #eee6d6; --danger: #7a2a2a; --wa: #1f7a4a;
-      --shadow: 0 1px 0 rgba(26, 39, 68, 0.04), 0 18px 40px rgba(26, 39, 68, 0.06);
+      --ink: #221d18; --mute: #5a5247; --paper: #fbf6ec; --card: #ffffff; --line: #e6dcc8;
+      --gold: #c8962e; --gold-soft: #f6e7c4; --gold-ink: #7a5a17; --navy: #1a2744; --navy-deep: #121c33;
+      --sky: #e5eef8; --rose: #f8e6e0; --sage: #e4efe4; --danger: #8a2b2b; --wa: #1f8a52;
+      --radius: 22px; --shadow: 0 10px 30px rgba(26, 39, 68, 0.08);
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-      background: radial-gradient(ellipse 80% 50% at 50% 0%, #f8f3e8 0%, var(--paper) 55%), var(--paper);
-      color: var(--ink); line-height: 1.65; min-height: 100vh;
-    }
-    a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); }
-    a:hover { border-bottom-color: var(--gold); }
-    :focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
-    main { max-width: 42rem; margin: 0 auto; padding: 3.4rem 1.5rem 2.4rem; }
-    .hero { text-align: center; }
-    .mark { width: min(11rem, 52vw); height: auto; display: block; margin: 0 auto 1.3rem; }
-    .kicker { display: block; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.55rem; }
-    h1 { font-size: clamp(1.7rem, 5.5vw, 2.15rem); font-weight: 600; letter-spacing: 0.015em; line-height: 1.2; color: var(--navy); margin: 0 0 0.75rem; }
-    h2 { font-size: 1.18rem; font-weight: 600; margin: 2.4rem 0 0.8rem; color: var(--navy); }
-    p { margin: 0 0 1.1rem; font-size: 1.08rem; }
-    .lede { font-size: 1.22rem; color: var(--mute); }
-    .rule { border: 0; border-top: 1px solid var(--line); width: 3.4rem; margin: 1.85rem auto; }
-    .small { color: var(--mute); font-size: 0.95rem; }
-    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.2rem 0 1.4rem; }
-    .fact { background: var(--soft); padding: 1rem 0.8rem; text-align: center; border-top: 2px solid var(--gold); }
-    .fact strong { display: block; font-size: 1.05rem; color: var(--navy); line-height: 1.25; margin-bottom: 0.2rem; }
-    .fact span { font-size: 0.85rem; color: var(--mute); }
-    .tbc { font-style: italic; color: var(--gold-ink); }
-    .steps { padding-left: 1.2rem; margin: 0 0 1.2rem; }
-    .steps li { margin-bottom: 0.45rem; font-size: 1.04rem; }
-    .card { text-align: left; max-width: 28rem; margin: 2.2rem auto 0; padding: 1.85rem 1.6rem 1.55rem;
-      background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); position: relative; }
-    .card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-    .card h2 { text-align: center; margin: 0 0 0.4rem; font-size: 1.22rem; }
-    .cta-lead { text-align: center; color: var(--mute); font-size: 0.98rem; margin-bottom: 1.35rem; }
-    .field { margin-bottom: 0.95rem; }
-    label, legend { display: block; font-size: 0.86rem; letter-spacing: 0.02em; color: var(--mute); margin: 0 0 0.32rem; }
-    fieldset { border: 0; padding: 0; margin: 0 0 0.95rem; }
-    .choices { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
-    .choices label { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 1rem; color: var(--ink); margin: 0; letter-spacing: 0; }
-    input[type="text"], input[type="tel"], input[type="email"] { width: 100%; padding: 0.72rem 0.8rem;
-      border: 1px solid var(--line); background: var(--paper); font: inherit; color: var(--ink); }
-    input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12); }
-    .consent { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.95rem; color: var(--ink); letter-spacing: 0; }
-    .consent input { margin-top: 0.3rem; flex: none; }
-    .privacy { font-size: 0.88rem; color: var(--mute); background: var(--soft); padding: 0.8rem 0.9rem; margin: 0 0 0.95rem; }
-    .privacy p { font-size: 0.88rem; margin: 0 0 0.4rem; }
-    .privacy p:last-child { margin: 0; }
-    .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-    .form-err { color: var(--danger); font-size: 0.92rem; min-height: 1.2em; margin: 0.35rem 0 0.15rem; }
-    button[type="submit"] { width: 100%; min-height: 2.9rem; padding: 0.8rem 1rem; margin-top: 0.2rem; border: 0;
-      background: var(--navy); color: var(--paper); font: inherit; letter-spacing: 0.03em; cursor: pointer; }
-    button[type="submit"]:hover { background: var(--navy-deep); }
-    button[type="submit"]:disabled { opacity: 0.65; cursor: wait; }
-    .success { text-align: center; padding: 0.5rem 0.2rem 0.25rem; }
-    .wa { text-align: center; margin: 1.6rem 0 0; font-size: 1rem; }
-    .wa a { white-space: nowrap; color: var(--wa); border-bottom-color: rgba(31, 122, 74, 0.35); font-weight: 600; }
-    .preview-flag { display: none; text-align: center; font-size: 0.82rem; color: var(--danger); margin: 0 0 1rem; }
-    .is-preview .preview-flag { display: block; }
-    .cf-turnstile { margin: 0 0 0.6rem; min-height: 0; }
-    .partners { margin: 1.6rem auto 0; text-align: center; }
-    .partners-cap { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.9rem; }
-    .partners-row { display: flex; justify-content: center; align-items: flex-start; gap: 2.4rem; }
-    .partner { width: 11rem; margin: 0; }
-    .partner img { height: 6.5rem; width: auto; display: block; margin: 0 auto 0.5rem; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.6; }
+    a { color: var(--navy); }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.4rem; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; }
+    .topbar img { height: 2.6rem; width: auto; border-radius: 10px; }
+    .topbar nav { display: flex; gap: 1.2rem; font-size: 0.95rem; }
+    .topbar nav a { text-decoration: none; color: var(--mute); }
+    .topbar nav a:hover { color: var(--navy); }
+
+    .hero { position: relative; overflow: hidden; border-radius: 32px; margin: 0.4rem 0 0;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 55%, #6e5724 130%); color: #fff;
+      padding: 3.6rem 3rem 3.2rem; }
+    .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(2px); opacity: 0.55; }
+    .hero::before { width: 22rem; height: 22rem; right: -6rem; top: -7rem; background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); }
+    .hero::after { width: 16rem; height: 16rem; left: 40%; bottom: -9rem; background: radial-gradient(circle, #8fb4e3 0%, rgba(143,180,227,0) 70%); }
+    .hero > * { position: relative; z-index: 1; }
+    .pill { display: inline-block; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.82rem; letter-spacing: 0.04em; }
+    .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.1rem, 5.6vw, 3.4rem); line-height: 1.08; margin: 1rem 0 0.8rem; max-width: 40rem; }
+    .hero h1 span { color: #f1c56a; }
+    .hero p.lede { font-size: 1.18rem; max-width: 36rem; margin: 0 0 0.5rem; color: #eef1f7; }
+    .hero p.sub { font-size: 0.98rem; color: #cfd6e6; margin: 0 0 1.6rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 1.8rem; }
+    .chip { background: rgba(255,255,255,0.1); border-radius: 14px; padding: 0.6rem 0.9rem; font-size: 0.9rem; }
+    .chip b { display: block; font-weight: 600; color: #f1c56a; font-style: italic; }
+    .btns { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.4rem; border-radius: 999px; font-weight: 600;
+      text-decoration: none; font-size: 1rem; border: 0; cursor: pointer; font-family: var(--sans); }
+    .btn-gold { background: #f1c56a; color: #1a2744; }
+    .btn-gold:hover { background: #f6d48d; }
+    .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+    .btn-wa { background: var(--wa); color: #fff; }
+    .btn-wa:hover { background: #18734a; }
+    .btn-navy { background: var(--navy); color: #fff; width: 100%; justify-content: center; }
+    .btn-navy:hover { background: var(--navy-deep); }
+    .btn-navy:disabled { opacity: 0.6; cursor: wait; }
+    .btn-off { background: #eee7d8; color: var(--mute); cursor: default; }
+
+    .partners { text-align: center; margin: 2.4rem auto 0; }
+    .partners-cap { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 1rem; }
+    .partners-row { display: flex; justify-content: center; align-items: flex-start; gap: 2.6rem; }
+    .partner { width: 12rem; margin: 0; }
+    .partner img { height: 6.5rem; width: auto; display: block; margin: 0 auto 0.55rem; }
     .partner figcaption { font-size: 0.8rem; line-height: 1.35; color: var(--mute); }
-    .partners--foot { margin: 0 auto 1rem; }
-    .partners--foot .partner { width: 9rem; }
-    .partners--foot .partner img { height: 4.2rem; }
-    .partners--foot .partner figcaption { font-size: 0.72rem; }
+
+    section { padding: 3.4rem 0 0; }
+    .eyebrow { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.4rem; font-weight: 600; }
+    h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.6vw, 2.2rem); line-height: 1.15; color: var(--navy); margin: 0 0 0.8rem; }
+    .intro { font-size: 1.08rem; color: var(--mute); max-width: 40rem; margin: 0 0 1.6rem; }
+    .grid2 { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.6rem; align-items: start; }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.8rem 1.6rem; border: 1px solid var(--line); }
+    .soft { border-radius: var(--radius); padding: 1.6rem; }
+    .soft h3 { margin: 0 0 0.4rem; font-size: 1.12rem; color: var(--navy); }
+    .soft p { margin: 0; color: var(--mute); font-size: 0.98rem; }
+    .bg-sky { background: var(--sky); } .bg-rose { background: var(--rose); } .bg-sage { background: var(--sage); } .bg-gold { background: var(--gold-soft); }
+    .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.8rem; }
+    .steps li { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .steps .n { flex: none; width: 2rem; height: 2rem; border-radius: 50%; background: var(--gold-soft); color: var(--gold-ink);
+      display: grid; place-items: center; font-weight: 700; }
+    .note { font-size: 0.95rem; color: var(--mute); margin: 1.2rem 0 0; }
+
+    .field { margin-bottom: 0.95rem; }
+    label { display: block; font-size: 0.88rem; color: var(--mute); margin: 0 0 0.3rem; font-weight: 500; }
+    input[type="text"], input[type="tel"], input[type="email"], textarea { width: 100%; padding: 0.78rem 0.9rem; border-radius: 12px;
+      border: 1px solid var(--line); background: #fdfbf6; font: inherit; color: var(--ink); }
+    textarea { min-height: 7rem; resize: vertical; }
+    input:focus, textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12); }
+    .privacy { font-size: 0.86rem; color: var(--mute); background: #f7f1e4; border-radius: 12px; padding: 0.8rem 0.95rem; margin: 0 0 0.9rem; }
+    .privacy p { margin: 0 0 0.35rem; } .privacy p:last-child { margin: 0; }
+    .consent { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.93rem; color: var(--ink); font-weight: 400; }
+    .consent input { margin-top: 0.3rem; flex: none; }
+    .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .form-err { color: var(--danger); font-size: 0.92rem; min-height: 1.2em; margin: 0.3rem 0 0.4rem; }
+    .preview-flag { display: none; font-size: 0.82rem; color: var(--danger); margin: 0 0 0.9rem; }
+    .is-preview .preview-flag { display: block; }
+    .success { text-align: center; padding: 1rem 0.4rem; }
+    .success b { display: block; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .card-title { margin: 0 0 0.4rem; font-size: 1.2rem; color: var(--navy); }
+    .card-text { margin: 0 0 0.4rem; color: var(--mute); }
+    .ask { margin: 0 0 1.1rem; padding-left: 1.2rem; color: var(--ink); }
+    .btn-block { width: 100%; justify-content: center; }
+    .wa-num { text-align: center; color: var(--mute); font-size: 0.92rem; margin: 0.5rem 0 1rem; }
+    .small { font-weight: 400; color: var(--mute); font-size: 0.82rem; }
+    .tbc { font-style: italic; color: var(--gold-ink); font-weight: 600; }
+
+    .future-tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      background: var(--navy); color: #f1c56a; border-radius: 999px; padding: 0.3rem 0.8rem; margin: 0 0 0.9rem; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .soft ul { margin: 0.5rem 0 0; padding-left: 1.1rem; color: var(--mute); font-size: 0.95rem; }
+
+    .sacr { background: linear-gradient(135deg, #f6e7c4 0%, #fbf6ec 100%); border-radius: 28px; padding: 2.4rem 2.2rem;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.6rem; align-items: center; border: 1px solid var(--line); }
+    .sacr-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 0; padding: 0; list-style: none; }
+    .sacr-list li { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.85rem; font-size: 0.92rem; }
+
+    footer { margin-top: 4rem; padding: 2.6rem 0 3rem; border-top: 1px solid var(--line); text-align: center; color: var(--mute); font-size: 0.92rem; }
+    footer .partners { margin-top: 0; }
+    footer .partner { width: 9.5rem; } footer .partner img { height: 4.2rem; } footer .partner figcaption { font-size: 0.72rem; }
+    footer p { margin: 1.2rem 0 0; }
+
+    @media (max-width: 860px) {
+      .grid2, .sacr { grid-template-columns: 1fr; }
+      .grid4 { grid-template-columns: 1fr 1fr; }
+      .grid3 { grid-template-columns: 1fr; }
+    }
     @media (max-width: 560px) {
+      .wrap { padding: 0 1rem; }
+      .topbar nav { display: none; }
+      .hero { padding: 2.4rem 1.4rem 2.2rem; border-radius: 24px; }
+      .grid4 { grid-template-columns: 1fr; }
       .partners-row { gap: 1.2rem; }
-      .partner { width: 9.5rem; }
-      .partner img { height: 5.4rem; }
-      .partners--foot .partner { width: 8rem; }
-      .partners--foot .partner img { height: 3.8rem; }
+      .partner { width: 9.5rem; } .partner img { height: 5.4rem; }
+      footer .partner { width: 8rem; } footer .partner img { height: 3.8rem; }
+      .card { padding: 1.4rem 1.15rem; }
+      .sacr { padding: 1.8rem 1.3rem; }
+      .btn { width: 100%; justify-content: center; }
     }
-    .ask { margin: 0 0 1.2rem; padding-left: 1.2rem; } .ask li { font-size: 1rem; margin-bottom: 0.2rem; }
-    .wa-btn { display: block; text-align: center; background: var(--wa); color: #fff; border: 0; padding: 0.9rem 1rem; font-weight: 600; letter-spacing: 0.02em; }
-    .wa-btn:hover { background: #18663d; border: 0; }
-    .wa-num { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 0.5rem 0 1rem; }
-    footer { padding: 1.4rem 1.5rem 2.8rem; text-align: center; color: var(--mute); font-size: 0.92rem; }
-    footer p { margin: 0; font-size: 0.92rem; }
-    footer a { color: var(--ink); }
-    @media (max-width: 560px) {
-      main { padding-top: 2.4rem; }
-      .facts { grid-template-columns: 1fr; }
-      .card { padding: 1.55rem 1.2rem 1.4rem; }
-    }
-  </style>
+
+    .comm { position: relative; overflow: hidden; border-radius: 28px; color: #fff; padding: 2.4rem 2.2rem;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 60%, #6e5724 140%); display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.4rem; align-items: center; }
+    .comm::before { content: ""; position: absolute; width: 18rem; height: 18rem; right: -5rem; top: -6rem; border-radius: 50%;
+      background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); opacity: 0.5; }
+    .comm > * { position: relative; z-index: 1; }
+    .comm h2 { color: #fff; margin-bottom: 0.5rem; }
+    .comm p { color: #dfe5f1; margin: 0 0 0.4rem; font-size: 1.02rem; }
+    .comm .eyebrow { color: #f1c56a; }
+    .comm-sm { border-radius: 22px; padding: 1.6rem 1.5rem; grid-template-columns: 1.6fr 1fr; }
+    .comm-sm h3 { margin: 0 0 0.35rem; font-size: 1.2rem; color: #fff; }
+    .btn-big { font-size: 1.08rem; padding: 1rem 1.6rem; }
+    .founder { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 1.6rem 0 0; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .founder img { height: 2.6rem; width: auto; border-radius: 8px; }
+    .sacr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .sac { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.3rem; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .sac h3 { margin: 0 0 0.3rem; color: var(--navy); font-size: 1.15rem; }
+    .sac p { margin: 0 0 1rem; color: var(--mute); font-size: 0.96rem; flex: 1; }
+    .sac .btn { font-size: 0.92rem; padding: 0.7rem 1rem; justify-content: center; }
+    .sac-top { border-top: 4px solid var(--gold); }
+    @media (max-width: 860px) { .comm, .comm-sm { grid-template-columns: 1fr; } .sacr-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .comm { padding: 1.8rem 1.3rem; } .sacr-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
-  <main>
+  <div class="wrap">
+    <header class="topbar">
+      <a href="/" aria-label="Comdei"><img src="comdei.png" alt="Comdei"></a>
+      <nav aria-label="Seções">
+        <a href="/lapa">Comdei na Lapa</a>
+        <a href="#inscricao">Lista de interessados</a>
+        <a href="#comunidade">Comunidade</a>
+      </nav>
+    </header>
+
     <div class="hero">
-      <img class="mark" src="comdei.png" alt="Comdei">
-      <span class="kicker">Com a Comdei e a Venerável Liga</span>
-      <h1>Crisma de adultos</h1>
+      <span class="pill">Com a Comdei e a Venerável Liga</span>
+      <h1>Crisma de adultos na <span>Lapa dos Mercadores</span></h1>
       <p class="lede">Nunca é tarde para receber a Crisma. Venha se preparar com a gente, sem pressa, em comunidade.</p>
-      <div class="partners" aria-label="Instituições parceiras">
+      <div class="chips" aria-label="Informações da turma">
+        <div class="chip">Dia e horário<b>a confirmar</b></div>
+        <div class="chip">Início<b>a confirmar</b></div>
+        <div class="chip">Frequência<b>a confirmar</b></div>
+      </div>
+      <div class="btns">
+        <a class="btn btn-gold" href="#inscricao">Quero entrar na lista</a>
+        <a class="btn btn-ghost" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Crisma%20de%20adultos%20na%20Lapa%20dos%20Mercadores.%20Meu%20nome%20%C3%A9%3A%20" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="partners" aria-label="Instituições parceiras">
       <p class="partners-cap">Instituições parceiras na missão de evangelização</p>
       <div class="partners-row">
         <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
         <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
       </div>
     </div>
-    </div>
 
-    <hr class="rule">
+    <p class="founder"><img src="comdei.png" alt="Comdei"><span>Uma iniciativa da Comdei, fundada por Lucas Lima.</span></p>
 
-    <p>Na Igreja Nossa Senhora da Lapa dos Mercadores, no Centro do Rio, vamos abrir uma turma de preparação para a Crisma pensada para adultos: gente comum, com a vida corrida, que quer caminhar junto na fé e rezar junto.</p>
-    <p>Se você já foi batizado e nunca foi crismado, ou se ainda falta algum sacramento, este é o seu lugar. A gente acolhe cada um do jeito que chega e ajuda a ver o que falta.</p>
-
-    <div class="facts" aria-label="Informações da turma">
-      <div class="fact"><strong class="tbc">a confirmar</strong><span>Dia e horário</span></div>
-      <div class="fact"><strong class="tbc">a confirmar</strong><span>Início da turma</span></div>
-      <div class="fact"><strong class="tbc">a confirmar</strong><span>Frequência dos encontros</span></div>
-    </div>
-
-    <h2>Como funciona</h2>
-    <ol class="steps">
-      <li>Você chama a gente no WhatsApp e entra na lista de interessados.</li>
-      <li>A gente conversa com você e tira as dúvidas.</li>
-      <li>Quando a data da turma for confirmada, você recebe o aviso antes de todo mundo.</li>
-    </ol>
-    <p>Enquanto isso, venha rezar com a gente na Missa das 12h, aos sábados, na Lapa dos Mercadores (Rua do Ouvidor, 35, Centro).</p>
-
-    <div class="card" id="inscricao">
-      <h2>Lista de interessados</h2>
-      <p class="cta-lead">Leva um minuto e não é compromisso: é só para a gente te avisar quando a turma for confirmada.</p>
-      <p>Chame no WhatsApp e conte:</p>
-      <ul class="ask">
-        <li>seu nome;</li>
-        <li>se você já é batizado;</li>
-        <li>se já fez a Primeira Comunhão;</li>
-        <li>a paróquia que frequenta, se tiver.</li>
-      </ul>
-      <a class="wa-btn" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Crisma%20de%20adultos%20na%20Lapa%20dos%20Mercadores.%20Meu%20nome%20%C3%A9%3A%20" target="_blank" rel="noopener">Entrar na lista pelo WhatsApp</a>
-      <p class="wa-num">(21) 98145-4569</p>
-      <div class="privacy">
-        <p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei, só para falar com você sobre a Crisma de adultos na Lapa dos Mercadores. Não repassamos a ninguém. Para apagar ou corrigir, peça na mesma conversa do WhatsApp.</p>
+    <section id="inscricao">
+      <div class="grid2">
+        <div>
+          <p class="eyebrow">Para quem é</p>
+          <h2>Gente comum que quer caminhar junto na fé</h2>
+          <p class="intro">Uma turma de preparação para a Crisma pensada para adultos com a vida corrida. Se você já foi batizado e nunca foi crismado, ou se ainda falta algum sacramento, este é o seu lugar. A gente acolhe cada um do jeito que chega.</p>
+          <ol class="steps">
+            <li><span class="n">1</span><span>Você chama a gente no WhatsApp e entra na lista de interessados.</span></li>
+            <li><span class="n">2</span><span>A gente conversa com você e tira as dúvidas.</span></li>
+            <li><span class="n">3</span><span>Quando a turma for confirmada, você é avisado primeiro.</span></li>
+          </ol>
+          <p class="note">Venha também rezar com a gente na Missa das 12h, aos sábados, na Igreja Nossa Senhora da Lapa dos Mercadores (Rua do Ouvidor, 35, Centro do Rio).</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Lista de interessados</h3>
+          <p class="card-text">Leva um minuto e não é compromisso. No WhatsApp, conte:</p>
+          <ul class="ask"><li>seu nome;</li><li>se você já é batizado;</li><li>se já fez a Primeira Eucaristia;</li><li>a paróquia que frequenta, se tiver.</li></ul>
+          <a class="btn btn-wa btn-block" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Crisma%20de%20adultos%20na%20Lapa%20dos%20Mercadores.%20Meu%20nome%20%C3%A9%3A%20" target="_blank" rel="noopener">Entrar na lista pelo WhatsApp</a>
+          <p class="wa-num">(21) 98145-4569</p>
+          <div class="privacy"><p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei, só para falar com você sobre a Crisma de adultos na Lapa dos Mercadores. Não repassamos a ninguém. Para apagar ou corrigir, peça na mesma conversa do WhatsApp.</p></div>
+        </div>
       </div>
-    </div>
-  </main>
+    </section>
 
-  <footer>
-    <div class="partners partners--foot" aria-label="Instituições parceiras">
-      <p class="partners-cap">Instituições parceiras</p>
-      <div class="partners-row">
-        <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
-        <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+    <section id="comunidade">
+      <div class="comm comm-sm">
+        <div>
+          <p class="eyebrow">Comunidade Comdei no WhatsApp</p>
+          <h3>Acompanhe os avisos da semana</h3>
+          <p>Entre na comunidade da Comdei para receber os avisos do dia a dia. Cada turma terá o seu próprio grupo dentro da comunidade, inclusive a da Crisma de adultos.</p>
+        </div>
+        <div><a class="btn btn-gold btn-block" data-comunidade href="https://wa.me/5521981454569?text=Quero%20entrar%20na%20comunidade%20da%20Comdei%20no%20WhatsApp" target="_blank" rel="noopener">Entrar na comunidade</a></div>
       </div>
-    </div>
-    <p><a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
-  </footer>
+      <p class="note">Outros sacramentos? Veja a <a href="/lapa#sacramentos">página da Comdei na Lapa</a>.</p>
+    </section>
 
+    <footer>
+      <div class="partners" aria-label="Instituições parceiras">
+        <p class="partners-cap">Instituições parceiras</p>
+        <div class="partners-row">
+          <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+          <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        </div>
+      </div>
+      <p>Comdei · fundada por Lucas Lima · <a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
+    </footer>
+  </div>
+  <script src="comunidade.js"></script>
 </body>
 </html>
