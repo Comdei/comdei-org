@@ -89,6 +89,10 @@
       .partners--foot .partner { width: 8rem; }
       .partners--foot .partner img { height: 3.8rem; }
     }
+    .ask { margin: 0 0 1.2rem; padding-left: 1.2rem; } .ask li { font-size: 1rem; margin-bottom: 0.2rem; }
+    .wa-btn { display: block; text-align: center; background: var(--wa); color: #fff; border: 0; padding: 0.9rem 1rem; font-weight: 600; letter-spacing: 0.02em; }
+    .wa-btn:hover { background: #18663d; border: 0; }
+    .wa-num { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 0.5rem 0 1rem; }
     footer { padding: 1.4rem 1.5rem 2.8rem; text-align: center; color: var(--mute); font-size: 0.92rem; }
     footer p { margin: 0; font-size: 0.92rem; }
     footer a { color: var(--ink); }
@@ -128,75 +132,27 @@
 
     <h2>Como funciona</h2>
     <ol class="steps">
-      <li>Você deixa seu nome na lista de interessados aqui embaixo.</li>
-      <li>A gente chama você no WhatsApp para conversar e tirar dúvidas.</li>
+      <li>Você chama a gente no WhatsApp e entra na lista de interessados.</li>
+      <li>A gente conversa com você e tira as dúvidas.</li>
       <li>Quando a data da turma for confirmada, você recebe o aviso antes de todo mundo.</li>
     </ol>
     <p>Enquanto isso, venha rezar com a gente na Missa das 12h, aos sábados, na Lapa dos Mercadores (Rua do Ouvidor, 35, Centro).</p>
 
     <div class="card" id="inscricao">
       <h2>Lista de interessados</h2>
-      <p class="cta-lead">Leva um minuto. Não é compromisso: é só para a gente te avisar.</p>
-      <p class="preview-flag">Prévia: o envio ainda não está ligado. Nada é gravado.</p>
-
-      <form id="crisma-form" novalidate>
-        <div class="field">
-          <label for="cr-nome">Nome</label>
-          <input id="cr-nome" name="nome" type="text" autocomplete="name" maxlength="120" required>
-        </div>
-        <div class="field">
-          <label for="cr-whatsapp">WhatsApp (com DDD)</label>
-          <input id="cr-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(21) 99999-9999" required>
-        </div>
-        <div class="field">
-          <label for="cr-email">E-mail <span class="small">(opcional)</span></label>
-          <input id="cr-email" name="email" type="email" autocomplete="email" maxlength="200" placeholder="voce@email.com">
-        </div>
-        <div class="field">
-          <label for="cr-paroquia">Paróquia que você frequenta <span class="small">(se tiver)</span></label>
-          <input id="cr-paroquia" name="paroquia" type="text" maxlength="120" placeholder="Ex.: Lapa dos Mercadores, ou nenhuma ainda">
-        </div>
-        <fieldset>
-          <legend>Você já é batizado?</legend>
-          <div class="choices">
-            <label><input type="radio" name="batizado" value="sim"> Sim</label>
-            <label><input type="radio" name="batizado" value="nao"> Não</label>
-            <label><input type="radio" name="batizado" value="nao_sei"> Não sei</label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Já fez a Primeira Comunhão?</legend>
-          <div class="choices">
-            <label><input type="radio" name="comunhao" value="sim"> Sim</label>
-            <label><input type="radio" name="comunhao" value="nao"> Não</label>
-            <label><input type="radio" name="comunhao" value="nao_sei"> Não sei</label>
-          </div>
-        </fieldset>
-
-        <div class="hp" aria-hidden="true">
-          <label for="cr-site">Deixe em branco</label>
-          <input id="cr-site" name="site" type="text" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="privacy" id="aviso">
-          <p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei. Usamos só para falar com você sobre a Crisma de adultos na Lapa dos Mercadores. Não repassamos a ninguém.</p>
-          <p>Guardamos até o fim da preparação, ou até você pedir para apagar. Para apagar ou corrigir, é só mandar mensagem no WhatsApp <a href="https://wa.me/5521981454569">(21) 98145-4569</a>.</p>
-        </div>
-        <div class="field">
-          <label class="consent"><input id="cr-consent" name="consentimento" type="checkbox" value="sim"> <span>Concordo que a Comdei guarde estes dados para me avisar sobre a Crisma de adultos.</span></label>
-        </div>
-
-        <div class="cf-turnstile" id="cr-turnstile"></div>
-        <p class="form-err" id="cr-err" aria-live="polite"></p>
-        <button type="submit" id="cr-submit">Quero ser avisado</button>
-      </form>
-
-      <div class="success" id="cr-success" hidden>
-        <p><strong>Recebemos seu nome. Obrigado!</strong></p>
-        <p class="small">A gente vai te chamar no WhatsApp. Se quiser adiantar a conversa, mande uma mensagem.</p>
+      <p class="cta-lead">Leva um minuto e não é compromisso: é só para a gente te avisar quando a turma for confirmada.</p>
+      <p>Chame no WhatsApp e conte:</p>
+      <ul class="ask">
+        <li>seu nome;</li>
+        <li>se você já é batizado;</li>
+        <li>se já fez a Primeira Comunhão;</li>
+        <li>a paróquia que frequenta, se tiver.</li>
+      </ul>
+      <a class="wa-btn" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Crisma%20de%20adultos%20na%20Lapa%20dos%20Mercadores.%20Meu%20nome%20%C3%A9%3A%20" target="_blank" rel="noopener">Entrar na lista pelo WhatsApp</a>
+      <p class="wa-num">(21) 98145-4569</p>
+      <div class="privacy">
+        <p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei, só para falar com você sobre a Crisma de adultos na Lapa dos Mercadores. Não repassamos a ninguém. Para apagar ou corrigir, peça na mesma conversa do WhatsApp.</p>
       </div>
-
-      <p class="wa">Prefere falar direto? <a id="cr-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Crisma%20de%20adultos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">WhatsApp (21) 98145-4569</a></p>
     </div>
   </main>
 
@@ -208,92 +164,8 @@
         <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
       </div>
     </div>
-    <p>Comdei · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
+    <p><a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
   </footer>
 
-  <script>
-    (function () {
-      // Preencher só depois do GO (ver docs/crisma-adultos-backend.md).
-      // Vazio = modo prévia: valida o formulário, mas não envia nada.
-      var CRISMA_ENDPOINT = "";      // ex.: https://crisma-adultos.<conta>.workers.dev/inscricao
-      var TURNSTILE_SITEKEY = "";    // chave pública do widget Turnstile (não é segredo)
-
-      var preview = !CRISMA_ENDPOINT || !TURNSTILE_SITEKEY;
-      if (preview) document.body.classList.add("is-preview");
-
-      var turnstileId = null;
-      if (!preview) {
-        window.onTurnstileLoad = function () {
-          turnstileId = window.turnstile.render("#cr-turnstile", {
-            sitekey: TURNSTILE_SITEKEY, action: "crisma-adultos", language: "pt-br"
-          });
-        };
-        var s = document.createElement("script");
-        s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit";
-        s.async = true; s.defer = true;
-        document.head.appendChild(s);
-      }
-
-      function radio(name) {
-        var el = document.querySelector('input[name="' + name + '"]:checked');
-        return el ? el.value : "";
-      }
-      function digits(v) { return (v || "").replace(/\D/g, ""); }
-
-      var form = document.getElementById("crisma-form");
-      var err = document.getElementById("cr-err");
-      var btn = document.getElementById("cr-submit");
-
-      function done() {
-        form.hidden = true;
-        document.getElementById("cr-success").hidden = false;
-      }
-
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        err.textContent = "";
-        var data = {
-          nome: document.getElementById("cr-nome").value.trim(),
-          whatsapp: document.getElementById("cr-whatsapp").value.trim(),
-          email: document.getElementById("cr-email").value.trim(),
-          paroquia: document.getElementById("cr-paroquia").value.trim(),
-          batizado: radio("batizado"),
-          comunhao: radio("comunhao"),
-          consentimento: document.getElementById("cr-consent").checked,
-          form: "crisma-adultos",
-          site: document.getElementById("cr-site").value
-        };
-        if (data.nome.length < 2) { err.textContent = "Escreva seu nome."; return; }
-        var d = digits(data.whatsapp);
-        if (d.length < 10 || d.length > 13) { err.textContent = "Confira o WhatsApp, com DDD."; return; }
-        if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { err.textContent = "Confira o e-mail."; return; }
-        if (!data.batizado) { err.textContent = "Conte se você já é batizado."; return; }
-        if (!data.comunhao) { err.textContent = "Conte se já fez a Primeira Comunhão."; return; }
-        if (!data.consentimento) { err.textContent = "Para guardar seu contato, precisamos do seu de acordo."; return; }
-
-        if (preview) { done(); return; }
-
-        var token = window.turnstile ? window.turnstile.getResponse(turnstileId) : "";
-        if (!token) { err.textContent = "Confirme a verificação antes de enviar."; return; }
-        data.turnstileToken = token;
-
-        btn.disabled = true;
-        fetch(CRISMA_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify(data)
-        }).then(function (res) {
-          return res.json().catch(function () { return {}; }).then(function (body) {
-            if (res.ok && body.ok) { done(); return; }
-            if (res.status === 429) err.textContent = "Muitas tentativas. Tente de novo mais tarde, ou chame no WhatsApp.";
-            else err.textContent = body.error || "Não deu certo agora. Tente de novo ou chame no WhatsApp.";
-            if (window.turnstile) window.turnstile.reset(turnstileId);
-          });
-        }).catch(function () {
-          err.textContent = "Sem conexão agora. Tente de novo ou chame no WhatsApp.";
-        }).then(function () { btn.disabled = false; });
-      });
-    })();
-  </script>
 </body>
 </html>

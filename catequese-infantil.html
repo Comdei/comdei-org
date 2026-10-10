@@ -96,6 +96,11 @@
     .is-preview .preview-flag { display: block; }
     .success { text-align: center; padding: 1rem 0.4rem; }
     .success b { display: block; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .card-title { margin: 0 0 0.4rem; font-size: 1.2rem; color: var(--navy); }
+    .card-text { margin: 0 0 0.4rem; color: var(--mute); }
+    .ask { margin: 0 0 1.1rem; padding-left: 1.2rem; color: var(--ink); }
+    .btn-block { width: 100%; justify-content: center; }
+    .wa-num { text-align: center; color: var(--mute); font-size: 0.92rem; margin: 0.5rem 0 1rem; }
     .small { font-weight: 400; color: var(--mute); font-size: 0.82rem; }
     .tbc { font-style: italic; color: var(--gold-ink); font-weight: 600; }
 
@@ -139,6 +144,7 @@
     <header class="topbar">
       <a href="/" aria-label="Comdei"><img src="comdei.png" alt="Comdei"></a>
       <nav aria-label="Seções">
+        <a href="/lapa">Comdei na Lapa</a>
         <a href="#inscricao">Inscrição</a>
         <a href="#pergunta">Perguntas</a>
         <a href="#comunidade">Comunidade</a>
@@ -178,35 +184,23 @@
           <h2>Seu filho na catequese, com a gente perto</h2>
           <p class="intro">A catequese é feita em comunidade, com famílias que querem caminhar juntas. Quem preenche é o pai, a mãe ou o responsável.</p>
           <ol class="steps">
-            <li><span class="n">1</span><span>Você deixa seu contato e a idade da criança.</span></li>
-            <li><span class="n">2</span><span>A gente chama você no WhatsApp para se conhecer e tirar dúvidas.</span></li>
+            <li><span class="n">1</span><span>Você chama a gente no WhatsApp e conta a idade da criança.</span></li>
+            <li><span class="n">2</span><span>A gente conversa com você e tira as dúvidas.</span></li>
             <li><span class="n">3</span><span>Quando dia e horário forem confirmados, você é avisado primeiro.</span></li>
           </ol>
           <p class="note">Venha também rezar com a gente na Missa das 12h, aos sábados, na Igreja Nossa Senhora da Lapa dos Mercadores (Rua do Ouvidor, 35, Centro do Rio).</p>
         </div>
 
-        <div class="card" data-form="catequese-infantil">
-          <p class="preview-flag">Prévia: o envio ainda não está ligado. Nada é gravado.</p>
-          <form novalidate>
-            <div class="field"><label for="ci-nome">Seu nome (responsável)</label>
-              <input id="ci-nome" name="nome" type="text" autocomplete="name" maxlength="120"></div>
-            <div class="field"><label for="ci-whatsapp">WhatsApp (com DDD)</label>
-              <input id="ci-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(21) 99999-9999"></div>
-            <div class="field"><label for="ci-email">E-mail <span class="small">(opcional)</span></label>
-              <input id="ci-email" name="email" type="email" autocomplete="email" maxlength="200" placeholder="voce@email.com"></div>
-            <div class="field"><label for="ci-idade">Idade da criança <span class="small">(se for mais de uma, escreva todas)</span></label>
-              <input id="ci-idade" name="idade" type="text" inputmode="numeric" maxlength="40" placeholder="Ex.: 7 anos"></div>
-            <div class="hp" aria-hidden="true"><label for="ci-site">Deixe em branco</label><input id="ci-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
-            <div class="privacy">
-              <p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei, só para falar com você sobre a catequese na Lapa dos Mercadores. Não repassamos a ninguém.</p>
-              <p>Dados de crianças pedem cuidado redobrado: pedimos só a idade, sem nome nem foto da criança. Para apagar ou corrigir, mande mensagem no WhatsApp <a href="https://wa.me/5521981454569">(21) 98145-4569</a>.</p>
-            </div>
-            <div class="field"><label class="consent"><input name="consentimento" type="checkbox"> <span>Sou o responsável e concordo que a Comdei guarde estes dados para falar comigo sobre a catequese.</span></label></div>
-            <div class="ts"></div>
-            <p class="form-err" aria-live="polite"></p>
-            <button class="btn btn-navy" type="submit">Quero ser avisado</button>
-          </form>
-          <div class="success" hidden><b>Recebemos! Que alegria.</b><span>A gente vai te chamar no WhatsApp em breve.</span></div>
+        <div class="card">
+          <h3 class="card-title">Inscrição pelo WhatsApp</h3>
+          <p class="card-text">Quem chama é o pai, a mãe ou o responsável. Conte só:</p>
+          <ul class="ask"><li>seu nome;</li><li>a idade da criança (ou das crianças).</li></ul>
+          <a class="btn btn-wa btn-block" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20inscrever%20meu%20filho%20na%20catequese%20infantil%20na%20Lapa%20dos%20Mercadores.%20Idade%20da%20crian%C3%A7a%3A%20" target="_blank" rel="noopener">Inscrever pelo WhatsApp</a>
+          <p class="wa-num">(21) 98145-4569</p>
+          <div class="privacy">
+            <p><strong>Como usamos seus dados.</strong> Quem guarda é a Comdei, só para falar com você sobre a catequese na Lapa dos Mercadores. Não repassamos a ninguém.</p>
+            <p>Dados de crianças pedem cuidado redobrado: pedimos só a idade, sem nome nem foto da criança. Para apagar ou corrigir, peça na mesma conversa do WhatsApp.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -217,28 +211,13 @@
         <div>
           <p class="eyebrow">Perguntas</p>
           <h2>Ficou alguma dúvida? Pergunte</h2>
-          <p class="intro">Precisa ser batizado? Que idade pode entrar? Como funciona? Mande sua pergunta por aqui ou fale direto no WhatsApp.</p>
+          <p class="intro">Precisa ser batizado? Que idade pode entrar? Como funciona? Mande sua pergunta direto no WhatsApp.</p>
           <a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Tenho%20uma%20pergunta%20sobre%20a%20catequese%20infantil%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Perguntar no WhatsApp</a>
         </div>
-        <div class="card" data-form="pergunta">
-          <p class="preview-flag">Prévia: o envio ainda não está ligado. Nada é gravado.</p>
-          <form novalidate>
-            <div class="field"><label for="pq-nome">Seu nome</label>
-              <input id="pq-nome" name="nome" type="text" autocomplete="name" maxlength="120"></div>
-            <div class="field"><label for="pq-whatsapp">WhatsApp para a resposta (com DDD)</label>
-              <input id="pq-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(21) 99999-9999"></div>
-            <div class="field"><label for="pq-email">E-mail <span class="small">(opcional)</span></label>
-              <input id="pq-email" name="email" type="email" autocomplete="email" maxlength="200"></div>
-            <div class="field"><label for="pq-pergunta">Sua pergunta</label>
-              <textarea id="pq-pergunta" name="pergunta" maxlength="1000"></textarea></div>
-            <div class="hp" aria-hidden="true"><label for="pq-site">Deixe em branco</label><input id="pq-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
-            <div class="privacy"><p>Usamos seu contato só para responder. Para apagar, peça no WhatsApp <a href="https://wa.me/5521981454569">(21) 98145-4569</a>.</p></div>
-            <div class="field"><label class="consent"><input name="consentimento" type="checkbox"> <span>Concordo que a Comdei guarde meu contato para responder a pergunta.</span></label></div>
-            <div class="ts"></div>
-            <p class="form-err" aria-live="polite"></p>
-            <button class="btn btn-navy" type="submit">Enviar pergunta</button>
-          </form>
-          <div class="success" hidden><b>Pergunta recebida.</b><span>A gente responde pelo WhatsApp.</span></div>
+        <div class="soft bg-gold">
+          <h3>Algumas dúvidas comuns</h3>
+          <ul><li>Precisa ser batizado para começar?</li><li>Qual idade pode entrar?</li><li>Os pais participam?</li></ul>
+          <p style="margin-top:0.8rem">Pergunte sem cerimônia: a gente responde pelo WhatsApp.</p>
         </div>
       </div>
     </section>
@@ -267,11 +246,10 @@
       <p class="eyebrow">O que vem por aí</p>
       <h2>Sonhos para os próximos passos</h2>
       <span class="future-tag">Planos para o futuro · ainda sem data</span>
-      <div class="grid4">
+      <div class="grid3">
         <div class="soft bg-gold"><h3>Grupos de oração</h3><p>Grupos para rezar diferentes terços, guiados com o conhecimento do Padre Vítor:</p>
           <ul><li>Rosário de São Miguel Arcanjo</li><li>Terço do Espírito Santo</li><li>e outros</li></ul></div>
         <div class="soft bg-rose"><h3>Coral</h3><p>Um coral para cantar junto nas celebrações. Toda voz é bem-vinda.</p></div>
-        <div class="soft bg-sky"><h3>Missas na Igreja de Ouro</h3><p>Celebrações para a comunidade rezar unida.</p></div>
         <div class="soft bg-sage"><h3>Encontros nos jardins</h3><p>Momentos de convivência nos jardins da igreja, para as famílias se conhecerem.</p></div>
       </div>
     </section>
@@ -300,76 +278,9 @@
           <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
         </div>
       </div>
-      <p>Comdei · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
+      <p><a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/">comdei.org</a></p>
     </footer>
   </div>
 
-  <script>
-    (function () {
-      // Preencher só depois do GO (ver docs/crisma-adultos-backend.md). Vazio = modo prévia.
-      var ENDPOINT = "";           // ex.: https://comdei-lapa-formularios.<conta>.workers.dev/inscricao
-      var TURNSTILE_SITEKEY = "";  // chave pública do widget Turnstile (não é segredo)
-      var preview = !ENDPOINT || !TURNSTILE_SITEKEY;
-      if (preview) document.body.classList.add("is-preview");
-
-      var cards = Array.prototype.slice.call(document.querySelectorAll("[data-form]"));
-      var widgets = {};
-      if (!preview) {
-        window.onTurnstileLoad = function () {
-          cards.forEach(function (card) {
-            var form = card.getAttribute("data-form");
-            widgets[form] = window.turnstile.render(card.querySelector(".ts"), { sitekey: TURNSTILE_SITEKEY, action: form, language: "pt-br" });
-          });
-        };
-        var s = document.createElement("script");
-        s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit";
-        s.async = true; s.defer = true; document.head.appendChild(s);
-      }
-
-      function val(f, name) { var el = f.elements[name]; return el ? el.value.trim() : ""; }
-
-      cards.forEach(function (card) {
-        var formName = card.getAttribute("data-form");
-        var f = card.querySelector("form");
-        var err = card.querySelector(".form-err");
-        var btn = f.querySelector("button[type=submit]");
-        function done() { f.hidden = true; card.querySelector(".success").hidden = false; }
-
-        f.addEventListener("submit", function (event) {
-          event.preventDefault();
-          err.textContent = "";
-          var data = { form: formName, nome: val(f, "nome"), whatsapp: val(f, "whatsapp"), email: val(f, "email"),
-            consentimento: f.elements.consentimento.checked, site: f.elements.site.value };
-          if (formName === "catequese-infantil") data.idade = val(f, "idade");
-          if (formName === "pergunta") data.pergunta = val(f, "pergunta");
-
-          if (data.nome.length < 2) { err.textContent = "Escreva seu nome."; return; }
-          var d = data.whatsapp.replace(/\D/g, "");
-          if (d.length < 10 || d.length > 13) { err.textContent = "Confira o WhatsApp, com DDD."; return; }
-          if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { err.textContent = "Confira o e-mail."; return; }
-          if (formName === "catequese-infantil" && !/\d/.test(data.idade)) { err.textContent = "Conte a idade da criança."; return; }
-          if (formName === "pergunta" && data.pergunta.length < 5) { err.textContent = "Escreva sua pergunta."; return; }
-          if (!data.consentimento) { err.textContent = "Para guardar seu contato, precisamos do seu de acordo."; return; }
-          if (preview) { done(); return; }
-
-          var token = window.turnstile ? window.turnstile.getResponse(widgets[formName]) : "";
-          if (!token) { err.textContent = "Confirme a verificação antes de enviar."; return; }
-          data.turnstileToken = token;
-          btn.disabled = true;
-          fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
-            .then(function (res) {
-              return res.json().catch(function () { return {}; }).then(function (body) {
-                if (res.ok && body.ok) { done(); return; }
-                err.textContent = res.status === 429 ? "Muitas tentativas. Tente mais tarde, ou chame no WhatsApp."
-                  : (body.error || "Não deu certo agora. Tente de novo ou chame no WhatsApp.");
-                if (window.turnstile) window.turnstile.reset(widgets[formName]);
-              });
-            })
-            .catch(function () { err.textContent = "Sem conexão agora. Tente de novo ou chame no WhatsApp."; })
-            .then(function () { btn.disabled = false; });
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
