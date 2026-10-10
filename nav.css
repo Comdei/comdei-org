@@ -1,0 +1,40 @@
+/* Cabeçalho e rodapé comuns do comdei.org */
+.cnav { position: sticky; top: 0; z-index: 50; background: rgba(251, 246, 236, 0.96); backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e6dcc8; font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; }
+.cnav-in { max-width: 68rem; margin: 0 auto; padding: 0.55rem 1.2rem; display: flex; align-items: center; gap: 1rem; }
+.cnav a { border-bottom: 0; text-decoration: none; }
+.cnav-logo { display: inline-flex; flex: none; }
+.cnav-logo img { height: 2.5rem; width: auto; border-radius: 8px; display: block; }
+.cnav-menu { display: flex; align-items: center; gap: 0.2rem; margin-left: auto; list-style: none; padding: 0; margin-top: 0; margin-bottom: 0; }
+.cnav-menu a { display: block; color: #4a453c; font-size: 0.93rem; padding: 0.5rem 0.65rem; border-radius: 999px; white-space: nowrap; }
+.cnav-menu a:hover { color: #1a2744; background: #f1e7d2; }
+.cnav-menu a[aria-current="page"] { color: #1a2744; font-weight: 600; box-shadow: inset 0 -2px 0 #c8962e; border-radius: 0; }
+.cnav-menu a.cnav-cta { background: #1a2744; color: #f1c56a; font-weight: 600; padding: 0.55rem 1rem; margin-left: 0.4rem; border-radius: 999px; box-shadow: none; }
+.cnav-menu a.cnav-cta:hover { background: #121c33; }
+.cnav-toggle { display: none; margin-left: auto; background: #1a2744; color: #fff; border: 0; border-radius: 12px; padding: 0.55rem 0.8rem;
+  font: 600 0.95rem/1 "Inter", system-ui, sans-serif; cursor: pointer; align-items: center; gap: 0.5rem; }
+.cnav-toggle .bars { display: inline-block; width: 18px; height: 2px; background: #f1c56a; position: relative; }
+.cnav-toggle .bars::before, .cnav-toggle .bars::after { content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: #f1c56a; }
+.cnav-toggle .bars::before { top: -6px; } .cnav-toggle .bars::after { top: 6px; }
+.cnav-toggle:focus-visible, .cnav-menu a:focus-visible { outline: 3px solid #c8962e; outline-offset: 2px; }
+@media (max-width: 960px) {
+  .cnav-in { flex-wrap: wrap; }
+  .cnav-toggle { display: inline-flex; }
+  .cnav-menu { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0.15rem; padding: 0.4rem 0 0.6rem; }
+  .cnav.is-open .cnav-menu { display: flex; }
+  .cnav-menu a { font-size: 1.02rem; padding: 0.75rem 0.8rem; border-radius: 12px; white-space: normal; }
+  .cnav-menu a[aria-current="page"] { background: #f1e7d2; box-shadow: inset 3px 0 0 #c8962e; border-radius: 12px; }
+  .cnav-menu a.cnav-cta { margin: 0.4rem 0 0; text-align: center; }
+}
+.cfoot-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 1rem; margin: 1rem 0 0.4rem; padding: 0; list-style: none; font-size: 0.92rem; }
+.cfoot-links a { color: #1a2744; text-decoration: underline; text-decoration-color: #e6dcc8; border-bottom: 0; }
+.qr { display: flex; align-items: center; gap: 0.9rem; margin-top: 1rem; }
+.qr img { width: 7.5rem; height: 7.5rem; background: #fff; border-radius: 12px; padding: 0.3rem; flex: none; }
+.qr span { font-size: 0.88rem; line-height: 1.35; color: #dfe5f1; }
+html, body { overflow-x: hidden; }
+/* Na home, o CSS antigo usa #public a { ... }; reforça as cores do menu. */
+#public .cnav-menu a { color: #4a453c; }
+#public .cnav-menu a[aria-current="page"] { color: #1a2744; }
+#public .cnav-menu a.cnav-cta { color: #f1c56a; }
+#public .cfoot-links a { color: #1a2744; }
+#public .qr span { color: #dfe5f1; }

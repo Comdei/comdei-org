@@ -7,6 +7,8 @@
   <meta name="description" content="Como a Comdei cuida dos seus dados.">
   <meta name="robots" content="noindex">
   <link rel="icon" href="comdei.png" type="image/png">
+  <link rel="stylesheet" href="nav.css">
+  <noscript><style>.cnav-menu{display:flex!important}.cnav-toggle{display:none!important}</style></noscript>
   <style>
     :root {
       --ink: #221d18; --mute: #5a5247; --paper: #fbf6ec; --card: #ffffff; --line: #e6dcc8;
@@ -162,11 +164,21 @@
   </style>
 </head>
 <body>
+  <header class="cnav">
+    <div class="cnav-in">
+      <a class="cnav-logo" href="/" aria-label="Comdei, página inicial"><img src="comdei.png" alt="Comdei"></a>
+      <button class="cnav-toggle" type="button" aria-expanded="false" aria-controls="cnav-menu"><span class="bars" aria-hidden="true"></span>Menu</button>
+      <ul class="cnav-menu" id="cnav-menu">
+        <li><a href="/">Início</a></li>
+        <li><a href="/lapa">Lapa dos Mercadores</a></li>
+        <li><a href="/crisma-adultos">Crisma de adultos</a></li>
+        <li><a href="/catequese-infantil">Catequese infantil</a></li>
+        <li><a href="/lapa#sacramentos">Sacramentos</a></li>
+        <li><a class="cnav-cta" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a></li>
+      </ul>
+    </div>
+  </header>
   <div class="wrap">
-    <header class="topbar">
-      <a href="/" aria-label="Comdei"><img src="comdei.png" alt="Comdei"></a>
-      <nav aria-label="Seções"><a href="/">Início</a><a href="/lapa">Comdei na Lapa</a></nav>
-    </header>
     <section style="padding-top:1.4rem">
       <p class="eyebrow">Privacidade</p>
       <h2>Como a Comdei cuida dos seus dados</h2>
@@ -197,8 +209,11 @@
           <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
         </div>
       </div>
-      <p>Comdei · fundada por Lucas Lima · <a href="/lapa">Comdei na Lapa</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/privacidade">Privacidade</a></p>
+      <ul class="cfoot-links"><li><a href="/">Início</a></li><li><a href="/lapa">Lapa dos Mercadores</a></li><li><a href="/crisma-adultos">Crisma de adultos</a></li><li><a href="/catequese-infantil">Catequese infantil</a></li><li><a href="/lapa#sacramentos">Sacramentos</a></li><li><a href="/privacidade">Privacidade</a></li></ul>
+      <p>Comdei · fundada por Lucas Lima · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
     </footer>
   </div>
+  <script src="nav.js"></script>
+  <script src="comunidade.js"></script>
 </body>
 </html>

@@ -15,6 +15,8 @@
   <meta property="og:image" content="https://comdei.org/comdei.png">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="comdei.png" type="image/png">
+  <link rel="stylesheet" href="nav.css">
+  <noscript><style>.cnav-menu{display:flex!important}.cnav-toggle{display:none!important}</style></noscript>
   <style>
     :root {
       --ink: #241f1a;
@@ -619,7 +621,8 @@
 #public .path h3 { margin: 0 0 0.35rem; color: var(--navy); font-size: 1.15rem; }
 #public .path p { margin: 0 0 0.8rem; color: var(--mute); font-size: 0.97rem; }
 #public .path span.go { color: var(--gold-ink); font-weight: 600; font-size: 0.95rem; }
-@media (max-width: 860px) { #public .paths { grid-template-columns: 1fr; } }
+#public .paths-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 860px) { #public .paths, #public .paths-2 { grid-template-columns: 1fr; } }
 @media (max-width: 860px) { #public .values { grid-template-columns: 1fr; } }
 
   </style>
@@ -627,20 +630,24 @@
 </head>
 <body>
   <div id="public">
+    <header class="cnav">
+      <div class="cnav-in">
+        <a class="cnav-logo" href="/" aria-label="Comdei, página inicial"><img src="comdei.png" alt="Comdei"></a>
+        <button class="cnav-toggle" type="button" aria-expanded="false" aria-controls="cnav-menu"><span class="bars" aria-hidden="true"></span>Menu</button>
+        <ul class="cnav-menu" id="cnav-menu">
+          <li><a href="/" aria-current="page">Início</a></li>
+          <li><a href="/lapa">Lapa dos Mercadores</a></li>
+          <li><a href="/crisma-adultos">Crisma de adultos</a></li>
+          <li><a href="/catequese-infantil">Catequese infantil</a></li>
+          <li><a href="/lapa#sacramentos">Sacramentos</a></li>
+          <li><a class="cnav-cta" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a></li>
+        </ul>
+      </div>
+    </header>
     <main>
     <div class="wrap">
-      <header class="topbar">
-        <a href="/" aria-label="Comdei"><img src="comdei.png" alt="Comdei"></a>
-        <nav aria-label="Seções">
-          <a href="/lapa">Comdei na Lapa</a>
-          <a href="/lapa#sacramentos">Sacramentos</a>
-          <a href="/crisma-adultos">Crisma de adultos</a>
-          <a href="/catequese-infantil">Catequese infantil</a>
-        </nav>
-      </header>
 
       <div class="hero">
-        <img class="hero-logo" src="comdei.png" alt="Comdei">
         <h1>Gente comum caminhando <span>junto na fé</span></h1>
         <p class="lede">Acolher quem chega, ajudar uns aos outros e rezar juntos, do terço de cada dia à Missa de domingo. É assim que a Comdei vive a fé, no Rio de Janeiro.</p>
         <p class="brandline">A Comdei é um grupo de fiéis que caminha com a Igreja.</p>
@@ -649,7 +656,7 @@
           <a class="btn btn-ghost" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a>
         </div>
       </div>
-      <p class="founder"><img src="comdei.png" alt=""><span>Fundada por Lucas Lima.</span></p>
+      <p class="founder"><span>Fundada por Lucas Lima.</span></p>
 
       <section>
         <p class="eyebrow">Como a gente vive a fé</p>
@@ -679,24 +686,23 @@
           <div class="soft bg-sky"><h3>Aulas online gravadas</h3><p>Com imagens, PDFs e resumos preparados com ajuda de inteligência artificial. Todo o conteúdo vem do Padre Vítor, e nada é publicado sem a revisão dele.</p></div>
         </div>
         <p class="cta-row"><a class="btn btn-gold" href="/lapa">Ver a proposta completa</a></p>
-        <div class="paths" style="margin-top:1.6rem">
+        <div class="paths paths-2" style="margin-top:1.6rem">
           <a class="path" href="/crisma-adultos"><h3>Crisma de adultos</h3><p>Para quem é batizado e ainda não foi crismado. Nunca é tarde.</p><span class="go">Conhecer a turma →</span></a>
           <a class="path" href="/catequese-infantil"><h3>Catequese infantil</h3><p>Para as crianças crescerem juntas na fé, com as famílias por perto.</p><span class="go">Conhecer a catequese →</span></a>
-          <a class="path" href="/lapa#sacramentos"><h3>Sacramentos</h3><p>Batismo, Primeira Eucaristia, Crisma, Confissão, Matrimônio e Unção dos Enfermos.</p><span class="go">Ver os sacramentos →</span></a>
         </div>
       </section>
 
       <section>
         <p class="eyebrow">Sacramentos</p>
-        <h2>Os sacramentos, com o Padre Vítor</h2>
-        <p class="intro">Cada sacramento é conversado com calma, do seu jeito e no seu tempo. Chame no WhatsApp e a gente combina com o Padre Vítor.</p>
+        <h2>Os sacramentos</h2>
+        <p class="intro">Cada sacramento é conversado com calma, do seu jeito e no seu tempo. Chame no WhatsApp e a gente te orienta.</p>
         <div class="sacr-grid">
-          <div class="sac sac-top"><h3>Batismo</h3><p>A porta de entrada na vida cristã, para crianças e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Batismo%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
-          <div class="sac sac-top"><h3>Primeira Eucaristia</h3><p>Receber Jesus pela primeira vez, bem preparado e com a família por perto.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Primeira%20Eucaristia%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
-          <div class="sac sac-top"><h3>Crisma</h3><p>A confirmação da fé, com a força do Espírito Santo, para jovens e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Crisma%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
-          <div class="sac sac-top"><h3>Confissão</h3><p>O encontro com a misericórdia de Deus, com calma e em sigilo.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Confiss%C3%A3o%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
-          <div class="sac sac-top"><h3>Matrimônio</h3><p>Para os noivos que querem começar a vida a dois diante de Deus.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Matrim%C3%B4nio%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
-          <div class="sac sac-top"><h3>Unção dos Enfermos</h3><p>Conforto e força de Deus para quem está doente ou fragilizado.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Un%C3%A7%C3%A3o%20dos%20Enfermos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+          <div class="sac sac-top"><h3>Batismo</h3><p>A porta de entrada na vida cristã, para crianças e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Batismo%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
+          <div class="sac sac-top"><h3>Primeira Eucaristia</h3><p>Receber Jesus pela primeira vez, bem preparado e com a família por perto.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Primeira%20Eucaristia%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
+          <div class="sac sac-top"><h3>Crisma</h3><p>A confirmação da fé, com a força do Espírito Santo, para jovens e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Crisma%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
+          <div class="sac sac-top"><h3>Confissão</h3><p>O encontro com a misericórdia de Deus, com calma e em sigilo.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Confiss%C3%A3o%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
+          <div class="sac sac-top"><h3>Matrimônio</h3><p>Para os noivos que querem começar a vida a dois diante de Deus.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Matrim%C3%B4nio%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
+          <div class="sac sac-top"><h3>Unção dos Enfermos</h3><p>Conforto e força de Deus para quem está doente ou fragilizado.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Un%C3%A7%C3%A3o%20dos%20Enfermos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Quero saber mais</a></div>
         </div>
       </section>
 
@@ -707,7 +713,7 @@
             <h2>Entre na comunidade e acompanhe os avisos</h2>
             <p>Os avisos do dia a dia e da semana chegam pela comunidade da Comdei no WhatsApp. Cada turma terá o seu próprio grupo dentro da comunidade.</p>
           </div>
-          <div><a class="btn btn-gold btn-big btn-block" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a></div>
+          <div><a class="btn btn-gold btn-big btn-block" data-comunidade href="https://chat.whatsapp.com/Il31VgeR7qxCis2l0i9qpT" target="_blank" rel="noopener">Entrar na comunidade</a><div class="qr"><img src="comunidade-qr.svg" alt="QR code do convite da comunidade Comdei no WhatsApp" width="120" height="120"><span>Aponte a câmera do celular para entrar no grupo da Comdei</span></div></div>
         </div>
       </section>
 
@@ -751,7 +757,8 @@
 
       <footer>
         <p>Comdei · fundada por Lucas Lima · 2026</p>
-        <p><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="mailto:pe.vitor@comdei.org">pe.vitor@comdei.org</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a> · <a href="/privacidade">Privacidade</a></p>
+        <ul class="cfoot-links"><li><a href="/">Início</a></li><li><a href="/lapa">Lapa dos Mercadores</a></li><li><a href="/crisma-adultos">Crisma de adultos</a></li><li><a href="/catequese-infantil">Catequese infantil</a></li><li><a href="/lapa#sacramentos">Sacramentos</a></li><li><a href="/privacidade">Privacidade</a></li></ul>
+        <p><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="mailto:pe.vitor@comdei.org">pe.vitor@comdei.org</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
         <p class="founders-entry"><a class="founders-link" href="#interno">Acesso interno</a></p>
       </footer>
     </div>
@@ -1131,5 +1138,6 @@
     })();
   </script>
   <script src="comunidade.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>
