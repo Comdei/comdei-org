@@ -3,8 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>comdei</title>
-  <meta name="description" content="Comdei — grupo de fiéis. Rio de Janeiro.">
+  <title>Comdei · Gente comum caminhando junto na fé</title>
+  <meta name="description" content="A Comdei é um grupo de fiéis que caminha com a Igreja, no Rio de Janeiro. Acolher, ajudar uns aos outros e rezar juntos. Formação na Igreja Nossa Senhora da Lapa dos Mercadores.">
+  <link rel="canonical" href="https://comdei.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Comdei">
+  <meta property="og:url" content="https://comdei.org/">
+  <meta property="og:title" content="Comdei · Gente comum caminhando junto na fé">
+  <meta property="og:description" content="Acolher quem chega, ajudar uns aos outros e rezar juntos. Formação e sacramentos na Igreja Nossa Senhora da Lapa dos Mercadores.">
+  <meta property="og:image" content="https://comdei.org/comdei.png">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="comdei.png" type="image/png">
   <style>
     :root {
@@ -421,18 +430,288 @@
     .public-home .lede { margin-bottom: 1.2rem; }
     .public-home > p:not(.lede) { max-width: 34rem; margin-left: auto; margin-right: auto; }
     .founders-entry { margin: 1.7rem 0 0; }
+
+    /* ===== Home pública (mesmo visual de /lapa) ===== */
+#public {
+      --ink: #221d18; --mute: #5a5247; --paper: #fbf6ec; --card: #ffffff; --line: #e6dcc8;
+      --gold: #c8962e; --gold-soft: #f6e7c4; --gold-ink: #7a5a17; --navy: #1a2744; --navy-deep: #121c33;
+      --sky: #e5eef8; --rose: #f8e6e0; --sage: #e4efe4; --danger: #8a2b2b; --wa: #1f8a52;
+      --radius: 22px; --shadow: 0 10px 30px rgba(26, 39, 68, 0.08);
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+#public * { box-sizing: border-box; }
+#public a { color: var(--navy); }
+#public :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+#public .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.4rem; }
+#public .topbar { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; }
+#public .topbar img { height: 2.6rem; width: auto; border-radius: 10px; }
+#public .topbar nav { display: flex; gap: 1.2rem; font-size: 0.95rem; }
+#public .topbar nav a { text-decoration: none; color: var(--mute); }
+#public .topbar nav a:hover { color: var(--navy); }
+#public .hero { position: relative; overflow: hidden; border-radius: 32px; margin: 0.4rem 0 0;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 55%, #6e5724 130%); color: #fff;
+      padding: 3.6rem 3rem 3.2rem; }
+#public .hero::before, #public .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(2px); opacity: 0.55; }
+#public .hero::before { width: 22rem; height: 22rem; right: -6rem; top: -7rem; background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); }
+#public .hero::after { width: 16rem; height: 16rem; left: 40%; bottom: -9rem; background: radial-gradient(circle, #8fb4e3 0%, rgba(143,180,227,0) 70%); }
+#public .hero > * { position: relative; z-index: 1; }
+#public .pill { display: inline-block; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.82rem; letter-spacing: 0.04em; }
+#public .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.1rem, 5.6vw, 3.4rem); line-height: 1.08; margin: 1rem 0 0.8rem; max-width: 40rem; }
+#public .hero h1 span { color: #f1c56a; }
+#public .hero p.lede { font-size: 1.18rem; max-width: 36rem; margin: 0 0 0.5rem; color: #eef1f7; }
+#public .hero p.sub { font-size: 0.98rem; color: #cfd6e6; margin: 0 0 1.6rem; }
+#public .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 1.8rem; }
+#public .chip { background: rgba(255,255,255,0.1); border-radius: 14px; padding: 0.6rem 0.9rem; font-size: 0.9rem; }
+#public .chip b { display: block; font-weight: 600; color: #f1c56a; font-style: italic; }
+#public .btns { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+#public .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.4rem; border-radius: 999px; font-weight: 600;
+      text-decoration: none; font-size: 1rem; border: 0; cursor: pointer; font-family: var(--sans); }
+#public .btn-gold { background: #f1c56a; color: #1a2744; }
+#public .btn-gold:hover { background: #f6d48d; }
+#public .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+#public .btn-wa { background: var(--wa); color: #fff; }
+#public .btn-wa:hover { background: #18734a; }
+#public .btn-navy { background: var(--navy); color: #fff; width: 100%; justify-content: center; }
+#public .btn-navy:hover { background: var(--navy-deep); }
+#public .btn-navy:disabled { opacity: 0.6; cursor: wait; }
+#public .btn-off { background: #eee7d8; color: var(--mute); cursor: default; }
+#public .partners { text-align: center; margin: 2.4rem auto 0; }
+#public .partners-cap { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 1rem; }
+#public .partners-row { display: flex; justify-content: center; align-items: flex-start; gap: 2.6rem; }
+#public .partner { width: 12rem; margin: 0; }
+#public .partner img { height: 6.5rem; width: auto; display: block; margin: 0 auto 0.55rem; }
+#public .partner figcaption { font-size: 0.8rem; line-height: 1.35; color: var(--mute); }
+#public section { padding: 3.4rem 0 0; }
+#public .eyebrow { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 0.4rem; font-weight: 600; }
+#public h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 3.6vw, 2.2rem); line-height: 1.15; color: var(--navy); margin: 0 0 0.8rem; }
+#public .intro { font-size: 1.08rem; color: var(--mute); max-width: 40rem; margin: 0 0 1.6rem; }
+#public .grid2 { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.6rem; align-items: start; }
+#public .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.8rem 1.6rem; border: 1px solid var(--line); }
+#public .soft { border-radius: var(--radius); padding: 1.6rem; }
+#public .soft h3 { margin: 0 0 0.4rem; font-size: 1.12rem; color: var(--navy); }
+#public .soft p { margin: 0; color: var(--mute); font-size: 0.98rem; }
+#public .bg-sky { background: var(--sky); }
+#public .bg-rose { background: var(--rose); }
+#public .bg-sage { background: var(--sage); }
+#public .bg-gold { background: var(--gold-soft); }
+#public .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.8rem; }
+#public .steps li { display: flex; gap: 0.9rem; align-items: flex-start; }
+#public .steps .n { flex: none; width: 2rem; height: 2rem; border-radius: 50%; background: var(--gold-soft); color: var(--gold-ink);
+      display: grid; place-items: center; font-weight: 700; }
+#public .note { font-size: 0.95rem; color: var(--mute); margin: 1.2rem 0 0; }
+#public .field { margin-bottom: 0.95rem; }
+#public label { display: block; font-size: 0.88rem; color: var(--mute); margin: 0 0 0.3rem; font-weight: 500; }
+#public input[type="text"], #public input[type="tel"], #public input[type="email"], #public textarea { width: 100%; padding: 0.78rem 0.9rem; border-radius: 12px;
+      border: 1px solid var(--line); background: #fdfbf6; font: inherit; color: var(--ink); }
+#public textarea { min-height: 7rem; resize: vertical; }
+#public input:focus, #public textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26, 39, 68, 0.12); }
+#public .privacy { font-size: 0.86rem; color: var(--mute); background: #f7f1e4; border-radius: 12px; padding: 0.8rem 0.95rem; margin: 0 0 0.9rem; }
+#public .privacy p { margin: 0 0 0.35rem; }
+#public .privacy p:last-child { margin: 0; }
+#public .consent { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.93rem; color: var(--ink); font-weight: 400; }
+#public .consent input { margin-top: 0.3rem; flex: none; }
+#public .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+#public .form-err { color: var(--danger); font-size: 0.92rem; min-height: 1.2em; margin: 0.3rem 0 0.4rem; }
+#public .preview-flag { display: none; font-size: 0.82rem; color: var(--danger); margin: 0 0 0.9rem; }
+#public .is-preview .preview-flag { display: block; }
+#public .success { text-align: center; padding: 1rem 0.4rem; }
+#public .success b { display: block; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.4rem; }
+#public .card-title { margin: 0 0 0.4rem; font-size: 1.2rem; color: var(--navy); }
+#public .card-text { margin: 0 0 0.4rem; color: var(--mute); }
+#public .ask { margin: 0 0 1.1rem; padding-left: 1.2rem; color: var(--ink); }
+#public .btn-block { width: 100%; justify-content: center; }
+#public .wa-num { text-align: center; color: var(--mute); font-size: 0.92rem; margin: 0.5rem 0 1rem; }
+#public .small { font-weight: 400; color: var(--mute); font-size: 0.82rem; }
+#public .tbc { font-style: italic; color: var(--gold-ink); font-weight: 600; }
+#public .future-tag { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      background: var(--navy); color: #f1c56a; border-radius: 999px; padding: 0.3rem 0.8rem; margin: 0 0 0.9rem; }
+#public .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+#public .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+#public .soft ul { margin: 0.5rem 0 0; padding-left: 1.1rem; color: var(--mute); font-size: 0.95rem; }
+#public .sacr { background: linear-gradient(135deg, #f6e7c4 0%, #fbf6ec 100%); border-radius: 28px; padding: 2.4rem 2.2rem;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.6rem; align-items: center; border: 1px solid var(--line); }
+#public .sacr-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 0; padding: 0; list-style: none; }
+#public .sacr-list li { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.85rem; font-size: 0.92rem; }
+#public footer { margin-top: 4rem; padding: 2.6rem 0 3rem; border-top: 1px solid var(--line); text-align: center; color: var(--mute); font-size: 0.92rem; }
+#public footer .partners { margin-top: 0; }
+#public footer .partner { width: 9.5rem; }
+#public footer .partner img { height: 4.2rem; }
+#public footer .partner figcaption { font-size: 0.72rem; }
+#public footer p { margin: 1.2rem 0 0; }
+@media (max-width: 860px) {
+#public .grid2, #public .sacr { grid-template-columns: 1fr; }
+#public .grid4 { grid-template-columns: 1fr 1fr; }
+#public .grid3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+#public .wrap { padding: 0 1rem; }
+#public .topbar nav { display: none; }
+#public .hero { padding: 2.4rem 1.4rem 2.2rem; border-radius: 24px; }
+#public .grid4 { grid-template-columns: 1fr; }
+#public .partners-row { gap: 1.2rem; }
+#public .partner { width: 9.5rem; }
+#public .partner img { height: 5.4rem; }
+#public footer .partner { width: 8rem; }
+#public footer .partner img { height: 3.8rem; }
+#public .card { padding: 1.4rem 1.15rem; }
+#public .sacr { padding: 1.8rem 1.3rem; }
+#public .btn { width: 100%; justify-content: center; }
+}
+#public .comm { position: relative; overflow: hidden; border-radius: 28px; color: #fff; padding: 2.4rem 2.2rem;
+      background: linear-gradient(135deg, #1a2744 0%, #2b3b63 60%, #6e5724 140%); display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.4rem; align-items: center; }
+#public .comm::before { content: ""; position: absolute; width: 18rem; height: 18rem; right: -5rem; top: -6rem; border-radius: 50%;
+      background: radial-gradient(circle, #e8b84f 0%, rgba(232,184,79,0) 70%); opacity: 0.5; }
+#public .comm > * { position: relative; z-index: 1; }
+#public .comm h2 { color: #fff; margin-bottom: 0.5rem; }
+#public .comm p { color: #dfe5f1; margin: 0 0 0.4rem; font-size: 1.02rem; }
+#public .comm .eyebrow { color: #f1c56a; }
+#public .comm-sm { border-radius: 22px; padding: 1.6rem 1.5rem; grid-template-columns: 1.6fr 1fr; }
+#public .comm-sm h3 { margin: 0 0 0.35rem; font-size: 1.2rem; color: #fff; }
+#public .btn-big { font-size: 1.08rem; padding: 1rem 1.6rem; }
+#public .founder { text-align: center; color: var(--mute); font-size: 0.95rem; margin: 1.6rem 0 0; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+#public .founder img { height: 2.6rem; width: auto; border-radius: 8px; }
+#public .sacr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+#public .sac { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.3rem; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+#public .sac h3 { margin: 0 0 0.3rem; color: var(--navy); font-size: 1.15rem; }
+#public .sac p { margin: 0 0 1rem; color: var(--mute); font-size: 0.96rem; flex: 1; }
+#public .sac .btn { font-size: 0.92rem; padding: 0.7rem 1rem; justify-content: center; }
+#public .sac-top { border-top: 4px solid var(--gold); }
+@media (max-width: 860px) {
+#public .comm, #public .comm-sm { grid-template-columns: 1fr; }
+#public .sacr-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+#public .comm { padding: 1.8rem 1.3rem; }
+#public .sacr-grid { grid-template-columns: 1fr; }
+}
+#public { font-family: var(--sans); background: var(--paper); line-height: 1.6; }
+#public main { max-width: none; padding: 0; }
+#public a { border-bottom: 0; }
+#public p { font-size: inherit; }
+#public .hero-logo { width: 6.5rem; height: auto; border-radius: 18px; background: #fff; padding: 0.4rem; display: block; margin: 0 0 1.2rem; }
+#public .brandline { display: inline-block; font-family: var(--serif); font-size: 1.15rem; color: #f1c56a; border-left: 3px solid #f1c56a; padding-left: 0.8rem; margin: 0 0 1.6rem; }
+#public .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+#public .center { text-align: center; }
+#public .cta-row { margin: 1.4rem 0 0; }
+#public .waitlist { text-align: left; max-width: 30rem; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.8rem 1.6rem 1.5rem; }
+#public .waitlist h2 { text-align: center; margin: 0 0 0.3rem; }
+#public .waitlist .cta-lead { text-align: center; color: var(--mute); margin: 0 0 1.2rem; }
+#public .waitlist label { display: block; font-size: 0.88rem; color: var(--mute); margin: 0 0 0.3rem; }
+#public .waitlist .field { margin-bottom: 0.9rem; }
+#public .waitlist input, #public .waitlist textarea { width: 100%; padding: 0.75rem 0.9rem; border-radius: 12px; border: 1px solid var(--line); background: #fdfbf6; font: inherit; color: var(--ink); }
+#public .waitlist textarea { min-height: 5.5rem; resize: vertical; }
+#public .waitlist button[type="submit"] { width: 100%; min-height: 3rem; border: 0; border-radius: 999px; background: var(--navy); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+#public .waitlist button[type="submit"]:hover { background: var(--navy-deep); }
+#public .waitlist button[type="submit"]:disabled { opacity: 0.65; cursor: wait; }
+#public .form-err { color: var(--danger); font-size: 0.9rem; min-height: 1.2em; margin: 0.3rem 0; }
+#public .form-note { text-align: center; color: var(--mute); font-size: 0.86rem; margin: 0.9rem 0 0; }
+#public .waitlist-success { text-align: center; }
+#public .waitlist-success a { color: var(--navy); text-decoration: underline; }
+#public footer { padding: 2.6rem 0 3rem; }
+#public footer a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); }
+#public .founders-link { color: var(--mute); font-size: 0.9rem; }
+#public .hero { text-align: left; }
+#public .hero p { text-align: left; }
+#public .paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+#public .path { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+#public .path h3 { margin: 0 0 0.35rem; color: var(--navy); font-size: 1.15rem; }
+#public .path p { margin: 0 0 0.8rem; color: var(--mute); font-size: 0.97rem; }
+#public .path span.go { color: var(--gold-ink); font-weight: 600; font-size: 0.95rem; }
+@media (max-width: 860px) { #public .paths { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { #public .values { grid-template-columns: 1fr; } }
+
   </style>
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <div id="public">
     <main>
-      <div class="public-home">
-        <img class="mark" src="comdei.png" alt="comdei — cruz no d">
-        <p class="kicker">Comdei</p>
-        <p>A Comdei é um grupo de fiéis que caminha com a Igreja.</p>
-        <hr class="rule">
+    <div class="wrap">
+      <header class="topbar">
+        <a href="/" aria-label="Comdei"><img src="comdei.png" alt="Comdei"></a>
+        <nav aria-label="Seções">
+          <a href="/lapa">Comdei na Lapa</a>
+          <a href="/lapa#sacramentos">Sacramentos</a>
+          <a href="/crisma-adultos">Crisma de adultos</a>
+          <a href="/catequese-infantil">Catequese infantil</a>
+        </nav>
+      </header>
 
+      <div class="hero">
+        <img class="hero-logo" src="comdei.png" alt="Comdei">
+        <h1>Gente comum caminhando <span>junto na fé</span></h1>
+        <p class="lede">Acolher quem chega, ajudar uns aos outros e rezar juntos, do terço de cada dia à Missa de domingo. É assim que a Comdei vive a fé, no Rio de Janeiro.</p>
+        <p class="brandline">A Comdei é um grupo de fiéis que caminha com a Igreja.</p>
+        <div class="btns">
+          <a class="btn btn-gold" href="/lapa">Conhecer a Comdei na Lapa</a>
+          <a class="btn btn-ghost" data-comunidade href="https://wa.me/5521981454569?text=Quero%20entrar%20na%20comunidade%20da%20Comdei%20no%20WhatsApp" target="_blank" rel="noopener">Entrar na comunidade</a>
+        </div>
+      </div>
+      <p class="founder"><img src="comdei.png" alt=""><span>Fundada por Lucas Lima.</span></p>
+
+      <section>
+        <p class="eyebrow">Como a gente vive a fé</p>
+        <h2>Ninguém caminha sozinho</h2>
+        <div class="values">
+          <div class="soft bg-gold"><h3>Acolher</h3><p>Cada um chega do jeito que está. Aqui ninguém precisa saber tudo para começar.</p></div>
+          <div class="soft bg-sky"><h3>Ajudar uns aos outros</h3><p>Família, trabalho, dúvidas da fé: a gente se apoia no dia a dia, como comunidade.</p></div>
+          <div class="soft bg-sage"><h3>Rezar juntos</h3><p>Rezar o terço, ir à Missa e aprender a fé com alegria, lado a lado.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <p class="eyebrow">Em destaque</p>
+        <h2>Formação na Igreja Nossa Senhora da Lapa dos Mercadores</h2>
+        <p class="intro">Uma parceria da Comdei com a Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores e a Irmandade de Nossa Senhora da Lapa dos Mercadores, na missão de evangelização.</p>
+      <div class="partners" aria-label="Instituições parceiras">
+      <p class="partners-cap">Instituições parceiras na missão de evangelização</p>
+      <div class="partners-row">
+        <figure class="partner"><img src="parceiros/irmandade.png" alt="Brasão da Irmandade de Nossa Senhora da Lapa dos Mercadores"><figcaption>Irmandade de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+        <figure class="partner"><img src="parceiros/liga.png" alt="Brasão da Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores"><figcaption>Venerável Liga dos Devotos de Nossa Senhora da Lapa dos Mercadores</figcaption></figure>
+      </div>
+    </div>
+
+
+        <div class="grid2" style="margin-top:1.6rem">
+          <div class="soft bg-gold"><h3>Encontros presenciais</h3><p>Encontros de formação na nave da igreja, com cerca de 50 pessoas por encontro.</p></div>
+          <div class="soft bg-sky"><h3>Aulas online gravadas</h3><p>Com imagens, PDFs e resumos preparados com ajuda de inteligência artificial a partir do conteúdo do Padre Vítor, sempre revisados por ele.</p></div>
+        </div>
+        <p class="cta-row"><a class="btn btn-gold" href="/lapa">Ver a proposta completa</a></p>
+        <div class="paths" style="margin-top:1.6rem">
+          <a class="path" href="/crisma-adultos"><h3>Crisma de adultos</h3><p>Para quem é batizado e ainda não foi crismado. Nunca é tarde.</p><span class="go">Conhecer a turma →</span></a>
+          <a class="path" href="/catequese-infantil"><h3>Catequese infantil</h3><p>Para as crianças crescerem juntas na fé, com as famílias por perto.</p><span class="go">Conhecer a catequese →</span></a>
+          <a class="path" href="/lapa#sacramentos"><h3>Sacramentos</h3><p>Batismo, Primeira Eucaristia, Crisma, Confissão, Matrimônio e Unção dos Enfermos.</p><span class="go">Ver os sacramentos →</span></a>
+        </div>
+      </section>
+
+      <section>
+        <p class="eyebrow">Sacramentos</p>
+        <h2>Os sacramentos, com o Padre Vítor</h2>
+        <p class="intro">Cada sacramento é conversado com calma, do seu jeito e no seu tempo. Chame no WhatsApp e a gente combina com o Padre Vítor.</p>
+        <div class="sacr-grid">
+          <div class="sac sac-top"><h3>Batismo</h3><p>A porta de entrada na vida cristã, para crianças e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Batismo%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+          <div class="sac sac-top"><h3>Primeira Eucaristia</h3><p>Receber Jesus pela primeira vez, bem preparado e com a família por perto.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Primeira%20Eucaristia%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+          <div class="sac sac-top"><h3>Crisma</h3><p>A confirmação da fé, com a força do Espírito Santo, para jovens e adultos.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Crisma%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+          <div class="sac sac-top"><h3>Confissão</h3><p>O encontro com a misericórdia de Deus, com calma e em sigilo.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Confiss%C3%A3o%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+          <div class="sac sac-top"><h3>Matrimônio</h3><p>Para os noivos que querem começar a vida a dois diante de Deus.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Matrim%C3%B4nio%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+          <div class="sac sac-top"><h3>Unção dos Enfermos</h3><p>Conforto e força de Deus para quem está doente ou fragilizado.</p><a class="btn btn-wa" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20agendar%20com%20o%20Padre%20V%C3%ADtor%3A%20Un%C3%A7%C3%A3o%20dos%20Enfermos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Agendar com o Padre Vítor</a></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="comm">
+          <div>
+            <p class="eyebrow">Comunidade Comdei no WhatsApp</p>
+            <h2>Entre na comunidade e acompanhe os avisos</h2>
+            <p>Os avisos do dia a dia e da semana chegam pela comunidade da Comdei no WhatsApp. Cada turma terá o seu próprio grupo dentro da comunidade.</p>
+          </div>
+          <div><a class="btn btn-gold btn-big btn-block" data-comunidade href="https://wa.me/5521981454569?text=Quero%20entrar%20na%20comunidade%20da%20Comdei%20no%20WhatsApp" target="_blank" rel="noopener">Entrar na comunidade da Comdei</a></div>
+        </div>
+      </section>
+
+      <section>
         <div class="waitlist">
           <h2>Deixe um contato</h2>
           <p class="cta-lead">Se quiser, avisamos quando houver novidade.</p>
@@ -454,6 +733,10 @@
               <label for="wl-nota">Recado <span class="small">(opcional)</span></label>
               <textarea id="wl-nota" name="message" maxlength="800" placeholder="Como conheceu a Comdei, se quiser."></textarea>
             </div>
+            <div class="sr-only" aria-hidden="true">
+              <label for="wl-gotcha">Não preencha este campo</label>
+              <input id="wl-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <p class="form-err" id="waitlist-err" aria-live="polite"></p>
             <button type="submit" id="waitlist-submit">Entrar na lista</button>
           </form>
@@ -464,13 +747,15 @@
           </div>
           <p class="form-note">Os envios vão para a equipe da Comdei.</p>
         </div>
+      </section>
 
+      <footer>
+        <p>Comdei · fundada por Lucas Lima · 2026</p>
+        <p><a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="mailto:pe.vitor@comdei.org">pe.vitor@comdei.org</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
         <p class="founders-entry"><a class="founders-link" href="#interno">Acesso interno</a></p>
-      </div>
+      </footer>
+    </div>
     </main>
-    <footer>
-      <p>2026 · <a href="mailto:lucas@comdei.org">lucas@comdei.org</a> · <a href="mailto:pe.vitor@comdei.org">pe.vitor@comdei.org</a> · <a href="https://instagram.com/vemcomdei" target="_blank" rel="noopener">@vemcomdei</a></p>
-    </footer>
   </div>
 
   <div id="gate" hidden>
@@ -673,7 +958,9 @@
 
         if (!gated) {
           showView("public");
-          window.scrollTo(0, 0);
+          var target = hash ? document.getElementById(hash) : null;
+          if (target) target.scrollIntoView();
+          else window.scrollTo(0, 0);
           return;
         }
 
@@ -791,6 +1078,7 @@
         var email = document.getElementById("wl-email").value.trim();
         var whatsapp = document.getElementById("wl-whatsapp").value.trim();
         var nota = document.getElementById("wl-nota").value.trim();
+        var gotcha = document.getElementById("wl-gotcha").value;
 
         if (!email && !whatsapp) {
           err.textContent = "Informe e-mail ou WhatsApp.";
@@ -829,7 +1117,8 @@
             name: nome,
             email: email,
             whatsapp: whatsapp,
-            message: nota
+            message: nota,
+            _gotcha: gotcha
           })
         }).then(function () {
           showWaitlistSuccess();
@@ -841,5 +1130,6 @@
       });
     })();
   </script>
+  <script src="comunidade.js"></script>
 </body>
 </html>
