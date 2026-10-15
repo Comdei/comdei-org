@@ -30,6 +30,18 @@
           }
         ]
       }
+    ],
+    "redirects": [
+      {
+        "source": "/ig/claudio",
+        "destination": "/catequese-infantil?utm_source=instagram&utm_medium=stories&utm_campaign=catequese_lapa&utm_content=claudio_andre",
+        "type": 302
+      },
+      {
+        "source": "/ig/mercadores",
+        "destination": "/catequese-infantil?utm_source=instagram&utm_medium=stories&utm_campaign=catequese_lapa&utm_content=lapa_mercadores",
+        "type": 302
+      }
     ]
   }
 }
