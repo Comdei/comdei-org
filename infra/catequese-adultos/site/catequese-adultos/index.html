@@ -13,6 +13,7 @@
   <p class="sub">Catequese de adultos na Igreja Nossa Senhora da Lapa dos Mercadores, a convite da Irmandade.</p>
   <p class="sub">Preparação para batismo, primeira comunhão e crisma, conforme a situação de cada um.</p>
   <p class="meta">Deixe seu nome e WhatsApp. Leva 1 minuto.</p>
+  <p class="wa-linha">Prefere conversar? <a class="btn-wa-sm" id="wa-direto" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20catequese%20de%20adultos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Falar no WhatsApp</a> ou <a href="#triagem">responder 5 perguntas rápidas</a>.</p>
 
   <form id="f" novalidate>
     <div>
@@ -98,12 +99,24 @@
   <div class="ok" id="ok" hidden tabindex="-1">
     <h2>Recebemos sua inscrição.</h2>
     <p>Os catequistas vão falar com você pelo WhatsApp.</p>
+    <p>Se quiser adiantar a conversa, mande uma mensagem agora:</p>
+    <a class="btn btn-wa" id="wa-ok" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Acabei%20de%20me%20inscrever%20na%20catequese%20de%20adultos%20pelo%20site." target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
     <p class="meta" id="ok-dry" hidden>Prévia: modo de teste, nada foi gravado.</p>
   </div>
+
+  <section class="triagem" id="triagem" aria-labelledby="tri-h">
+    <h2 id="tri-h">Conversa rápida</h2>
+    <p class="meta">Algumas perguntas para os catequistas já saberem como ajudar. Nada fica guardado nesta página: no fim, você mesmo envia a mensagem pelo WhatsApp.</p>
+    <div id="tri-chat" class="chat" aria-live="polite"></div>
+    <div id="tri-opcoes" class="seg tri-op"></div>
+    <a class="btn btn-wa" id="tri-enviar" hidden target="_blank" rel="noopener" href="https://wa.me/5521981454569">Enviar pelo WhatsApp</a>
+    <button type="button" class="link" id="tri-reiniciar" hidden>Recomeçar</button>
+  </section>
 
   <p class="menores">Para menores: crisma infantil aos sábados, às 11h.</p>
   <footer>Comdei · os dados ficam guardados por até 24 meses e depois são apagados.</footer>
 </main>
 <script src="/catequese-adultos/form.js" defer></script>
+<script src="/catequese-adultos/triagem.js" defer></script>
 </body>
 </html>

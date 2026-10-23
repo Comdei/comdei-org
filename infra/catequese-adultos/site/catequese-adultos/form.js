@@ -68,6 +68,7 @@
       .then(function (res) {
         if (res.j && res.j.ok) {
           f.hidden = true; var ok = document.getElementById('ok'); ok.hidden = false;
+          var w = document.getElementById('wa-ok'); if (w) { var pn = (d.nome || '').split(' ')[0].slice(0, 40); w.href = 'https://wa.me/5521981454569?text=' + encodeURIComponent('Olá! ' + (pn ? 'Sou ' + pn + ' e a' : 'A') + 'cabei de me inscrever na catequese de adultos pelo site.'); }
           if (res.j.dry_run) document.getElementById('ok-dry').hidden = false; ok.focus(); return;
         }
         if (res.j && res.j.erros) Object.keys(res.j.erros).forEach(function (k) { setErr(k, res.j.erros[k]); });
