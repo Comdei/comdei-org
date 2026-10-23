@@ -1,0 +1,11 @@
+// TESTE antes das rotas (só com GO): mesmo Worker, sem rotas, com URL comdei-catequese.lucasblima.workers.dev.
+// Sem secrets = dry-run (nada gravado). Deploy: cd golive/worker && npx wrangler deploy -c wrangler.teste.jsonc
+{
+  "name": "comdei-catequese",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "account_id": "9d474487a2ebcd67db2c5f6b2bdc3296",
+  "assets": { "directory": "../site", "binding": "ASSETS", "html_handling": "auto-trailing-slash", "not_found_handling": "none" },
+  "workers_dev": true,
+  "preview_urls": false
+}
