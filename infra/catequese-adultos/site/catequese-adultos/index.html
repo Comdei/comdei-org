@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Catequese de adultos: lista de espera</title>
+<link rel="stylesheet" href="/catequese-adultos/estilo.css">
+</head>
+<body>
+<main class="w">
+  <h1>Catequese de adultos: lista de espera</h1>
+  <p class="sub">Catequese de adultos na Igreja Nossa Senhora da Lapa dos Mercadores, a convite da Irmandade.</p>
+  <p class="sub">Preparação para batismo, primeira comunhão e crisma, conforme a situação de cada um.</p>
+  <p class="meta">Deixe seu nome e WhatsApp. Leva 1 minuto.</p>
+  <p class="wa-linha">Prefere conversar? <a class="btn-wa-sm" id="wa-direto" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20catequese%20de%20adultos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Falar no WhatsApp</a> ou <a href="#triagem">responder 5 perguntas rápidas</a>.</p>
+
+  <form id="f" novalidate>
+    <div>
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" type="text" autocomplete="name" maxlength="120" required aria-describedby="e-nome">
+      <div class="erro" id="e-nome" aria-live="polite"></div>
+    </div>
+    <div>
+      <label for="whatsapp">WhatsApp com DDD</label>
+      <input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(32) 99999-9999" maxlength="16" required aria-describedby="e-whatsapp">
+      <div class="erro" id="e-whatsapp" aria-live="polite"></div>
+    </div>
+    <div>
+      <label for="bairro_cidade">Bairro ou cidade</label>
+      <input id="bairro_cidade" name="bairro_cidade" type="text" autocomplete="address-level2" maxlength="120" required aria-describedby="e-bairro_cidade">
+      <div class="erro" id="e-bairro_cidade" aria-live="polite"></div>
+    </div>
+    <div>
+      <label for="email">E-mail <span class="opc">(opcional)</span></label>
+      <input id="email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="e-email">
+      <div class="erro" id="e-email" aria-live="polite"></div>
+    </div>
+    <fieldset aria-describedby="e-batizado">
+      <legend>Já é batizado(a)?</legend>
+      <div class="seg">
+        <label><input type="radio" name="batizado" value="sim"><span>Sim</span></label>
+        <label><input type="radio" name="batizado" value="nao"><span>Não</span></label>
+        <label><input type="radio" name="batizado" value="nao_sei"><span>Não sei</span></label>
+      </div>
+      <div class="erro" id="e-batizado" aria-live="polite"></div>
+    </fieldset>
+    <fieldset aria-describedby="e-primeira_comunhao">
+      <legend>Fez a primeira comunhão?</legend>
+      <div class="seg">
+        <label><input type="radio" name="primeira_comunhao" value="sim"><span>Sim</span></label>
+        <label><input type="radio" name="primeira_comunhao" value="nao"><span>Não</span></label>
+        <label><input type="radio" name="primeira_comunhao" value="nao_sei"><span>Não sei</span></label>
+      </div>
+      <div class="erro" id="e-primeira_comunhao" aria-live="polite"></div>
+    </fieldset>
+    <div>
+      <label for="como_soube">Como soube? <span class="opc">(opcional)</span></label>
+      <select id="como_soube" name="como_soube" aria-describedby="e-como_soube">
+        <option value="">Escolha</option>
+        <option value="missa">Na missa</option>
+        <option value="irmandade">Pela Irmandade</option>
+        <option value="amigo_familia">Amigo ou família</option>
+        <option value="whatsapp">WhatsApp</option>
+        <option value="instagram">Instagram</option>
+        <option value="facebook">Facebook</option>
+        <option value="cartaz">Cartaz ou folheto</option>
+        <option value="site">Site</option>
+        <option value="outro">Outro</option>
+      </select>
+      <div class="erro" id="e-como_soube" aria-live="polite"></div>
+    </div>
+    <div id="outro-box" hidden>
+      <label for="como_soube_outro">Conte como soube</label>
+      <input id="como_soube_outro" name="como_soube_outro" type="text" maxlength="120" aria-describedby="e-como_soube_outro">
+      <div class="erro" id="e-como_soube_outro" aria-live="polite"></div>
+    </div>
+    <div class="hp" aria-hidden="true">
+      <label for="website">Não preencha</label>
+      <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+    <div>
+      <label class="ck"><input type="checkbox" id="maior_18" name="maior_18" required aria-describedby="e-maior_18"><span>Tenho 18 anos ou mais.</span></label>
+      <div class="erro" id="e-maior_18" aria-live="polite"></div>
+    </div>
+    <div>
+      <label class="ck"><input type="checkbox" id="consentimento" name="consentimento" required aria-describedby="e-consentimento"><span>Autorizo a Comdei (associação em constituição) a guardar estes dados, inclusive a informação sobre sacramentos, só para me chamar para a catequese de adultos. Os dados não são compartilhados nem usados para outro fim. Posso pedir para ver, corrigir ou apagar meus dados a qualquer momento em <a href="mailto:lucas@comdei.org">lucas@comdei.org</a>.</span></label>
+      <div class="erro" id="e-consentimento" aria-live="polite"></div>
+      <small>Versão do texto: <span id="cv"></span>.</small>
+    </div>
+    <div>
+      <label class="ck"><input type="checkbox" id="msg_optin" name="msg_optin" value="1"><span>Quero receber da Comdei, por e-mail e WhatsApp, mensagens de boas-vindas e lembretes da grade de encontros. Posso cancelar quando quiser respondendo SAIR ou escrevendo para <a href="mailto:lucas@comdei.org">lucas@comdei.org</a>.</span></label>
+      <small>Opcional. Versão do texto: lgpd-v1 (mensagens).</small>
+    </div>
+    <button class="btn" type="submit" id="enviar">Entrar na lista de espera</button>
+    <div class="erro" id="e-geral" aria-live="polite"></div>
+  </form>
+
+  <div class="ok" id="ok" hidden tabindex="-1">
+    <h2>Recebemos sua inscrição.</h2>
+    <p>Os catequistas vão falar com você pelo WhatsApp.</p>
+    <p>Se quiser adiantar a conversa, mande uma mensagem agora:</p>
+    <a class="btn btn-wa" id="wa-ok" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Acabei%20de%20me%20inscrever%20na%20catequese%20de%20adultos%20pelo%20site." target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
+    <p class="meta" id="ok-dry" hidden>Prévia: modo de teste, nada foi gravado.</p>
+  </div>
+
+  <section class="triagem" id="triagem" aria-labelledby="tri-h">
+    <h2 id="tri-h">Conversa rápida</h2>
+    <p class="meta">Algumas perguntas para os catequistas já saberem como ajudar. Nada fica guardado nesta página: no fim, você mesmo envia a mensagem pelo WhatsApp.</p>
+    <div id="tri-chat" class="chat" aria-live="polite"></div>
+    <div id="tri-opcoes" class="seg tri-op"></div>
+    <a class="btn btn-wa" id="tri-enviar" hidden target="_blank" rel="noopener" href="https://wa.me/5521981454569">Enviar pelo WhatsApp</a>
+    <button type="button" class="link" id="tri-reiniciar" hidden>Recomeçar</button>
+  </section>
+
+  <p class="menores">Para menores: crisma infantil aos sábados, às 11h.</p>
+  <footer>Comdei · os dados ficam guardados por até 24 meses e depois são apagados.</footer>
+</main>
+<script src="/catequese-adultos/form.js" defer></script>
+<script src="/catequese-adultos/triagem.js" defer></script>
+</body>
+</html>

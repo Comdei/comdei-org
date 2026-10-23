@@ -1,0 +1,17 @@
+// PRODUÇÃO (só com GO). Rotas em comdei.org; sem workers.dev.
+// Deploy: cd golive/worker && npx wrangler deploy -c wrangler.jsonc
+{
+  "name": "comdei-catequese",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "account_id": "9d474487a2ebcd67db2c5f6b2bdc3296",
+  "assets": { "directory": "../site", "binding": "ASSETS", "html_handling": "auto-trailing-slash", "not_found_handling": "none" },
+  "routes": [
+    { "pattern": "comdei.org/catequese-adultos*", "zone_name": "comdei.org" },
+    { "pattern": "comdei.org/api/catequese-adultos-espera", "zone_name": "comdei.org" },
+    { "pattern": "www.comdei.org/catequese-adultos*", "zone_name": "comdei.org" },
+    { "pattern": "www.comdei.org/api/catequese-adultos-espera", "zone_name": "comdei.org" }
+  ],
+  "workers_dev": false,
+  "preview_urls": false
+}
