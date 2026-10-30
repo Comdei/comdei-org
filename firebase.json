@@ -8,7 +8,8 @@
       "docs/**",
       "CNAME",
       "README*",
-      "infra/**"
+      "infra/**",
+      "tests/**"
     ],
     "cleanUrls": true,
     "headers": [
