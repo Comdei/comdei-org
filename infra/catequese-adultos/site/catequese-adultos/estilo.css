@@ -1,0 +1,50 @@
+@font-face{font-family:Montserrat;font-weight:400;font-display:swap;src:url(/catequese-adultos/fonts/montserrat-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Montserrat;font-weight:700;font-display:swap;src:url(/catequese-adultos/fonts/montserrat-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:Montserrat;font-weight:800;font-display:swap;src:url(/catequese-adultos/fonts/montserrat-latin-800-normal.woff2) format('woff2')}
+:root{--navy:#1A2744;--navy2:#334974;--txt:#F4EFE4;--sec:#D4CBB6;--gold:#F1C56A;--sig:#F1C56A;--ink:#1A2744;--paper:#1A2744;--white:#FFF;--mute:#D4CBB6;--line:rgba(212,203,182,.3);--err:#F1C56A}
+*{box-sizing:border-box}
+html,body{margin:0;background:linear-gradient(180deg,var(--navy2),var(--navy)) fixed;background-color:var(--navy);color:var(--txt);font-family:Montserrat,system-ui,sans-serif;font-size:16px;line-height:1.5}
+.w{max-width:34rem;margin:auto;padding:1rem 1rem 5rem}
+.previa{font-size:12px;border:1px dashed var(--sec);padding:.35rem .6rem;border-radius:6px;margin-bottom:1rem}
+h1{font-size:clamp(44px,13vw,72px);font-weight:800;line-height:.9;letter-spacing:-.04em;margin:.4rem 0 .8rem}
+.sub{font-size:15px;margin:0 0 .6rem}
+.meta,small{font-size:13px;color:var(--mute)}
+a{color:var(--gold);text-decoration:underline}
+form{margin-top:1.4rem;display:grid;gap:1.1rem}
+label,legend{font-size:14px;font-weight:700;display:block;margin-bottom:.3rem}
+.opc{font-weight:400;color:var(--mute)}
+input[type=text],input[type=tel],input[type=email],select{width:100%;min-height:48px;padding:.6rem .8rem;font:inherit;color:var(--ink);background:var(--white);border:2px solid var(--ink);border-radius:10px}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+fieldset{border:0;padding:0;margin:0}
+.seg{display:flex;gap:.4rem;flex-wrap:wrap}
+.seg label{font-weight:400;margin:0}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border:2px solid var(--sec);border-radius:999px;background:transparent;color:var(--txt);cursor:pointer;font-size:14px}
+.seg input:checked+span{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.seg input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
+.ck{display:flex;gap:.6rem;align-items:flex-start;font-weight:400;font-size:14px;cursor:pointer}
+.ck input{width:22px;height:22px;margin:.1rem 0 0;flex:none;accent-color:var(--gold)}
+.erro{font-size:13px;font-weight:700;margin-top:.25rem}
+.erro:not(:empty)::before{content:"⚠ "}
+[aria-invalid=true]{border-width:3px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 1.2rem;border-radius:999px;background:var(--sig);border:2px solid var(--ink);color:var(--ink);font:inherit;font-weight:800;font-size:17px;cursor:pointer}
+.btn[disabled]{opacity:.6;cursor:wait}
+.ok{border:2px solid var(--gold);border-radius:12px;background:rgba(26,39,68,.6);padding:1rem;margin-top:1.4rem}
+.ok h2{font-size:18px;margin:0 0 .3rem}
+.menores{font-size:13px;border-top:1px solid var(--line);margin-top:2rem;padding-top:.8rem}
+footer{font-size:12px;color:var(--mute);margin-top:1rem}
+@media(min-width:720px){.w{padding-top:2.5rem}}
+.wa-linha{font-size:14px;margin:.4rem 0 0}
+.btn-wa-sm{display:inline-block;padding:.15rem .7rem;border:2px solid var(--gold);border-radius:999px;color:var(--txt);text-decoration:none;font-weight:700}
+.btn-wa{margin-top:.8rem;background:var(--gold);border-color:var(--gold);color:var(--navy);text-decoration:none}
+.triagem{margin-top:2.4rem;padding-top:1.2rem;border-top:2px solid var(--gold)}
+.triagem h2{font-size:22px;margin:0 0 .3rem}
+.chat{display:flex;flex-direction:column;gap:.4rem;margin:1rem 0}
+.chat .b{margin:0;padding:.55rem .85rem;border-radius:14px;max-width:85%;font-size:15px}
+.chat .nos{background:rgba(244,239,228,.1);border:1px solid var(--line);align-self:flex-start}
+.chat .voce{background:var(--gold);color:var(--navy);align-self:flex-end;font-weight:700}
+.tri-op button{min-height:44px;padding:0 1rem;border:2px solid var(--sec);border-radius:999px;background:transparent;color:var(--txt);font:inherit;font-size:14px;cursor:pointer}
+.tri-op button:hover{border-color:var(--gold)}
+.link{margin-top:.6rem;background:none;border:0;color:var(--sec);text-decoration:underline;font:inherit;font-size:13px;cursor:pointer}
+[hidden]{display:none!important}
