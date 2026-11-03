@@ -1,10 +1,13 @@
 (function () {
   'use strict';
   var CONSENT_VERSION = 'lgpd-v1';
+  // PROVISIONAL: igual ao aviso acima do botão; pendente de aprovação do Lucas.
+  var AVISO_PRIVACIDADE_VERSAO = 'aviso-privacidade-v0';
   var ENDPOINT = '/api/catequese-adultos-espera';
   var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
   var f = document.getElementById('f');
   document.getElementById('cv').textContent = CONSENT_VERSION;
+  document.getElementById('av').textContent = AVISO_PRIVACIDADE_VERSAO;
 
   var wa = document.getElementById('whatsapp');
   function digits(v) { var d = v.replace(/\D/g, ''); if (d.length > 11 && d.indexOf('55') === 0) d = d.slice(2); return d.slice(0, 11); }
@@ -55,6 +58,7 @@
       email: f.email.value.trim(), batizado: radio('batizado'), primeira_comunhao: radio('primeira_comunhao'),
       como_soube: cs.value, como_soube_outro: cs.value === 'outro' ? f.como_soube_outro.value.trim() : '',
       maior_18: f.maior_18.checked, consentimento: f.consentimento.checked, consent_version: CONSENT_VERSION,
+      aviso_privacidade_versao: AVISO_PRIVACIDADE_VERSAO,
       msg_optin: f.msg_optin.checked,
       website: f.website.value, referrer: document.referrer || ''
     };
@@ -68,7 +72,9 @@
       .then(function (res) {
         if (res.j && res.j.ok) {
           f.hidden = true; var ok = document.getElementById('ok'); ok.hidden = false;
-          var w = document.getElementById('wa-ok'); if (w) { var pn = (d.nome || '').split(' ')[0].slice(0, 40); w.href = 'https://wa.me/5521981454569?text=' + encodeURIComponent('Olá! ' + (pn ? 'Sou ' + pn + ' e a' : 'A') + 'cabei de me inscrever na catequese de adultos pelo site.'); }
+          if (window.posthog && typeof window.posthog.capture === 'function') {
+            window.posthog.capture('catequese_adultos_inscricao', { resultado: 'ok', dry_run: !!res.j.dry_run });
+          }
           if (res.j.dry_run) document.getElementById('ok-dry').hidden = false; ok.focus(); return;
         }
         if (res.j && res.j.erros) Object.keys(res.j.erros).forEach(function (k) { setErr(k, res.j.erros[k]); });

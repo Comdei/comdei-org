@@ -28,6 +28,8 @@ fieldset{border:0;padding:0;margin:0}
 .erro:not(:empty)::before{content:"⚠ "}
 [aria-invalid=true]{border-width:3px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.aviso{font-size:13px;color:var(--sec);background:rgba(244,239,228,.08);border:1px solid var(--line);border-radius:12px;padding:.8rem .95rem;margin:0}
+.aviso a{color:var(--gold)}
 .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 1.2rem;border-radius:999px;background:var(--sig);border:2px solid var(--ink);color:var(--ink);font:inherit;font-weight:800;font-size:17px;cursor:pointer}
 .btn[disabled]{opacity:.6;cursor:wait}
 .ok{border:2px solid var(--gold);border-radius:12px;background:rgba(26,39,68,.6);padding:1rem;margin-top:1.4rem}

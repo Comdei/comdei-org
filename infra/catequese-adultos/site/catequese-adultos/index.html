@@ -13,8 +13,9 @@
   <p class="sub">Catequese de adultos na Igreja Nossa Senhora da Lapa dos Mercadores, a convite da Irmandade.</p>
   <p class="sub">Preparação para batismo, primeira comunhão e crisma, conforme a situação de cada um.</p>
   <p class="meta">Deixe seu nome e WhatsApp. Leva 1 minuto.</p>
-  <p class="wa-linha">Prefere conversar? <a class="btn-wa-sm" id="wa-direto" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20catequese%20de%20adultos%20na%20Lapa%20dos%20Mercadores." target="_blank" rel="noopener">Falar no WhatsApp</a> ou <a href="#triagem">responder 5 perguntas rápidas</a>.</p>
+  <p class="wa-linha">Para entrar na lista, <a class="btn-wa-sm" id="wa-direto" href="#inscricao">inscreva-se</a> ou <a href="#triagem">responder 5 perguntas rápidas</a>.</p>
 
+  <div id="inscricao">
   <form id="f" novalidate>
     <div>
       <label for="nome">Nome</label>
@@ -92,24 +93,26 @@
       <label class="ck"><input type="checkbox" id="msg_optin" name="msg_optin" value="1"><span>Quero receber da Comdei, por e-mail e WhatsApp, mensagens de boas-vindas e lembretes da grade de encontros. Posso cancelar quando quiser respondendo SAIR ou escrevendo para <a href="mailto:lucas@comdei.org">lucas@comdei.org</a>.</span></label>
       <small>Opcional. Versão do texto: lgpd-v1 (mensagens).</small>
     </div>
+    <!-- PROVISIONAL: texto do aviso de privacidade pendente de aprovação do Lucas. Não tratar como texto final. -->
+    <p class="aviso" id="aviso-privacidade">Ao enviar, a Comdei guarda estes dados para falar com você sobre a catequese de adultos. Leia a <a href="/privacidade">política de privacidade</a>.</p>
+    <small>Versão do aviso: <span id="av"></span>.</small>
     <button class="btn" type="submit" id="enviar">Entrar na lista de espera</button>
     <div class="erro" id="e-geral" aria-live="polite"></div>
   </form>
+  </div>
 
   <div class="ok" id="ok" hidden tabindex="-1">
     <h2>Recebemos sua inscrição.</h2>
-    <p>Os catequistas vão falar com você pelo WhatsApp.</p>
-    <p>Se quiser adiantar a conversa, mande uma mensagem agora:</p>
-    <a class="btn btn-wa" id="wa-ok" href="https://wa.me/5521981454569?text=Ol%C3%A1!%20Acabei%20de%20me%20inscrever%20na%20catequese%20de%20adultos%20pelo%20site." target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
+    <p>A Comdei vai usar o WhatsApp informado para falar com você sobre a catequese de adultos.</p>
     <p class="meta" id="ok-dry" hidden>Prévia: modo de teste, nada foi gravado.</p>
   </div>
 
   <section class="triagem" id="triagem" aria-labelledby="tri-h">
     <h2 id="tri-h">Conversa rápida</h2>
-    <p class="meta">Algumas perguntas para os catequistas já saberem como ajudar. Nada fica guardado nesta página: no fim, você mesmo envia a mensagem pelo WhatsApp.</p>
+    <p class="meta">Algumas perguntas para os catequistas já saberem como ajudar. Nada fica guardado nesta página: no fim, você segue para a inscrição.</p>
     <div id="tri-chat" class="chat" aria-live="polite"></div>
     <div id="tri-opcoes" class="seg tri-op"></div>
-    <a class="btn btn-wa" id="tri-enviar" hidden target="_blank" rel="noopener" href="https://wa.me/5521981454569">Enviar pelo WhatsApp</a>
+    <a class="btn btn-wa" id="tri-enviar" hidden href="#inscricao">Ir para a inscrição</a>
     <button type="button" class="link" id="tri-reiniciar" hidden>Recomeçar</button>
   </section>
 
@@ -118,5 +121,6 @@
 </main>
 <script src="/catequese-adultos/form.js" defer></script>
 <script src="/catequese-adultos/triagem.js" defer></script>
+<script src="/analytics.js" defer></script>
 </body>
 </html>

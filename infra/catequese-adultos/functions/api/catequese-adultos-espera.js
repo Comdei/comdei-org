@@ -6,10 +6,20 @@
 // A chave nunca vai ao front nem para o log. Nenhum IP bruto é guardado: só sha256(sal|ip).
 
 export const CONSENT_VERSION = 'lgpd-v1';
+// PROVISIONAL: texto do aviso acima do botão, pendente de aprovação do Lucas.
+// Não entra no catálogo interno.consent_versions (lá a versão só pode ser lgpd-vN).
+export const AVISO_PRIVACIDADE_VERSAO = 'aviso-privacidade-v0';
 // 2ª caixa (opcional): mensagens de boas-vindas e lembretes. A versão vigente e a data são definidas
 // no banco (interno.consent_versions, finalidade catequese_adultos_mensagens); o cliente só manda o booleano.
 export const MSG_OPTIN_FINALIDADE = 'catequese_adultos_mensagens';
 export const MSG_OPTIN_VERSION = 'lgpd-v1';
+// Texto aprovado. Único espaço reservado: {nome}. Sem link de grupo e sem datas.
+export const TEXTO_BOAS_VINDAS =
+  'Olá, {nome}! Aqui é o Lucas, da Comdei. Recebi sua inscrição na catequese de adultos. Quando a turma estiver formada e as datas dos encontros forem marcadas, mando por aqui o link do grupo e o calendário. Se tiver qualquer dúvida, é só responder esta mensagem. Que Deus te abençoe!';
+// E-mail interno. O formulário público do site já avisa lucas@comdei.org.
+// FORMSPREE_ENDPOINT (env do Worker) substitui o endereço; a URL abaixo não é segredo.
+const NOTIFY_TO = 'lucas@comdei.org';
+const FORMSPREE_PADRAO = 'https://formspree.io/f/xyeyllry';
 const RPC = 'catequese_adultos_inscrever';
 const RL_MAX = 5;            // envios
 const RL_WINDOW_S = 600;     // por 10 minutos
@@ -17,7 +27,8 @@ const SIMNAO = ['sim', 'nao', 'nao_sei'];
 const COMO_SOUBE = ['missa', 'irmandade', 'amigo_familia', 'whatsapp', 'instagram', 'facebook', 'cartaz', 'site', 'outro'];
 const UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 const ALLOWED = new Set(['nome', 'whatsapp', 'bairro_cidade', 'email', 'batizado', 'primeira_comunhao',
-  'como_soube', 'como_soube_outro', 'maior_18', 'consentimento', 'consent_version', 'msg_optin', 'msg_optin_version', 'site_url', 'referrer', 'cf-turnstile-response', ...UTM]);
+  'como_soube', 'como_soube_outro', 'maior_18', 'consentimento', 'consent_version', 'aviso_privacidade_versao',
+  'msg_optin', 'msg_optin_version', 'site_url', 'referrer', 'cf-turnstile-response', ...UTM]);
 
 const clean = (v, max) => (typeof v === 'string' ? v.normalize('NFC').replace(/[\u0000-\u001F\u007F]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max) : '');
 const truthy = (v) => v === true || v === 'true' || v === 'on' || v === '1' || v === 1;
@@ -62,12 +73,16 @@ export function validar(body) {
   if (!truthy(b.maior_18)) erros.maior_18 = 'Confirme que tem 18 anos ou mais.';
   if (!truthy(b.consentimento)) erros.consentimento = 'Precisamos do seu consentimento.';
   if (b.consent_version && b.consent_version !== CONSENT_VERSION) erros.consent_version = 'Texto de consentimento desatualizado. Recarregue a página.';
+  if (b.aviso_privacidade_versao && b.aviso_privacidade_versao !== AVISO_PRIVACIDADE_VERSAO) {
+    erros.aviso_privacidade_versao = 'Texto de privacidade desatualizado. Recarregue a página.';
+  }
 
   const utm = {};
   for (const k of UTM) utm[k] = clean(b[k], 200) || null;
   const registro = {
     nome, whatsapp, bairro_cidade, email, batizado, primeira_comunhao, como_soube, como_soube_outro,
-    maior_18: true, consent_version: CONSENT_VERSION, msg_optin: b.msg_optin === true || b.msg_optin === 'true' || b.msg_optin === 'on', ...utm,
+    maior_18: true, consent_version: CONSENT_VERSION, aviso_privacidade_versao: AVISO_PRIVACIDADE_VERSAO,
+    msg_optin: b.msg_optin === true || b.msg_optin === 'true' || b.msg_optin === 'on', ...utm,
   };
   return { ok: Object.keys(erros).length === 0, erros, registro, ignorados };
 }
@@ -139,6 +154,8 @@ export async function handle(request, env = {}) {
   const expires = new Date(now); expires.setUTCMonth(expires.getUTCMonth() + 24);
   const referrer = clean(body.referrer, 300) || clean(request.headers.get('referer'), 300) || null;
   const registro = { ...v.registro, referrer, consent_at: now.toISOString(), ip_hash, expires_at: expires.toISOString(),
+    // horário do aceite do aviso, no relógio do Worker (ISO). O cliente não manda essa data.
+    aviso_privacidade_aceito_em: now.toISOString(),
     // só informativo no dry-run; na gravação real versão e data do opt-in vêm do banco
     msg_optin_version: v.registro.msg_optin ? MSG_OPTIN_VERSION : null, msg_optin_at: v.registro.msg_optin ? now.toISOString() : null };
 
@@ -151,14 +168,102 @@ export async function handle(request, env = {}) {
   if (r.status === 400) { log('db_invalido'); return json({ ok: false, erro: 'invalido' }, 422); }
   if (!r.ok) { log('db_erro', { status: r.status }); return json({ ok: false, erro: 'gravacao' }, 502); }
   log(r.duplicado ? 'duplicado' : 'gravado');
+  // Só a linha criada agora. Duplicata nas últimas 24 h não recebe e-mail nem WhatsApp.
+  // Não há leitura nem reenvio de inscrições anteriores.
+  if (!r.duplicado) await avisarNovaInscricao(env, registro, log);
   return json({ ok: true, dry_run: false });
+}
+
+async function avisarNovaInscricao(env, registro, log) {
+  try {
+    const mail = await notificarInscricao(env, registro);
+    if (!mail.enviado) log('email_falhou', { motivo: mail.motivo, status: mail.status || 0 });
+    else log('email_ok');
+  } catch { log('email_falhou', { motivo: 'excecao' }); }
+  try {
+    const wa = await enviarBoasVindasNovaInscricao(env, registro);
+    if (wa.motivo !== 'desligado') log('whatsapp_boas_vindas', { motivo: wa.motivo, status: wa.status || 0 });
+  } catch { log('whatsapp_boas_vindas', { motivo: 'excecao' }); }
+}
+
+export function whatsappBoasVindasLigado(env) {
+  const v = String((env && env.WHATSAPP_BOAS_VINDAS) || '').trim().toLowerCase();
+  return v === '1' || v === 'on' || v === 'true';
+}
+
+export function textoBoasVindas(nome) {
+  const limpo = String(nome || '').replace(/[{}]/g, '').trim().slice(0, 120);
+  return TEXTO_BOAS_VINDAS.replaceAll('{nome}', limpo);
+}
+
+// WuzAPI: POST {WUZAPI_BASE_URL}/chat/send/text com o header Token.
+// Os valores ficam só no ambiente. Este módulo não grava URL nem token.
+export async function enviarTextoWuzapi({ baseUrl, token, phone, text, fetchImpl = fetch }) {
+  const base = String(baseUrl || '').trim().replace(/\/+$/, '');
+  const tok = String(token || '').trim();
+  const destino = String(phone || '').replace(/\D/g, '');
+  if (!base || !tok) return { enviado: false, motivo: 'sem_config' };
+  if (!destino) return { enviado: false, motivo: 'sem_telefone' };
+  let r;
+  try {
+    r = await fetchImpl(`${base}/chat/send/text`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', Token: tok },
+      body: JSON.stringify({ Phone: destino, Body: text }),
+    });
+  } catch {
+    return { enviado: false, motivo: 'rede' };
+  }
+  return { enviado: r.ok, motivo: r.ok ? 'ok' : 'http', status: r.status };
+}
+
+// Flag ausente ou diferente de on/1/true = desligada. Não consulta o banco.
+export async function enviarBoasVindasNovaInscricao(env, registro, fetchImpl = fetch) {
+  if (!whatsappBoasVindasLigado(env)) return { enviado: false, motivo: 'desligado' };
+  return enviarTextoWuzapi({
+    baseUrl: env && env.WUZAPI_BASE_URL,
+    token: env && env.WUZAPI_TOKEN,
+    phone: registro && registro.whatsapp,
+    text: textoBoasVindas(registro && registro.nome),
+    fetchImpl,
+  });
+}
+
+export async function notificarInscricao(env, registro, fetchImpl = fetch) {
+  const endpoint = String((env && env.FORMSPREE_ENDPOINT) || FORMSPREE_PADRAO).trim();
+  if (!endpoint) return { enviado: false, motivo: 'sem_endpoint' };
+  const payload = {
+    _subject: 'Comdei: nova inscrição na catequese de adultos',
+    destino: NOTIFY_TO,
+    nome: registro.nome,
+    whatsapp: registro.whatsapp,
+    bairro_cidade: registro.bairro_cidade,
+    email_inscrito: registro.email || '',
+    batizado: registro.batizado,
+    primeira_comunhao: registro.primeira_comunhao,
+    aviso_privacidade_versao: registro.aviso_privacidade_versao,
+    aviso_privacidade_aceito_em: registro.aviso_privacidade_aceito_em,
+  };
+  if (registro.email) payload.email = registro.email;
+  let r;
+  try {
+    r = await fetchImpl(endpoint, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', accept: 'application/json' },
+      body: JSON.stringify(payload),
+    });
+  } catch {
+    return { enviado: false, motivo: 'rede' };
+  }
+  return { enviado: r.ok, motivo: r.ok ? 'ok' : 'http', status: r.status };
 }
 
 // Monta os parâmetros nomeados da RPC (p_*). consent_at, created_at, expires_at, msg_optin_version e msg_optin_at são do banco.
 export function paramsRpc(registro) {
   const p = {};
   for (const k of ['nome', 'whatsapp', 'bairro_cidade', 'email', 'batizado', 'primeira_comunhao', 'como_soube', 'como_soube_outro',
-    'maior_18', 'consent_version', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'ip_hash']) p['p_' + k] = registro[k] ?? null;
+    'maior_18', 'consent_version', 'aviso_privacidade_versao', 'aviso_privacidade_aceito_em',
+    'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'ip_hash']) p['p_' + k] = registro[k] ?? null;
   p.p_msg_optin = registro.msg_optin === true; // nunca manda versão/data do cliente
   return p;
 }
