@@ -59,7 +59,6 @@
       como_soube: cs.value, como_soube_outro: cs.value === 'outro' ? f.como_soube_outro.value.trim() : '',
       maior_18: f.maior_18.checked, consentimento: f.consentimento.checked, consent_version: CONSENT_VERSION,
       aviso_privacidade_versao: AVISO_PRIVACIDADE_VERSAO,
-      msg_optin: f.msg_optin.checked,
       website: f.website.value, referrer: document.referrer || ''
     };
     UTM.forEach(function (k) { d[k] = qs.get(k) || ''; });
