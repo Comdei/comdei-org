@@ -9,8 +9,10 @@ export const CONSENT_VERSION = 'lgpd-v1';
 // PROVISIONAL: texto do aviso acima do botão, pendente de aprovação do Lucas.
 // Não entra no catálogo interno.consent_versions (lá a versão só pode ser lgpd-vN).
 export const AVISO_PRIVACIDADE_VERSAO = 'aviso-privacidade-v0';
-// 2ª caixa (opcional): mensagens de boas-vindas e lembretes. A versão vigente e a data são definidas
-// no banco (interno.consent_versions, finalidade catequese_adultos_mensagens); o cliente só manda o booleano.
+// Opt-in de mensagens, opcional e legado. O formulário público não envia mais msg_optin.
+// Campo ausente fica falso (não liga o opt-in). true, 'true' ou 'on' ainda são aceitos.
+// A versão vigente e a data são definidas no banco (interno.consent_versions,
+// finalidade catequese_adultos_mensagens); o cliente só manda o booleano.
 export const MSG_OPTIN_FINALIDADE = 'catequese_adultos_mensagens';
 export const MSG_OPTIN_VERSION = 'lgpd-v1';
 // Texto aprovado. Único espaço reservado: {nome}. Sem link de grupo e sem datas.

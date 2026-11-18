@@ -65,7 +65,15 @@ assert.equal(seca.registro.whatsapp, '+5521987654321');
 assert.equal(seca.registro.aviso_privacidade_versao, AVISO_PRIVACIDADE_VERSAO);
 assert.match(seca.registro.aviso_privacidade_aceito_em, /^\d{4}-\d{2}-\d{2}T/);
 assert.equal(seca.registro.aviso_privacidade_aceito_em.startsWith('1999'), false);
+assert.equal(seca.registro.msg_optin, false);
+assert.equal(seca.registro.msg_optin_version, null);
+assert.equal(paramsRpc(seca.registro).p_msg_optin, false);
 assert.equal(paramsRpc(seca.registro).p_aviso_privacidade_versao, AVISO_PRIVACIDADE_VERSAO);
+const optinOpcional = validar({ ...base, msg_optin: true });
+assert.equal(optinOpcional.ok, true);
+assert.equal(optinOpcional.registro.msg_optin, true);
+assert.equal('msg_optin' in optinOpcional.erros, false);
+assert.equal(paramsRpc(optinOpcional.registro).p_msg_optin, true);
 assert.match(paramsRpc(seca.registro).p_aviso_privacidade_aceito_em, /^\d{4}-\d{2}-\d{2}T/);
 
 const db = {
@@ -97,6 +105,7 @@ assert.equal(semFlag.some((c) => c.url.includes('/chat/send/text')), false);
 assert.equal(semFlag.filter((c) => c.url.includes('formspree.io')).length, 1);
 const rpc = semFlag.find((c) => c.url.includes('/rpc/'));
 const rpcBody = JSON.parse(rpc.init.body);
+assert.equal(rpcBody.p_msg_optin, false);
 assert.equal(rpcBody.p_aviso_privacidade_versao, AVISO_PRIVACIDADE_VERSAO);
 assert.match(rpcBody.p_aviso_privacidade_aceito_em, /^\d{4}-\d{2}-\d{2}T/);
 const mail = JSON.parse(semFlag.find((c) => c.url.includes('formspree.io')).init.body);
@@ -136,6 +145,10 @@ for (const nome of ['index.html', 'form.js', 'triagem.js']) {
 }
 const html = fs.readFileSync(site + 'index.html', 'utf8');
 assert.match(html, /id="whatsapp"[^>]*required/);
+assert.match(html, /id="consentimento"[^>]*required/);
+assert.match(html, /id="aviso-privacidade"/);
+assert.equal(html.includes('msg_optin'), false);
+assert.equal(html.includes('mensagens de boas-vindas'), false);
 assert.match(html, /id="wa-direto"[^>]*href="#inscricao"/);
 assert.match(html, /id="tri-enviar"[^>]*href="#inscricao"/);
 assert.match(html, /id="inscricao"/);
@@ -145,6 +158,8 @@ assert.match(html, /PROVISIONAL/);
 assert.match(html, /política de privacidade/);
 assert.match(html, /Comdei/);
 const form = fs.readFileSync(site + 'form.js', 'utf8');
+assert.equal(form.includes('msg_optin'), false);
+assert.match(form, /consentimento: f\.consentimento\.checked/);
 assert.match(form, /catequese_adultos_inscricao/);
 assert.equal(/capture\([^)]*nome/.test(form), false);
 assert.equal(/capture\([^)]*whatsapp/.test(form), false);
