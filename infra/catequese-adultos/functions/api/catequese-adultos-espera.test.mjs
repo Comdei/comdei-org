@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import {
   AVISO_PRIVACIDADE_VERSAO,
+  CONSENT_VERSION,
   TEXTO_BOAS_VINDAS,
   handle,
   paramsRpc,
@@ -42,7 +44,7 @@ const base = {
   primeira_comunhao: 'nao_sei',
   maior_18: true,
   consentimento: true,
-  consent_version: 'lgpd-v1',
+  consent_version: 'lgpd-v2',
   aviso_privacidade_versao: AVISO_PRIVACIDADE_VERSAO,
   aviso_privacidade_aceito_em: '1999-01-01T00:00:00.000Z',
   website: '',
@@ -125,6 +127,133 @@ const semToken = mock(false);
 const ainda = await (await post(base, { ...db, WHATSAPP_BOAS_VINDAS: 'on' })).json();
 assert.equal(ainda.ok, true);
 assert.equal(semToken.some((c) => c.url.includes('/chat/send/text')), false);
+
+// --- lgpd-v2, msg_optin, regra do batismo, busca e horário ---
+assert.equal(CONSENT_VERSION, 'lgpd-v2');
+
+// lgpd-v1 (aba antiga) é recusado com a mensagem de recarregar
+{
+  const res = await post({ ...base, consent_version: 'lgpd-v1' });
+  assert.equal(res.status, 422);
+  const j = await res.json();
+  assert.match(j.erros.consent_version, /Recarregue a página/);
+}
+
+// msg_optin vindo do cliente é ignorado; nunca vira true
+{
+  const j = await (await post({ ...base, msg_optin: true, msg_optin_version: 'lgpd-v1' })).json();
+  assert.equal(j.ok, true);
+  assert.equal(j.registro.msg_optin, false);
+  assert.ok(j.campos_ignorados.includes('msg_optin'));
+  assert.equal(paramsRpc(j.registro).p_msg_optin, false);
+  assert.equal(paramsRpc({ ...j.registro, msg_optin: true }).p_msg_optin, false);
+  const calls = mock(false);
+  await post({ ...base, msg_optin: true }, db);
+  assert.equal(JSON.parse(calls.find((c) => c.url.includes('/rpc/')).init.body).p_msg_optin, false);
+}
+
+// batizado = nao força primeira_comunhao = nao, venha o campo como vier
+for (const pc of ['sim', 'nao_sei', 'nao', '', undefined, 'lixo']) {
+  const corpo = { ...base, batizado: 'nao' };
+  if (pc === undefined) delete corpo.primeira_comunhao; else corpo.primeira_comunhao = pc;
+  const j = await (await post(corpo)).json();
+  assert.equal(j.ok, true, 'comunhão ' + pc);
+  assert.equal(j.registro.batizado, 'nao');
+  assert.equal(j.registro.primeira_comunhao, 'nao', 'comunhão ' + pc);
+  assert.equal(paramsRpc(j.registro).p_primeira_comunhao, 'nao');
+}
+{
+  // gravação real também recebe nao
+  const calls = mock(false);
+  await post({ ...base, batizado: 'nao', primeira_comunhao: 'sim' }, db);
+  assert.equal(JSON.parse(calls.find((c) => c.url.includes('/rpc/')).init.body).p_primeira_comunhao, 'nao');
+}
+// quem é batizado ou não sabe continua com a comunhão informada, e ela segue obrigatória
+assert.equal((await (await post({ ...base, batizado: 'sim', primeira_comunhao: 'sim' })).json()).registro.primeira_comunhao, 'sim');
+assert.equal((await (await post({ ...base, batizado: 'nao_sei', primeira_comunhao: 'nao' })).json()).registro.primeira_comunhao, 'nao');
+{
+  const res = await post({ ...base, batizado: 'sim', primeira_comunhao: '' });
+  assert.equal(res.status, 422);
+  assert.ok((await res.json()).erros.primeira_comunhao);
+}
+
+// busca e horário: opcionais, validados, gravados pela RPC
+{
+  const j = await (await post({ ...base, busca: 'crisma', horario: 'fim_semana' })).json();
+  assert.equal(j.registro.busca, 'crisma');
+  assert.equal(j.registro.horario, 'fim_semana');
+  assert.equal(paramsRpc(j.registro).p_busca, 'crisma');
+  assert.equal(paramsRpc(j.registro).p_horario, 'fim_semana');
+  const vazio2 = await (await post(base)).json();
+  assert.equal(vazio2.registro.busca, null);
+  assert.equal(vazio2.registro.horario, null);
+  assert.equal((await post({ ...base, busca: 'xyz' })).status, 422);
+  assert.equal((await post({ ...base, horario: 'madrugada' })).status, 422);
+}
+
+// Interface: duas caixas (maioridade e consentimento), sem msg_optin
+{
+  const html2 = fs.readFileSync(fileURLToPath(new URL('../../site/catequese-adultos/index.html', import.meta.url)), 'utf8');
+  const form2 = fs.readFileSync(fileURLToPath(new URL('../../site/catequese-adultos/form.js', import.meta.url)), 'utf8');
+  const tri = fs.readFileSync(fileURLToPath(new URL('../../site/catequese-adultos/triagem.js', import.meta.url)), 'utf8');
+  const regraSrc = fs.readFileSync(fileURLToPath(new URL('../../site/catequese-adultos/regra.js', import.meta.url)), 'utf8');
+  const sql2 = fs.readFileSync(fileURLToPath(new URL('../../migrations/20261122_lgpd_v2_busca_horario.sql', import.meta.url)), 'utf8');
+  const worker = fs.readFileSync(fileURLToPath(new URL('./catequese-adultos-espera.js', import.meta.url)), 'utf8');
+
+  assert.deepEqual([...html2.matchAll(/<input type="checkbox" id="([a-z0-9_]+)"/g)].map((m) => m[1]), ['maior_18', 'consentimento']);
+  for (const [nome, txt] of [['index.html', html2], ['form.js', form2], ['triagem.js', tri]]) {
+    assert.equal(/msg_optin/.test(txt), false, nome + ' ainda menciona msg_optin');
+    assert.equal(/lgpd-v1/.test(txt), false, nome + ' ainda menciona lgpd-v1');
+  }
+  assert.equal(/MSG_OPTIN/.test(worker), false);
+  assert.equal(/b\.msg_optin/.test(worker), false);
+
+  // mesma versão em form.js, Worker e migração
+  assert.match(form2, /CONSENT_VERSION = 'lgpd-v2'/);
+  assert.match(sql2, /'lgpd-v2'/);
+
+  // texto aprovado do consentimento (lgpd-v2), com o acréscimo aprovado para busca e horário
+  const TEXTO_V2 = 'Autorizo a Comdei (associação em constituição) a guardar estes dados, inclusive a informação sobre sacramentos, o que procuro na catequese e o horário que prefiro para os encontros, e a falar comigo por WhatsApp e e-mail sobre a catequese de adultos: confirmação da inscrição, formação da turma e avisos dos encontros. Os dados não são compartilhados nem usados para outro fim. Posso pedir para ver, corrigir ou apagar meus dados, ou para parar de receber mensagens, a qualquer momento: respondendo SAIR ou escrevendo para lucas@comdei.org.';
+  const m = html2.match(/id="consentimento"[^>]*><span>(.*?)<\/span><\/label>/s);
+  assert.ok(m, 'texto do consentimento não encontrado');
+  const textoHtml = m[1].replace(/<[^>]+>/g, '');
+  assert.equal(textoHtml, TEXTO_V2);
+  // hash do catálogo = sha256 do texto exato (UTF-8)
+  const hash = createHash('sha256').update(TEXTO_V2, 'utf8').digest('hex');
+  assert.ok(sql2.includes(`'${hash}'`), 'hash da migração não bate com o texto do consentimento: ' + hash);
+
+  // textos que deixaram de ser verdade
+  for (const velho of ['Nada fica guardado', 'Nada do que você respondeu', 'para os catequistas já saberem', '5 perguntas rápidas', 'mensagens de boas-vindas e lembretes']) {
+    assert.equal(html2.includes(velho) || tri.includes(velho) || regraSrc.includes(velho), false, velho);
+  }
+
+  // conversa: só memória da página, sem rede nem armazenamento nem PostHog
+  for (const proibido of [/localStorage/, /sessionStorage/, /indexedDB/, /fetch\s*\(/, /XMLHttpRequest/, /sendBeacon/, /posthog/i, /document\.cookie/]) {
+    assert.equal(proibido.test(tri), false, 'triagem.js: ' + proibido);
+    assert.equal(proibido.test(regraSrc), false, 'regra.js: ' + proibido);
+  }
+  assert.match(tri, /from '\.\/regra\.js'/);
+  assert.match(form2, /from '\.\/regra\.js'/);
+  assert.match(html2, /<script type="module" src="\/catequese-adultos\/form\.js">/);
+  assert.match(html2, /<script type="module" src="\/catequese-adultos\/triagem\.js">/);
+
+  // selects de busca e horário no formulário têm os mesmos valores da regra
+  const { BUSCA, HORARIO } = await import('../../site/catequese-adultos/regra.js');
+  for (const [id, lista] of [['busca', BUSCA], ['horario', HORARIO]]) {
+    const sel = html2.match(new RegExp('<select id="' + id + '"[^>]*>(.*?)</select>', 's'));
+    assert.ok(sel, 'select ' + id);
+    const vals = [...sel[1].matchAll(/<option value="([^"]*)">([^<]*)</g)].filter((x) => x[1]).map((x) => [x[1], x[2]]);
+    assert.deepEqual(vals, lista, id);
+  }
+  assert.match(html2, /<fieldset id="g-primeira_comunhao"/);
+
+  // migração: aditiva, sem UPDATE em inscrições, lgpd-v1 só comentada
+  assert.equal(/^\s*update\s+interno\.catequese_adultos_espera/im.test(sql2), false);
+  assert.equal(/^\s*delete\s/im.test(sql2), false);
+  assert.match(sql2, /NÃO APLICAR daqui/);
+  assert.match(sql2, /not valid/i);
+  assert.equal(/^\s*update\s+interno\.consent_versions/im.test(sql2), false, 'desativar lgpd-v1 deve ficar comentado');
+}
 
 const site = fileURLToPath(new URL('../../site/catequese-adultos/', import.meta.url));
 for (const nome of ['index.html', 'form.js', 'triagem.js']) {
