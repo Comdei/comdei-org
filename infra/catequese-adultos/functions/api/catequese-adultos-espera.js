@@ -5,14 +5,14 @@
 // Fail-closed: com as chaves do banco mas sem IP_HASH_SALT, recusa (500 'config') e não grava.
 // A chave nunca vai ao front nem para o log. Nenhum IP bruto é guardado: só sha256(sal|ip).
 
-export const CONSENT_VERSION = 'lgpd-v1';
+import { normalizar, BUSCA, HORARIO } from '../../site/catequese-adultos/regra.js';
+
+// lgpd-v2: o contato por WhatsApp e e-mail sobre a catequese faz parte do consentimento principal.
+// Texto e hash ficam em interno.consent_versions (migrations/20261122_lgpd_v2_busca_horario.sql).
+export const CONSENT_VERSION = 'lgpd-v2';
 // PROVISIONAL: texto do aviso acima do botão, pendente de aprovação do Lucas.
 // Não entra no catálogo interno.consent_versions (lá a versão só pode ser lgpd-vN).
 export const AVISO_PRIVACIDADE_VERSAO = 'aviso-privacidade-v0';
-// 2ª caixa (opcional): mensagens de boas-vindas e lembretes. A versão vigente e a data são definidas
-// no banco (interno.consent_versions, finalidade catequese_adultos_mensagens); o cliente só manda o booleano.
-export const MSG_OPTIN_FINALIDADE = 'catequese_adultos_mensagens';
-export const MSG_OPTIN_VERSION = 'lgpd-v1';
 // Texto aprovado. Único espaço reservado: {nome}. Sem link de grupo e sem datas.
 export const TEXTO_BOAS_VINDAS =
   'Olá, {nome}! Aqui é o Lucas, da Comdei. Recebi sua inscrição na catequese de adultos. Quando a turma estiver formada e as datas dos encontros forem marcadas, mando por aqui o link do grupo e o calendário. Se tiver qualquer dúvida, é só responder esta mensagem. Que Deus te abençoe!';
@@ -28,7 +28,7 @@ const COMO_SOUBE = ['missa', 'irmandade', 'amigo_familia', 'whatsapp', 'instagra
 const UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 const ALLOWED = new Set(['nome', 'whatsapp', 'bairro_cidade', 'email', 'batizado', 'primeira_comunhao',
   'como_soube', 'como_soube_outro', 'maior_18', 'consentimento', 'consent_version', 'aviso_privacidade_versao',
-  'msg_optin', 'msg_optin_version', 'site_url', 'referrer', 'cf-turnstile-response', ...UTM]);
+  'busca', 'horario', 'site_url', 'referrer', 'cf-turnstile-response', ...UTM]);
 
 const clean = (v, max) => (typeof v === 'string' ? v.normalize('NFC').replace(/[\u0000-\u001F\u007F]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max) : '');
 const truthy = (v) => v === true || v === 'true' || v === 'on' || v === '1' || v === 1;
@@ -63,8 +63,14 @@ export function validar(body) {
   if (!email) email = null;
   const batizado = clean(b.batizado, 10);
   if (!SIMNAO.includes(batizado)) erros.batizado = 'Escolha uma opção.';
-  const primeira_comunhao = clean(b.primeira_comunhao, 10);
+  // batizado = 'nao' força primeira_comunhao = 'nao', venha o campo vazio ou diferente (regra.js)
+  const pcBruta = clean(b.primeira_comunhao, 10);
+  const primeira_comunhao = normalizar(batizado, pcBruta).primeira_comunhao;
   if (!SIMNAO.includes(primeira_comunhao)) erros.primeira_comunhao = 'Escolha uma opção.';
+  const busca = clean(b.busca, 20) || null;
+  if (busca && !BUSCA.some((x) => x[0] === busca)) erros.busca = 'Opção inválida.';
+  const horario = clean(b.horario, 20) || null;
+  if (horario && !HORARIO.some((x) => x[0] === horario)) erros.horario = 'Opção inválida.';
   const como_soube = clean(b.como_soube, 20) || null;
   if (como_soube && !COMO_SOUBE.includes(como_soube)) erros.como_soube = 'Opção inválida.';
   let como_soube_outro = clean(b.como_soube_outro, 120) || null;
@@ -80,9 +86,10 @@ export function validar(body) {
   const utm = {};
   for (const k of UTM) utm[k] = clean(b[k], 200) || null;
   const registro = {
-    nome, whatsapp, bairro_cidade, email, batizado, primeira_comunhao, como_soube, como_soube_outro,
+    nome, whatsapp, bairro_cidade, email, batizado, primeira_comunhao, busca, horario, como_soube, como_soube_outro,
     maior_18: true, consent_version: CONSENT_VERSION, aviso_privacidade_versao: AVISO_PRIVACIDADE_VERSAO,
-    msg_optin: b.msg_optin === true || b.msg_optin === 'true' || b.msg_optin === 'on', ...utm,
+    // a caixa de mensagens foi removida: nunca se grava true em nome de ninguém
+    msg_optin: false, ...utm,
   };
   return { ok: Object.keys(erros).length === 0, erros, registro, ignorados };
 }
@@ -155,9 +162,7 @@ export async function handle(request, env = {}) {
   const referrer = clean(body.referrer, 300) || clean(request.headers.get('referer'), 300) || null;
   const registro = { ...v.registro, referrer, consent_at: now.toISOString(), ip_hash, expires_at: expires.toISOString(),
     // horário do aceite do aviso, no relógio do Worker (ISO). O cliente não manda essa data.
-    aviso_privacidade_aceito_em: now.toISOString(),
-    // só informativo no dry-run; na gravação real versão e data do opt-in vêm do banco
-    msg_optin_version: v.registro.msg_optin ? MSG_OPTIN_VERSION : null, msg_optin_at: v.registro.msg_optin ? now.toISOString() : null };
+    aviso_privacidade_aceito_em: now.toISOString() };
 
   if (!dbConfigurado) {
     log('dry_run');
@@ -258,13 +263,13 @@ export async function notificarInscricao(env, registro, fetchImpl = fetch) {
   return { enviado: r.ok, motivo: r.ok ? 'ok' : 'http', status: r.status };
 }
 
-// Monta os parâmetros nomeados da RPC (p_*). consent_at, created_at, expires_at, msg_optin_version e msg_optin_at são do banco.
+// Monta os parâmetros nomeados da RPC (p_*). consent_at, created_at e expires_at são do banco.
 export function paramsRpc(registro) {
   const p = {};
-  for (const k of ['nome', 'whatsapp', 'bairro_cidade', 'email', 'batizado', 'primeira_comunhao', 'como_soube', 'como_soube_outro',
+  for (const k of ['nome', 'whatsapp', 'bairro_cidade', 'email', 'batizado', 'primeira_comunhao', 'busca', 'horario', 'como_soube', 'como_soube_outro',
     'maior_18', 'consent_version', 'aviso_privacidade_versao', 'aviso_privacidade_aceito_em',
     'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'referrer', 'ip_hash']) p['p_' + k] = registro[k] ?? null;
-  p.p_msg_optin = registro.msg_optin === true; // nunca manda versão/data do cliente
+  p.p_msg_optin = false; // sem caixa de mensagens: nunca true; colunas msg_optin* ficam como registro dos inscritos antigos
   return p;
 }
 
