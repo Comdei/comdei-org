@@ -1,46 +1,71 @@
 // Conversa rápida (triagem) da catequese de adultos.
-// Tudo roda no navegador: nada é enviado ao servidor, nada é gravado.
-// No fim o botão leva ao formulário (#inscricao).
+// As perguntas e a regra vêm de regra.js (a mesma do formulário e do servidor).
+// As respostas vivem só na memória da página (variável r): nada de armazenamento, rede ou medição.
+// No fim a conversa preenche o formulário, que a pessoa confere e corrige; só é guardado o que ela enviar.
+// O consentimento nunca é marcado por ela.
+import { proxima, ACOLHIDA } from './regra.js';
+
 (function () {
   'use strict';
-  var P = [
-    { k: 'maior_18', q: 'Você tem 18 anos ou mais?', o: [['sim', 'Sim'], ['nao', 'Não']] },
-    { k: 'busca', q: 'O que você procura?', o: [['batismo', 'Batismo'], ['primeira_comunhao', 'Primeira comunhão'], ['crisma', 'Crisma'], ['nao_sei', 'Ainda não sei']] },
-    { k: 'batizado', q: 'Já é batizado(a)?', o: [['sim', 'Sim'], ['nao', 'Não'], ['nao_sei', 'Não sei']] },
-    { k: 'primeira_comunhao', q: 'Fez a primeira comunhão?', o: [['sim', 'Sim'], ['nao', 'Não'], ['nao_sei', 'Não sei']] },
-    { k: 'horario', q: 'Qual horário fica melhor para os encontros?', o: [['manha', 'Manhã'], ['tarde', 'Tarde'], ['noite', 'Noite'], ['fim_semana', 'Fim de semana']] }
-  ];
   var chat = document.getElementById('tri-chat'), op = document.getElementById('tri-opcoes');
   var env = document.getElementById('tri-enviar'), rei = document.getElementById('tri-reiniciar');
-  if (!chat || !op || !env || !rei) return;
-  var i;
+  var form = document.getElementById('f');
+  if (!chat || !op || !env || !rei || !form) return;
+  var r = {};
+
   function bolha(t, quem) { var d = document.createElement('p'); d.className = 'b ' + quem; d.textContent = t; chat.appendChild(d); }
-  function passo() {
+
+  // Marca o campo e avisa o formulário (form.js ouve o "change", por exemplo para esconder a primeira comunhão).
+  function avisar(el) { el.dispatchEvent(new Event('change', { bubbles: true })); }
+  function marcarRadio(nome, valor) {
+    var el = form.querySelector('input[name="' + nome + '"][value="' + valor + '"]');
+    if (el) { el.checked = true; avisar(el); }
+  }
+  function preencher(v) {
+    var m = document.getElementById('maior_18'); if (m) { m.checked = true; avisar(m); }
+    if (form.busca) { form.busca.value = v.busca; avisar(form.busca); }
+    if (form.horario) { form.horario.value = v.horario; avisar(form.horario); }
+    marcarRadio('batizado', v.batizado);
+    // com "não batizado" o grupo da primeira comunhão não existe: o formulário o esconde e segue como "nao"
+    if (v.batizado !== 'nao') marcarRadio('primeira_comunhao', v.primeira_comunhao);
+  }
+
+  // foco = true só depois de uma ação da pessoa: o foco nunca fica num botão que sumiu.
+  function passo(foco) {
     op.innerHTML = '';
-    if (i >= P.length) return fim();
-    var p = P[i]; bolha(p.q, 'nos');
+    var p = proxima(r);
+    if (p.menor) return menor();
+    if (!p.pergunta) return fim(p);
+    bolha(p.q, 'nos');
     p.o.forEach(function (o) {
       var b = document.createElement('button'); b.type = 'button'; b.textContent = o[1];
       b.addEventListener('click', function () {
+        r[p.pergunta] = o[0];
         bolha(o[1], 'voce');
-        if (p.k === 'maior_18' && o[0] === 'nao') return menor();
-        i++; passo();
+        if (p.pergunta === 'batizado' && proxima(r).acolhida) bolha(ACOLHIDA, 'nos');
+        passo(true);
       });
       op.appendChild(b);
     });
-    var f = op.querySelector('button'); if (f && i > 0) f.focus();
+    var f = op.querySelector('button'); if (f && foco) f.focus();
   }
   function menor() {
-    op.innerHTML = '';
     bolha('Esta turma é só para adultos. Para menores, há crisma infantil aos sábados, às 11h.', 'nos');
-    env.hidden = true; rei.hidden = false;
+    env.hidden = true; rei.hidden = false; rei.focus();
   }
-  function fim() {
-    bolha('Pronto. Para entrar na lista, use o formulário de inscrição. Nada do que você respondeu aqui foi guardado.', 'nos');
-    env.href = '#inscricao';
-    env.hidden = false; rei.hidden = false;
+  function fim(p) {
+    preencher(p.valores);
+    bolha('Pronto. Preenchi o formulário com as suas respostas. Confira, corrija se precisar e marque o consentimento para enviar.', 'nos');
+    env.hidden = false; rei.hidden = false; env.focus();
   }
-  function inicio() { i = 0; chat.innerHTML = ''; env.hidden = true; rei.hidden = true; passo(); }
-  rei.addEventListener('click', inicio);
-  inicio();
+  function inicio(foco) { r = {}; chat.innerHTML = ''; env.hidden = true; rei.hidden = true; passo(foco); }
+
+  env.addEventListener('click', function (ev) {
+    var nome = document.getElementById('nome');
+    if (!nome) return;
+    ev.preventDefault();
+    nome.focus();
+  });
+  rei.addEventListener('click', function () { inicio(true); });
+  inicio(false);
 })();
